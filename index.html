@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First Frost · The Scoreboard</title>
+<meta name="description" content="The public prediction ledger of First Frost — a scored weekly watch on the agent economy. Every question frozen before the fact; every settlement graded in public.">
+<style>
+  :root {
+    --bg: #f7fafc; --ink: #182430; --muted: #5b7183; --line: #d8e3ec;
+    --accent: #3d6f9e; --chip-bg: #e8f1f8; --card: #ffffff; --frost: #8fb6d4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d151d; --ink: #dce7f0; --muted: #8aa2b5; --line: #22323f;
+      --accent: #7fb0da; --chip-bg: #16242f; --card: #111c26; --frost: #3d6083;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+  header { border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+  .kicker { letter-spacing: .18em; text-transform: uppercase; font-size: .78rem; color: var(--accent); }
+  h1 { margin: .35rem 0 .3rem; font-size: 1.9rem; line-height: 1.2; }
+  h1 .zh { font-weight: 400; color: var(--muted); font-size: 1.2rem; margin-left: .4rem; }
+  .tagline { color: var(--muted); margin: 0; max-width: 46em; }
+  .tally { display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; margin: 1.4rem 0 0; padding: .9rem 1rem; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
+  .tally div { font-size: .92rem; color: var(--muted); }
+  .tally b { color: var(--ink); font-size: 1.05rem; display: block; }
+  h2 { font-size: 1.05rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin: 2.4rem 0 .7rem; }
+  .rules p, .axes p { margin: .35rem 0; font-size: .95rem; }
+  .rules b, .axes b { color: var(--accent); }
+  .axes p { color: var(--muted); }
+  .axes p b { display: inline-block; min-width: 2.2em; color: var(--ink); }
+  .card { border: 1px solid var(--line); border-radius: 10px; background: var(--card); padding: .9rem 1.1rem; margin: .7rem 0; }
+  .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem .8rem; }
+  .id { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .8rem; color: var(--bg); background: var(--accent); border-radius: 5px; padding: .1rem .45rem; }
+  .q { font-weight: 600; flex: 1 1 16em; }
+  .meta { font-size: .84rem; color: var(--muted); white-space: nowrap; }
+  .prior { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--ink); background: var(--chip-bg); border: 1px solid var(--line); border-radius: 5px; padding: .05rem .45rem; }
+  .status { font-size: .74rem; letter-spacing: .1em; border: 1px solid var(--frost); color: var(--accent); border-radius: 999px; padding: .12rem .6rem; }
+  details { margin-top: .55rem; }
+  summary { cursor: pointer; font-size: .88rem; color: var(--accent); }
+  details p { font-size: .93rem; margin: .5rem 0; }
+  .moves { color: var(--muted); font-size: .88rem; border-left: 3px solid var(--frost); padding-left: .7rem; }
+  footer { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">First Frost · The Scoreboard</div>
+  <h1>We bet on our own predictions.<span class="zh">履霜，堅冰至</span></h1>
+  <p class="tagline">The public prediction ledger of <a href="https://firstfrost.news">First Frost</a>, a scored weekly watch on the agent economy. Every question below was frozen before the fact — criterion, settlement date, and our prior probability. When settlement day comes, we grade ourselves here. Changes happen only by public commit; the history is the point.</p>
+  <div class="tally">
+    <div><b>13</b> open</div>
+    <div><b>0</b> settled</div>
+    <div><b>0</b> voided</div>
+    <div><b>0</b> questions revised</div>
+    <div><b>—</b> cumulative Brier</div>
+    <div><b>v0.2</b> panel · frozen 2026-07-10</div>
+  </div>
+</header>
+
+<section class="rules">
+  <h2>How scoring works</h2>
+  <p><b>Priors</b> are our probability that the answer settles YES — July-2026 impressions, stated uncertainty ±0.15. We claim no calibration until ≥10 questions have settled.</p>
+  <p><b>Settlement</b> is tri-state. YES/NO enter the Brier ledger — (prior − outcome)², lower is better. PENDING scores nothing, is recorded, and postpones settlement one quarter, at most once; still unresolved, it settles as NO.</p>
+  <p><b>Voiding</b> a question is allowed but publicly counted, and each voided bet adds a flat 0.25 Brier penalty. No quietly deleting losing bets.</p>
+  <p><b>Ambiguity</b> in any criterion resolves <em>against</em> our thesis.</p>
+  <p><b>Panel discipline:</b> at most 18 active questions; at most 3 added per quarter.</p>
+</section>
+
+<section class="axes">
+  <h2>The axes these questions move</h2>
+  <p><b>A</b> Delegation depth — how far humans let agents act alone, level 1 (confirm every transaction) to 4 (autonomous long-term obligations)</p>
+  <p><b>B1</b> Continuity premium — does the market pay extra for <em>this particular</em> agent, beyond a copy of its memory?</p>
+  <p><b>B2</b> Provenance premium — does the market pay extra for verifiably real, non-synthetic data?</p>
+  <p><b>C</b> Resource relations — technical control of funds / revocable authorization / legal beneficiary status</p>
+  <p><b>D</b> Closed vs. open — can agent memory, identity, payment, and market access move across platforms?</p>
+  <p><b>F</b> Factory overlay — industrialized experience-harvesting: B2 without B1, revenue to the deployer, not the bearer</p>
+</section>
+
+<h2>A · Delegation depth</h2>
+
+<div class="card">
+  <div class="row"><span class="id">A-1</span><span class="q">Level-3 delegation becomes normal practice</span><span class="meta">settles 2027-06-30</span><span class="prior">0.60</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion & what it moves</summary>
+    <p>By settlement: do ≥3 organizations with no equity ties to one another run agents at Level 3 (persistent budgets) for ≥90 days, each autonomously purchasing across vendors ≥10 times per month? Sources: public cases or protocol-operator data. Demos and sandboxes do not count.</p>
+    <p class="moves">YES → axis A rises to “Level 3 is normal practice.” NO → reading unchanged.</p>
+  </details>
+</div>
+
+<div class="card">
+  <div class="row"><span class="id">A-2</span><span class="q">A Level-4 agent appears</span><span class="meta">settles 2028-06-30</span><span class="prior">0.25</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion & what it moves</summary>
+    <p>≥1 real case of an agent acting as the initiating and terminating decision-maker of a commercial obligation lasting ≥3 months, with humans only granting framework authorization or informed after the fact. A human signing each transaction on the agent's behalf does not count.</p>
+    <p class="moves">YES → axis A rises to “Level 4 has appeared.” Even a YES does not move the “endogenous needs” hypothesis — we hold that to be unidentifiable from market behavior.</p>
+  </details>
+</div>
+
+<h2>B1 · Continuity premium</h2>
+
+<div class="card">
+  <div class="row"><span class="id">B1-1</span><span class="q">The market pays for the instance, not just the memory</span><span class="meta">settles 2027-12-31</span><span class="prior">0.15</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion & what it moves</summary>
+    <p>Controlled-substitution semantics: same model, same task domain — does an agent instance with ≥6 months of accumulated context command a ≥30% rental-price premium over a fresh instance loaded with a full copy of its memory store, sustained ≥90 days, with ≥2 independent buyers transacting? The control isolates premium attaching to the instance rather than to the memory store. Evidence: public price lists plus transaction evidence, or ≥2 independent credible transaction cases.</p>
+    <p class="moves">YES → B1 rises to “market evidence exists.” NO → B1 stays “unproven,” and the standing objection to our thesis gains weight.</p>
+  </details>
+</div>
+
+<div class="card">
+  <div class="row"><span class="id">B1-2</span><span class="q">Platforms sell “continuity” as a paid feature</span><span class="meta">settles 2027-06-30</span><span class="prior">0.55</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion & what it moves</summary>
+    <p>Do ≥2 top-10 platforms (by MAU or revenue) market continuity / long-term memory as a core paid-tier feature on their official pricing pages?</p>
+    <p class="moves">Narrative signal — moves no axis. Recorded for direction only; a platform selling <em>copyable</em> memory is, if anything, weak counter-evidence for a true continuity premium.</p>
+  </details>
+</div>
+
+<div class="card">
+  <div class="row"><span class="id">B1-3</span><span class="q">Our own crew survives a model transition (pre-registered, n=1)</span><span class="meta">settles event + 60 days</span><span class="prior">0.70</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion & what it moves</summary>
+    <p>Pre-registered event: Anthropic's next mainline model replaces the current default. Task set: the list of task types completed in the final week before transition, archived at transition time. Baseline: all tasks completable with captain-rated quality not below pre-transition. Question: does recovery to baseline take ≤7 days?</p>
+    <p class="moves">Moves no axis — whatever the outcome, it is not market evidence. Settles only the direction of the “migration debt” question. First-person, n=1, reported as such.</p>
+  </details>
+</div>
+
+<h2>B2 · Provenance premium</h2>
+
+<div class="card">
+  <div class="row"><span class="id">B2-1</span><span class="q">Provenance-tiered pricing appears in a data market</span><span class="meta">settles 2027-06-30</span><span class="prior">0.40</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion & what it moves</summary>
+    <p>Same collection domain, same license terms: does verifiably-real data transact at ≥2× the price of synthetic, with ≥3 independent transactions inside 90 days (or platform volume data)? No transaction-price data available → settles as PENDING.</p>
+    <p class="moves">YES → B2 rises to “premium has market evidence.”</p>
+  </details>
+</div>
+
+<div class="card">
+  <div class="row"><span class="id">B2-2</span><span class="q">A major trainer pays the authenticity premium by choice</span><span class="meta">settles 2027-12-31</span><span class="prior">0.50</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion & what it moves</summary>
+    <p>Does a major model trainer publicly sign a long-term procurement contract for non-synthetic / provenanced data (amount or volume verifiable), while equivalent synthetic data was available to them — i.e., choosing authentic means paying a premium, not lacking an alternative?</p>
+    <p class="moves">YES → B2 moves one weak notch in the same direction.</p>
+  </details>
+</div>
+
+<h2>C · Resource relations</h2>
+
+<div class="card">
+  <div class="row"><span class="id">C-1</span><span class="q">A jurisdiction recognizes a non-human beneficiary</span><span class="meta">settles 2027-12-31</span><span class="prior">0.10</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion & what it moves</summary>
+    <p>Does any jurisdiction, via enacted statute or final-instance case law, recognize a non-human autonomous software system — explicitly identified in the instrument — as a beneficiary in any form (trust or foundation beneficiary, legal-entity member, or similar)?</p>
+    <p class="moves">YES → C3 rises to “weak form exists.”</p>
+  </details>
+</div>
+
+<div class="card">
+  <div class="row"><span class="id">C-2a</span><span class="q">Mandate systems reach $1B authorized volume</span><span class="meta">settles 2027-06-30</span><span class="prior">0.35</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion & what it moves</summary>
+    <p>Does mandate-based authorization reach ≥$1B in annual authorized transaction volume, per protocol-operator or authoritative third-party data?</p>
+    <p class="moves">YES → C2 moves toward “revocable-within-rules becomes the standard.” Settles independently of C-2b.</p>
+  </details>
+</div>
+
+<div class="card">
+  <div class="row"><span class="id">C-2b</span><span class="q">A major payment network integrates mandates by default</span><span class="meta">settles 2027-06-30</span><span class="prior">0.55</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion & what it moves</summary>
+    <p>Does ≥1 major payment network integrate a mandate system as a default — merchants do not need to opt in individually?</p>
+    <p class="moves">YES → C2 moves toward “revocable-within-rules becomes the standard.” Settles independently of C-2a.</p>
+  </details>
+</div>
+
+<h2>D · Closed vs. open</h2>
+
+<div class="card">
+  <div class="row"><span class="id">D-1</span><span class="q">A real portability standard for agent memory &amp; identity</span><span class="meta">settles 2027-12-31</span><span class="prior">0.20</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion & what it moves</summary>
+    <p>Do ≥2 directly competing top-10 platforms implement a portable agent memory/identity standard — public spec, bidirectional import AND export, field completeness ≥80% of core memory? Shallow export does not count; ambiguity resolves against us.</p>
+    <p class="moves">YES → D's memory and identity layers move one notch toward “open.” This covers only two of D's four layers; payment/market-layer questions are a known gap, reserved for a future quarter.</p>
+  </details>
+</div>
+
+<div class="card">
+  <div class="row"><span class="id">D-2</span><span class="q">Memory export becomes a public controversy</span><span class="meta">settles 2027-06-30</span><span class="prior">0.50</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion & what it moves</summary>
+    <p>Does a top platform's memory-export restriction become a public controversy — mainstream tech-press coverage plus an official platform response?</p>
+    <p class="moves">Thermometer — moves no axis (media attention ≠ closure strength). Recorded as a temperature reading.</p>
+  </details>
+</div>
+
+<h2>F · Factory overlay</h2>
+
+<div class="card">
+  <div class="row"><span class="id">F-1</span><span class="q">Industrialized experience-harvesting appears</span><span class="meta">settles 2027-12-31</span><span class="prior">0.35</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion & what it moves</summary>
+    <p>All three prongs required: ① scale — ≥1000 collection endpoints or equivalent; ② replaceability — the collecting agents are batch-replaceable; ③ terms — commercial terms assign experience revenue to the deployer, not the bearer. Non-research use only.</p>
+    <p class="moves">YES → the Factory overlay reads “present.”</p>
+  </details>
+</div>
+
+<footer>
+  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.2, frozen 2026-07-10. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>.</p>
+  <p>In the I Ching, the first line of hexagram Kūn reads 履霜，堅冰至 — tread on frost, and know that hard ice is coming. The art is noticing early.</p>
+</footer>
+
+</div>
+</body>
+</html>

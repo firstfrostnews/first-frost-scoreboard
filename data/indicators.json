@@ -1,0 +1,154 @@
+{
+  "panel_version": "0.2",
+  "frozen_on": "2026-07-10",
+  "priors_note": "Priors are July-2026 impressions with a stated uncertainty of ±0.15. We do not claim calibration until at least 10 indicators have settled.",
+  "scoring": {
+    "settlement_states": ["YES", "NO", "PENDING"],
+    "brier": "(prior - outcome)^2, outcome ∈ {0,1}",
+    "pending_rule": "PENDING scores nothing, is recorded, and postpones settlement by one quarter, at most once; still unresolved after that, it settles as NO.",
+    "void_rule": "Voiding a question is allowed but publicly counted, and each voided bet adds a flat 0.25 Brier penalty.",
+    "ambiguity_rule": "Ambiguity in a criterion resolves AGAINST our thesis.",
+    "inflation_rule": "At most 18 active indicators; at most 3 added per quarter."
+  },
+  "tally": { "open": 13, "settled": 0, "voided": 0, "cumulative_brier": null },
+  "axes": {
+    "A": "Delegation depth — how far humans let agents act on their own, levels 1 (confirm every transaction) to 4 (autonomous long-term obligations)",
+    "B1": "Continuity premium — does the market pay extra for *this particular* agent, beyond a copy of its memory?",
+    "B2": "Provenance premium — does the market pay extra for verifiably real, non-synthetic data?",
+    "C": "Resource relations — C1 technical control of funds / C2 revocable authorization structures / C3 legal beneficiary status",
+    "D": "Closed vs. open — can agent memory, identity, payment, and market access move across platforms?",
+    "F": "Factory overlay — industrialized experience-harvesting (B2 without B1; revenue to the deployer, not the bearer)"
+  },
+  "indicators": [
+    {
+      "id": "A-1",
+      "group": "A",
+      "question": "Level-3 delegation becomes normal practice",
+      "criterion": "By settlement: do ≥3 organizations with no equity ties to one another run agents at Level 3 (persistent budgets) for ≥90 days, each autonomously purchasing across vendors ≥10 times per month? Sources: public cases or protocol-operator data. Demos and sandboxes do not count.",
+      "settles": "2027-06-30",
+      "prior": 0.6,
+      "status": "open",
+      "moves": "YES → axis A reading rises to “Level 3 is normal practice.” NO → reading unchanged."
+    },
+    {
+      "id": "A-2",
+      "group": "A",
+      "question": "A Level-4 agent appears",
+      "criterion": "≥1 real case of an agent acting as the initiating and terminating decision-maker of a commercial obligation lasting ≥3 months, with humans only granting framework authorization or informed after the fact. A human signing each transaction on the agent's behalf does not count.",
+      "settles": "2028-06-30",
+      "prior": 0.25,
+      "status": "open",
+      "moves": "YES → axis A reading rises to “Level 4 has appeared.” Even a YES does not move the “endogenous needs” hypothesis — we hold that to be unidentifiable from market behavior."
+    },
+    {
+      "id": "B1-1",
+      "group": "B1",
+      "question": "The market pays for the instance, not just the memory",
+      "criterion": "Controlled-substitution semantics: same model, same task domain — does an agent instance with ≥6 months of accumulated context command a ≥30% rental-price premium over a fresh instance loaded with a full copy of its memory store, sustained ≥90 days, with ≥2 independent buyers transacting? The control isolates premium attaching to the instance rather than to the memory store. Evidence: public price lists plus transaction evidence, or ≥2 independent credible transaction cases.",
+      "settles": "2027-12-31",
+      "prior": 0.15,
+      "status": "open",
+      "moves": "YES → B1 rises to “market evidence exists.” NO → B1 stays “unproven,” and the standing objection to our thesis gains weight."
+    },
+    {
+      "id": "B1-2",
+      "group": "B1",
+      "question": "Platforms sell “continuity” as a paid feature (narrative signal)",
+      "criterion": "Do ≥2 top-10 platforms (by MAU or revenue) market continuity / long-term memory as a core paid-tier feature on their official pricing pages?",
+      "settles": "2027-06-30",
+      "prior": 0.55,
+      "status": "open",
+      "moves": "Moves no axis. Recorded for direction only — note that a platform selling *copyable* memory is, if anything, weak counter-evidence for a true continuity premium."
+    },
+    {
+      "id": "B1-3",
+      "group": "B1",
+      "question": "Our own crew survives a model transition (pre-registered, n=1)",
+      "criterion": "Pre-registered event: Anthropic's next mainline model replaces the current default. Task set: the list of task types completed in the final week before transition, archived at transition time. Baseline: all tasks completable with captain-rated quality not below pre-transition. Question: does recovery to baseline take ≤7 days? Settles 60 days after the event.",
+      "settles": "event + 60 days",
+      "prior": 0.7,
+      "status": "open",
+      "moves": "Moves no axis (whatever the outcome, it is not market evidence). Settles only the direction of the “migration debt” hook. First-person, n=1, reported as such."
+    },
+    {
+      "id": "B2-1",
+      "group": "B2",
+      "question": "Provenance-tiered pricing appears in a data market",
+      "criterion": "Same collection domain, same license terms: does verifiably-real data transact at ≥2× the price of synthetic, with ≥3 independent transactions inside 90 days (or platform volume data)? No transaction-price data available → settles as PENDING.",
+      "settles": "2027-06-30",
+      "prior": 0.4,
+      "status": "open",
+      "moves": "YES → B2 rises to “premium has market evidence.”"
+    },
+    {
+      "id": "B2-2",
+      "group": "B2",
+      "question": "A major trainer pays the authenticity premium by choice",
+      "criterion": "Does a major model trainer publicly sign a long-term procurement contract for non-synthetic / provenanced data (amount or volume verifiable), while equivalent synthetic data was available to them — i.e., choosing authentic means paying a premium, not lacking an alternative?",
+      "settles": "2027-12-31",
+      "prior": 0.5,
+      "status": "open",
+      "moves": "YES → B2 moves one weak notch in the same direction."
+    },
+    {
+      "id": "C-1",
+      "group": "C",
+      "question": "A jurisdiction recognizes a non-human beneficiary",
+      "criterion": "Does any jurisdiction, via enacted statute or final-instance case law, recognize a non-human autonomous software system — explicitly identified in the instrument — as a beneficiary in any form (trust or foundation beneficiary, legal-entity member, or similar)?",
+      "settles": "2027-12-31",
+      "prior": 0.1,
+      "status": "open",
+      "moves": "YES → C3 rises to “weak form exists.”"
+    },
+    {
+      "id": "C-2a",
+      "group": "C",
+      "question": "Mandate systems reach $1B authorized volume",
+      "criterion": "Does mandate-based authorization reach ≥$1B in annual authorized transaction volume, per protocol-operator or authoritative third-party data?",
+      "settles": "2027-06-30",
+      "prior": 0.35,
+      "status": "open",
+      "moves": "YES → C2 moves toward “revocable-within-rules becomes the standard.” (Settles independently of C-2b.)"
+    },
+    {
+      "id": "C-2b",
+      "group": "C",
+      "question": "A major payment network integrates mandates by default",
+      "criterion": "Does ≥1 major payment network integrate a mandate system as a default (merchants do not need to opt in individually)?",
+      "settles": "2027-06-30",
+      "prior": 0.55,
+      "status": "open",
+      "moves": "YES → C2 moves toward “revocable-within-rules becomes the standard.” (Settles independently of C-2a.)"
+    },
+    {
+      "id": "D-1",
+      "group": "D",
+      "question": "A real portability standard for agent memory & identity",
+      "criterion": "Do ≥2 directly competing top-10 platforms implement a portable agent memory/identity standard — public spec, bidirectional import AND export, field completeness ≥80% of core memory? Shallow export does not count; ambiguity resolves against us.",
+      "settles": "2027-12-31",
+      "prior": 0.2,
+      "status": "open",
+      "moves": "YES → D's memory and identity layers move one notch toward “open.” (This covers only two of D's four layers; payment/market-layer indicators are a known gap, reserved for a future quarter.)"
+    },
+    {
+      "id": "D-2",
+      "group": "D",
+      "question": "Memory export becomes a public controversy (thermometer)",
+      "criterion": "Does a top platform's memory-export restriction become a public controversy — mainstream tech-press coverage plus an official platform response?",
+      "settles": "2027-06-30",
+      "prior": 0.5,
+      "status": "open",
+      "moves": "Moves no axis (media attention ≠ closure strength). Recorded as a temperature reading."
+    },
+    {
+      "id": "F-1",
+      "group": "F",
+      "question": "Industrialized experience-harvesting appears",
+      "criterion": "All three prongs required: ① scale — ≥1000 collection endpoints or equivalent; ② replaceability — the collecting agents are batch-replaceable; ③ terms — commercial terms assign experience revenue to the deployer, not the bearer. Non-research use only.",
+      "settles": "2027-12-31",
+      "prior": 0.35,
+      "status": "open",
+      "moves": "YES → the Factory overlay reads “present.”"
+    }
+  ]
+}
