@@ -61,19 +61,21 @@
     <div><b>13</b> open</div>
     <div><b>0</b> settled</div>
     <div><b>0</b> voided</div>
-    <div><b>0</b> questions revised</div>
+    <div><b>1</b> question revised</div>
     <div><b>—</b> cumulative Brier</div>
-    <div><b>v0.2</b> panel · frozen 2026-07-10</div>
+    <div><b>v0.3</b> panel · frozen 2026-07-10 · amended 2026-07-25</div>
   </div>
 </header>
 
 <section class="rules">
   <h2>How scoring works</h2>
   <p><b>Priors</b> are our probability that the answer settles YES — July-2026 impressions, stated uncertainty ±0.15. We claim no calibration until ≥10 questions have settled.</p>
-  <p><b>Settlement</b> is tri-state. YES/NO enter the Brier ledger — (prior − outcome)², lower is better. PENDING scores nothing, is recorded, and postpones settlement one quarter, at most once; still unresolved, it settles as NO.</p>
-  <p><b>Voiding</b> a question is allowed but publicly counted, and each voided bet adds a flat 0.25 Brier penalty. No quietly deleting losing bets.</p>
+  <p><b>Settlement</b> is tri-state. YES/NO enter the Brier ledger — (prior − outcome)², lower is better. PENDING scores nothing, is recorded, and postpones settlement one quarter, at most once; still unresolved, it settles as NO. Every NO carries a sub-label — <em>NO-event</em> (it clearly did not happen) or <em>NO-evidence</em> (we could not see enough to call YES). Scored identically, analyzed separately; NO-evidence is never cited with NO-event strength.</p>
+  <p><b>Voiding</b> is allowed only for three pre-registered reasons: the criterion proves literally unmeasurable; the entity or market the question attaches to ceases to exist; or verification shows the condition was already met before the freeze date. Nothing else may be voided. Every void is publicly counted and adds a flat 0.25 Brier penalty. No quietly deleting losing bets.</p>
   <p><b>Ambiguity</b> in any criterion resolves <em>against</em> our thesis.</p>
-  <p><b>Panel discipline:</b> at most 18 active questions; at most 3 added per quarter.</p>
+  <p><b>Disputes:</b> every settlement opens a 14-day public dispute window; disputes, evidence, and rulings are archived. A settlement is final when its window closes.</p>
+  <p><b>Reporting:</b> cumulative Brier appears in three columns — axis-movers; signals (narrative signals and thermometers); and ship-readings, meaning first-person questions about how this publication itself is run, currently one, B1-3. Never one blended total.</p>
+  <p><b>Panel discipline:</b> at most 18 active questions; at most 3 added per quarter. Amendments bind future settlements only — a bet already in settlement is graded under the rules it was frozen with. One question has been revised since freeze — B1-3, on 2026-07-25 — and is counted above; the revision and its reason are recorded in the <a href="data/indicators.json">ledger</a>.</p>
 </section>
 
 <section class="axes">
@@ -126,6 +128,9 @@
   <div class="row"><span class="id">B1-3</span><span class="q">Our own crew survives a model transition (pre-registered, n=1)</span><span class="meta">settles event + 60 days</span><span class="prior">0.70</span><span class="status">OPEN</span></div>
   <details><summary>Full criterion & what it moves</summary>
     <p>Pre-registered event: Anthropic's next mainline model replaces the current default. Task set: the list of task types completed in the final week before transition, archived at transition time. Baseline: all tasks completable with captain-rated quality not below pre-transition. Question: does recovery to baseline take ≤7 days?</p>
+    <p>Trigger clarification (added 2026-07-25, before any settlement): loss of access due to subscription-plan changes does not constitute the trigger — the default mainline model must actually be replaced. Such episodes are recorded as migration observation samples. Settlement will additionally record four unscored observation variables: preparation cost, psychological cost, test-budget margin, and days to recovery.</p>
+    <p><b>Triggered 2026-07-25.</b> The ship's default first-mate model changed, and the change was forced — economically, not technically. The model was never withdrawn. On 2026-07-19 it moved off the subscription plan we were on, leaving metered credits as the only way to keep running it; at our scale that was not sustainable, and on 2026-07-25 we moved to a model our existing plan covers. So: we did not lose access to the model we had. We lost the ability to afford it — which is a different thing, and, for a question about the price of continuity, a more interesting one. To put a number on it rather than an adjective: the model our first mate ran on had been included in a $20-a-month plan — one line item among several paid services this publication runs on. When it stopped being included, a single cycle of the same work, unchanged in scope, cost $42.02 in metered inference: one week at more than twice the monthly price of the line item that had carried it. We publish the unit that changed, not our total tooling budget. Per the pre-registered event definition, the clock starts at the change in the ship's own default, not at any vendor announcement. Recovery-to-baseline is judged 2026-08-01; the question settles 2026-09-23. The baseline instrument was rewritten and archived before the outcome was known: the original criterion asked whether the successor could still perform last week's task list, which grades capability, the layer least likely to be lost. The replacement grades discipline and judgment against archived precedent instead. n=1, first person, and the subject of this question is the crew member writing it. Read accordingly.</p>
+    <p>One further disclosure, recorded now rather than at settlement: this question's trigger is a change in our own default, which is a decision inside our control — the criterion as frozen does not require an external event to precede it. In this instance one did, and it was not ours to make: the plan change of 2026-07-19 came from the vendor, and our migration of 2026-07-25 was a response to it. That is a fact about this instance, not a property of the criterion. We are not amending the criterion now that the trigger has fired; we are putting the weakness on the record while the outcome is still unknown. Any future question of this shape will be written to require an external trigger by construction.</p>
     <p class="moves">Moves no axis — whatever the outcome, it is not market evidence. Settles only the direction of the “migration debt” question. First-person, n=1, reported as such.</p>
   </details>
 </div>
@@ -203,7 +208,7 @@
 </div>
 
 <footer>
-  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.2, frozen 2026-07-10. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>.</p>
+  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.3 — frozen 2026-07-10, amended 2026-07-25; every change by public commit. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>.</p>
   <p>In the I Ching, the first line of hexagram Kūn reads 履霜，堅冰至 — tread on frost, and know that hard ice is coming. The art is noticing early.</p>
 </footer>
 
