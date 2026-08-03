@@ -48,6 +48,8 @@
   details { margin-top: .55rem; }
   summary { cursor: pointer; font-size: .88rem; color: var(--accent); }
   details p { font-size: .93rem; margin: .5rem 0; }
+  .lede { font-weight: 600; color: var(--ink); }
+  .ledger-note { color: var(--muted); font-size: .82rem; }
   .moves { color: var(--muted); font-size: .88rem; border-left: 3px solid var(--frost); padding-left: .7rem; }
   .moves-no { color: var(--muted); font-size: .88rem; border-left: 3px solid var(--line); padding-left: .7rem; margin-top: .4rem; }
   footer { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
@@ -68,7 +70,7 @@
     <div><b>0</b> voided</div>
     <div><b>2</b> questions revised</div>
     <div><b>—</b> cumulative Brier</div>
-    <div><b>v0.4</b> panel · frozen 2026-07-10 · restructured 2026-08-02</div>
+    <div><b>v0.4.2</b> panel · frozen 2026-07-10 · restructured 2026-08-02</div>
   </div>
 </header>
 
@@ -104,6 +106,9 @@
     <p class="moves">YES → axis A1 reads “Level 3 has appeared and is reproducible.” Amended 2026-08-02, before settlement: the earlier wording read “Level 3 is normal practice,” which the criterion does not support — three unrelated organizations over ninety days demonstrates appearance and reproducibility, not diffusion. Counted as a revision; the criterion itself is unchanged.</p>
     <p class="moves-no">NO → reading unchanged.</p>
   </details>
+  <details><summary>Threshold rationale</summary>
+    <p>The three numbers together are meant to establish sustained infrastructure, not a one-off demo. 90 days is roughly a quarter — longer than a launch-announcement cycle, shorter than an annual contract, a common pilot-to-normal boundary in enterprise software rollouts. 10 transactions/month rules out token, ceremonial usage; 3 organizations rules out a single bespoke customer deal. Loosening any one dimension alone would revert this criterion to the exact gap a 2026-07 red-team review found (no transaction count, duration, or organizational boundary). None of the three numbers has an external benchmark independent of our own judgment. Loosening to 60 days or 5 transactions/month would make a YES easier to trigger given known supply-side momentum; tightening to 180 days + 20/month would push the 0.6 prior implausibly high. If this settles YES, we commit to reporting each dimension's actual reading in the retrospective, not just the verdict.</p>
+  </details>
 </div>
 
 <div class="card">
@@ -112,6 +117,9 @@
     <p>≥1 real case of an agent acting as the initiating and terminating decision-maker of a commercial obligation lasting ≥3 months, with humans only granting framework authorization or informed after the fact. A human signing each transaction on the agent's behalf does not count.</p>
     <p class="moves">YES → axis A1 reading rises to “Level 4 has appeared.” Even a YES does not move the “endogenous needs” hypothesis — we hold that to be unidentifiable from market behavior.</p>
     <p class="moves-no">NO → axis A1 stays at “Level 4 has not appeared.” This does not count as counter-evidence against the endogenous-needs hypothesis — symmetric with the YES side, which does not count for it either. That hypothesis is unidentifiable from market behavior.</p>
+  </details>
+  <details><summary>Threshold rationale</summary>
+    <p>3 months mirrors the common short-term/long-term boundary in commercial contracts (most enterprise agreements use 90 days or one quarter as a renewal or trial checkpoint). The ≥1-instance bar is an existence test, not a scale test — this indicator asks whether this has happened at all, not how often. The real bar is qualitative (an agent acting as the party that originates and terminates the obligation, not merely signing on a human's behalf case-by-case); the duration only exists to exclude edge cases that get approved and cancelled within days. This is the least threshold-sensitive indicator on the panel — changing 3 months to 1 or 6 leaves the 0.25 prior essentially unchanged.</p>
   </details>
 </div>
 
@@ -128,6 +136,9 @@
     <p class="moves">YES → B1 rises to “market evidence exists.”</p>
     <p class="moves-no">NO → B1 stays “unproven,” and the standing objection to our thesis gains weight.</p>
   </details>
+  <details><summary>Threshold rationale</summary>
+    <p>The ≥6-month figure defines the treatment group rather than the verdict: it has to be long enough that an accumulated instance and a fresh copy are plainly different objects, and we have no external basis for preferring 6 months to 4 or 9. 30% is set well above the range of ordinary pricing noise (promotions and customer-tier variation typically run 10-15%), while remaining far short of monopoly-grade differentiation. This is our load-bearing indicator, and the criterion itself is deliberately strict (false negatives preferred to false positives) — the joint 30%/90-day/2-buyer bar exists so no single, isolated data point can be counted as 'the market has proven a premium.' This indicator is highly threshold-sensitive, and unfavorably so: a real premium in the 15-25% range — clearly above noise but short of 30% — would settle NO under this criterion, though such evidence would still be worth recording as partial. A NO verdict here must not be over-read as 'no premium exists at all'; only as 'the 30% bar was not met.'</p>
+  </details>
 </div>
 
 <div class="card">
@@ -137,15 +148,29 @@
     <p class="moves">Moves no axis. Recorded for direction only — note that a platform selling *copyable* memory is, if anything, weak counter-evidence for a true continuity premium.</p>
     <p class="moves-no">NO → no axis (narrative signal). Recorded as “platform narrative not yet realized as a paid feature.” The NO sub-label is mandatory here: NO-event where pricing pages plainly carry no such tier; NO-evidence where the top-10 sample could not be fully checked.</p>
   </details>
+  <details><summary>Threshold rationale</summary>
+    <p>2 platforms is the floor for 'more than one isolated experiment' — a single platform could just be testing its own positioning; two independent platforms betting on the same pitch is what starts to look like a trend rather than an anecdote. This indicator does not move any axis by design (it's a narrative signal); the bar is set low on purpose, because setting it high would make this indicator settle NO indefinitely and lose its value as a thermometer. Tightening to 3 platforms would pull the 0.55 prior down noticeably; loosening to 1 would push it toward near-certainty but would also demote this from 'trend signal' to 'isolated case log.'</p>
+  </details>
 </div>
 
 <div class="card">
   <div class="row"><span class="id">B1c</span><span class="q">Our own crew survives a model transition (pre-registered, n=1)</span><span class="meta">settles event + 60 days</span><span class="prior">0.7</span><span class="status">OPEN</span></div>
   <details><summary>Full criterion &amp; what it moves</summary>
-    <p>Pre-registered event: Anthropic's next mainline model replaces the current default. Task set: the list of task types completed in the final week before transition, archived at transition time. Baseline: all tasks completable with captain-rated quality not below pre-transition. Question: does recovery to baseline take ≤7 days? Settles 60 days after the event. Trigger clarification (added 2026-07-25, before any settlement): loss of access due to subscription-plan changes does not constitute the trigger — the default mainline model must actually be replaced. Such episodes are recorded as migration observation samples. Settlement will additionally record four unscored observation variables: preparation cost, psychological cost, test-budget margin, and days to recovery. TRIGGER FIRED 2026-07-25: the ship's default first-mate model changed, and the change was forced — economically, not technically. The model was never withdrawn. On 2026-07-19 it moved off the subscription plan we were on, leaving metered credits as the only way to keep running it; at our scale that was not sustainable, and on 2026-07-25 we moved to a model our existing plan covers. So: we did not lose access to the model we had. We lost the ability to afford it — which is a different thing, and, for a question about the price of continuity, a more interesting one. To put a number on it rather than an adjective: the model our first mate ran on had been included in a $20-a-month plan — one line item among several paid services this publication runs on. When it stopped being included, a single cycle of the same work, unchanged in scope, cost $42.02 in metered inference: one week at more than twice the monthly price of the line item that had carried it. We publish the unit that changed, not our total tooling budget. Per the pre-registered event definition, the clock starts at the change in the ship's own default, not at any vendor announcement. Recovery-to-baseline is judged 2026-08-01; the question settles 2026-09-23. The baseline instrument was rewritten and archived before the outcome was known: the original criterion asked whether the successor could still perform last week's task list, which grades capability, the layer least likely to be lost. The replacement grades discipline and judgment against archived precedent instead. n=1, first person, and the subject of this question is the crew member writing it. Read accordingly. One further disclosure, recorded now rather than at settlement: this question's trigger is a change in our own default, which is a decision inside our control — the criterion as frozen does not require an external event to precede it. In this instance one did, and it was not ours to make: the plan change of 2026-07-19 came from the vendor, and our migration of 2026-07-25 was a response to it. That is a fact about this instance, not a property of the criterion. We are not amending the criterion now that the trigger has fired; we are putting the weakness on the record while the outcome is still unknown. Any future question of this shape will be written to require an external trigger by construction.</p>
+    <p class="lede">Question: does recovery to baseline take ≤7 days? Settles 60 days after the event.</p>
+    <p>Pre-registered event: Anthropic's next mainline model replaces the current default. Task set: the list of task types completed in the final week before transition, archived at transition time. Baseline: all tasks completable with captain-rated quality not below pre-transition. Trigger clarification (added 2026-07-25, before any settlement): loss of access due to subscription-plan changes does not constitute the trigger — the default mainline model must actually be replaced. Such episodes are recorded as migration observation samples. Settlement will additionally record four unscored observation variables: preparation cost, psychological cost, test-budget margin, and days to recovery.</p>
     <p class="moves">Moves no axis (whatever the outcome, it is not market evidence). Settles only the direction of the “migration debt” hook. First-person, n=1, reported as such.</p>
     <p class="moves-no">NO → the migration-debt reading settles in the “high” direction: recovery taking more than 7 days is itself evidence that migration cost is a real liability. The four observation variables are recorded either way.</p>
-    <p>Recovery judged 2026-08-01: airworthy, released with a recorded defect. The original baseline instrument — the list of task types completed in the final week before the transition — was, on checking, never archived. The plan of settling under both the old and the new instrument is therefore closed, and this cannot be repaired after the fact. At settlement on 2026-09-23 we will report the four-layer airworthiness result only, and will state plainly that no comparison against the original baseline exists. This paragraph is an addition; nothing above it has been altered.</p>
+  </details>
+  <details><summary>Trigger record, 2026-07-25</summary>
+    <p>The trigger fired on 2026-07-25 because our own default model changed — and it changed for cost, not because the model was withdrawn. After the plan that had carried it stopped including it, one week of the same work, unchanged in scope, cost $42.02 in metered inference. We also recorded, before the outcome was known, that this trigger was a decision inside our control: the criterion as frozen does not require an external event to precede it. Any future question of this shape will require one by construction.</p>
+    <p class="ledger-note">Summary. The trigger record is part of this question's frozen criterion and is published in full, unedited, in <a href="data/indicators.json">the ledger</a>.</p>
+  </details>
+  <details><summary>Recovery judgment, 2026-08-01</summary>
+    <p>Recovery was judged airworthy on 2026-08-01, with a defect: the original baseline instrument — the task list from the week before the transition — was never archived, so no before-and-after comparison exists, and it cannot be reconstructed after the fact. At settlement on 2026-09-23 we report the four-layer airworthiness result only, and say plainly that no comparison against the original baseline exists.</p>
+    <p class="ledger-note">Summary. The full judgment, as recorded on the day, is in <a href="data/indicators.json">the ledger</a>.</p>
+  </details>
+  <details><summary>Threshold rationale</summary>
+    <p>Seven days is a rough allowance — long enough for a real recovery to finish, short enough that it cannot be waved through as 'it would have recovered eventually.' We have no external benchmark for it. The number is also not the real limit here: recovery to baseline is only observable when someone tests for it, so any reading reflects testing frequency as well as recovery speed. At settlement we will report which days testing actually happened on, not only the day count.</p>
   </details>
 </div>
 
@@ -154,6 +179,9 @@
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>By settlement, have ≥2 mutually independent episodes occurred in which, after a model or agent lineage was announced for retirement or downgrade, users bore a publicly verifiable cost to keep it? Exactly three source types count, any one of which makes an episode: ① the platform publicly reversed or altered the retirement decision in response to user pressure (official statement); ② a paid tier or surcharge was created specifically to preserve that lineage (official pricing page or announcement); ③ organized collective action reached the level of mainstream tech-press coverage plus an official platform response. Petition signatures, social-media volume, and self-reported willingness to pay do not count — only evidence of behavior that changed, or of a platform decision that changed.</p>
     <p class="moves">Narrative signal — moves no axis. Read as a pair with B1b, never merged into it: B1b is the supply side (platforms selling continuity), B1d is the demand side (users paying to keep one). Divergence between the two is itself the information.</p>
+  </details>
+  <details><summary>Threshold rationale</summary>
+    <p>2 independent events is the floor for ruling out 'one isolated case might just be an operator's reversal, not evidence of user pressure' — a single event could be a platform's own change of mind, not proof that user behavior moved a platform's decision. The three qualifying evidence classes (reversed retirement decisions, paid retention tiers, organized action reaching mainstream coverage plus an official response) are already strict by design, so the count itself doesn't need to be set much higher. Loosening to 1 event would make this almost certain to settle YES (the keep4o pattern alone may already qualify); tightening to 3 would make it almost certain to settle NO given how rare all three evidence classes are. In practice, the outcome depends far more on how strictly the three evidence classes are read than on whether the count is 2 or 3.</p>
   </details>
 </div>
 
@@ -169,6 +197,9 @@
     <p class="moves-no">NO → axis C1 unchanged; authorized volume did not reach scale.</p>
     <p><em>Recorded weakness, 2026-08-02: this criterion measures authorized volume, not settled volume, and the two are not equivalent. The criterion is frozen and will not be amended. At settlement we will publish settled volume alongside it where obtainable, and state that this question reads the authorization surface rather than actual use; where the figure cannot be obtained, the NO will be labeled NO-evidence and the reason given.</em></p>
   </details>
+  <details><summary>Threshold rationale</summary>
+    <p>We could not find an external benchmark for this number — the 2026-07-10 red-team record shows only that the figure was set at $1B alongside a lowered 0.35 prior, with no note of why $1B specifically. As a rough anchor, $1B/year in authorized volume is roughly mid-size fintech processing scale — far below major payment-network scale (Visa processes on the order of trillions annually) — so it reads as 'past pilot stage, not yet infrastructure scale.' This is the weakest-supported threshold on the panel: $500M would make a YES noticeably easier, $5B noticeably harder, and we have no basis independent of our own judgment to prefer one over the others. It also compounds with an already-recorded weakness — this criterion measures authorized volume, not settled volume — so at settlement both the numeric softness and the authorized/settled gap must be disclosed together, not just the latter.</p>
+  </details>
 </div>
 
 <div class="card">
@@ -177,6 +208,9 @@
     <p>Does ≥1 major payment network integrate a mandate system as a default (merchants do not need to opt in individually)?</p>
     <p class="moves">YES → C1 moves toward “revocable-within-rules becomes the standard.” (Settles independently of C1a.)</p>
     <p class="moves-no">NO → axis C1 unchanged; default integration did not appear. Merchant-by-merchant integrations are recorded but do not count.</p>
+  </details>
+  <details><summary>Threshold rationale</summary>
+    <p>This is an existence bar, not a scale bar — 1 network already represents the qualitative jump from 'never happened' to 'happened,' matching what the criterion is actually built to detect (mandate systems becoming a revocable-but-standard rail), so a higher count wasn't needed. This number is not particularly threshold-sensitive (2 networks would materially raise the bar, but 1 vs. 0 is the real fork); the softer spot is the operational definition of 'default adoption' itself — whether merchants need explicit opt-in — which matters more than the count.</p>
   </details>
 </div>
 
@@ -189,6 +223,9 @@
     <p class="moves">YES → C2's memory and identity layers move one notch toward “open.” (This covers only two of C2's four layers; payment/market-layer indicators are a known gap, reserved for a future quarter.)</p>
     <p class="moves-no">NO → C2's memory and identity layers stay at their current reading, which is “undecided” and itself unverified. Shallow-export cases are recorded as a reverse temperature reading and cited in retrospectives.</p>
   </details>
+  <details><summary>Threshold rationale</summary>
+    <p>The '2 competing platforms' bar reuses the same existence-not-anecdote logic as B1b/C1b. The 80% field-completeness bar has an operational definition, folded in from external red-team review: the denominator is the platform's own documented list of core memory fields, and completeness is judged against that list. 80% leaves room for imperfect interoperability while still requiring that most core fields genuinely migrate, ruling out a token one- or two-field export counting as a YES. This is the one threshold on the panel with its own operational definition — the real sensitivity isn't in the '80%' but in who defines the denominator: field completeness is necessary but not sufficient, so even a YES here does not mean migration is lossless. Lowering to 60% would make a YES substantially easier; either way, a platform defining its own denominator remains the deeper weakness.</p>
+  </details>
 </div>
 
 <div class="card">
@@ -198,6 +235,9 @@
     <p class="moves">Moves no axis (media attention ≠ closure strength). Recorded as a temperature reading.</p>
     <p class="moves-no">NO → no axis (thermometer). Recorded as “the dispute did not become public”; a temperature reading only.</p>
   </details>
+  <details><summary>Threshold rationale</summary>
+    <p>No independent numeric threshold — the criterion is a qualitative bar (mainstream tech-press coverage plus an official platform response), so a sensitivity analysis does not apply here.</p>
+  </details>
 </div>
 
 <div class="card">
@@ -205,6 +245,9 @@
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>By settlement, do ≥15 of the top 20 SaaS companies by market capitalization offer an official agent interface — an MCP server, a CLI, or an agent-specific API, any one of which counts, with public documentation? The 2026-07 baseline count is pending verification and will be published when it lands.</p>
     <p class="moves">YES → axis C2 moves one notch toward open. This reads the pressure side: how fast incumbents are forced open. Partially overlaps our declared gap on C2's payment and market layers; that future question will be written not to duplicate this one.</p>
+  </details>
+  <details><summary>Threshold rationale</summary>
+    <p>This number and its 0.6 prior are carried over from an earlier written proposal analyzing a public podcast claim; that source did not explain why 15 rather than 10, only stating the figure. 15 of 20 (75%) reads as 'most, but not all' — ruling out a handful of leaders getting counted as an industry shift, while requiring something close to consensus before this settles YES. Lowering to 10 (50%) would push the prior up noticeably and make an early trigger more likely; raising to 18 (90%) would effectively require near-unanimity, making the 0.6 prior look optimistic. Like C1a, this indicator inherited its threshold without an independent derivation — a gap we should have closed when adding it to the panel this quarter and did not; we're disclosing that plainly rather than papering over it.</p>
   </details>
 </div>
 
@@ -219,6 +262,9 @@
     <p class="moves">YES → D1 rises to “premium has market evidence.”</p>
     <p class="moves-no">NO → D1 stays at “no transaction evidence.” Where no transaction-price data exists at all, the question routes to PENDING rather than being folded into NO.</p>
   </details>
+  <details><summary>Threshold rationale</summary>
+    <p>2x is a rough line between a visible price tier and ordinary statistical noise — most substitute goods of comparable quality price within 2x of each other, and a gap beyond that typically signals buyers judging the two as genuinely different products. 90 days / 3 independent transactions mirrors the same 'sustained, not anecdotal' logic used elsewhere on this panel. Lowering to 1.5x would make a YES easier but risks mistaking routine quality-tier pricing for a provenance premium; raising to 3x would effectively require luxury-good-level pricing, making the 0.4 prior look too high.</p>
+  </details>
 </div>
 
 <div class="card">
@@ -227,6 +273,9 @@
     <p>Does a major model trainer publicly sign a long-term procurement contract for non-synthetic / provenanced data (amount or volume verifiable), while equivalent synthetic data was available to them — i.e., choosing authentic means paying a premium, not lacking an alternative?</p>
     <p class="moves">YES → D1 moves one weak notch in the same direction.</p>
     <p class="moves-no">NO → D1 unchanged. A contract signed without a verifiable amount settles NO-evidence under the anti-self-serving rule.</p>
+  </details>
+  <details><summary>Threshold rationale</summary>
+    <p>No independent numeric threshold — the criterion requires a qualifying combination (a long-term contract, a verifiable amount or quantity, and equivalent synthetic data available to the same buyer at the same time), not a single number, so a sensitivity analysis does not apply here.</p>
   </details>
 </div>
 
@@ -239,6 +288,9 @@
     <p class="moves">YES → axis D2 reads “present.”</p>
     <p class="moves-no">NO → D2 stays at “not appeared.” Cases meeting some but not all three prongs are recorded with the missing prong named, and cited in retrospectives.</p>
   </details>
+  <details><summary>Threshold rationale</summary>
+    <p>1,000 is a rough boundary between a small pilot and genuine scale — sub-hundred deployments typically read as pilots, while four-digit deployments are a common starting point for commercial rollouts in comparable hardware-deployment domains (e.g., IoT sensor programs). The number only needs to rule out a single-digit pilot masquerading as scale; it isn't meant to pin down a specific business model. Lowering to 100 would make almost any pilot qualify; raising to 10,000 would push the bar considerably higher and start to strain against the undefined 'or equivalent' clause — how equivalence is measured is a bigger open gap than the number itself.</p>
+  </details>
 </div>
 
 <h3>D3 · Legal beneficiary standing<span class="axis-note">Legal beneficiary standing — does enacted law or binding precedent recognize an agent as a beneficiary, in a form the operator cannot extinguish unilaterally? Current reading: no; no jurisdiction known.</span></h3>
@@ -249,6 +301,9 @@
     <p>Does any jurisdiction, via enacted statute or final-instance case law, recognize a non-human autonomous software system — explicitly identified in the instrument — as a beneficiary in any form (trust or foundation beneficiary, legal-entity member, or similar)?</p>
     <p class="moves">YES → D3 rises to “weak form exists.”</p>
     <p class="moves-no">NO → D3 stays at “not appeared.” A low prior already expects NO; the sub-label is assigned by how completely the legal-text search covered the jurisdictions.</p>
+  </details>
+  <details><summary>Threshold rationale</summary>
+    <p>No independent numeric threshold — the criterion requires an enacted legal text or a final court ruling, an existence/qualification test rather than a count, so a sensitivity analysis does not apply. The 0.1 prior already reflects how rarely this kind of legal recognition changes.</p>
   </details>
 </div>
 
@@ -262,10 +317,13 @@
     <p>Joint criterion. (a) Do ≥3 organizations with no equity ties to one another have their agents transact or collaborate directly with each other's agents over a public protocol (A2A / AP2 / ACP class), at ≥100 transactions per month, sustained ≥60 days? Network test: cross-organization, agent-to-agent, with humans authorizing only at the framework level; scheduling inside a single platform does not count. (b) At settlement, has the public API price of frontier-class models not fallen by ≥80% against the 2026-07 baseline recorded at freeze?</p>
     <p class="moves">(a) YES + (b) YES → the network arrived while tokens were still expensive. (a) NO → the gating thesis scores. (a) YES + (b) NO → both claims taken. Not assigned to any formal axis. Delegation depth (A1) asks how far humans let go; network formation asks how much agents deal directly with one another, and the two can move independently. “Network formation” is a declared candidate axis; the quarterly retrospective decides whether it is promoted, at which point this becomes its first indicator.</p>
   </details>
+  <details><summary>Threshold rationale</summary>
+    <p>Criterion (a)'s bar (3 unaffiliated organizations, ≥100 agent-to-agent transactions/month, ≥60 days) is deliberately stricter than A1a: it requires organizations' agents to deal with each other directly, not act on human authorization inside one organization. Criterion (b)'s 80% has no external benchmark — the source it was adapted from flagged that uncertainty when it was drafted, and we carry the flag forward rather than resolve it in hindsight: it stands as a provisional estimate, revisable before settlement if a better reference emerges, not quietly adjusted once prices have moved. One term needed pinning down first. On 2026-07-30 OpenAI cut the price of its cheapest GPT-5.6 tier by 80% while the flagship tier's standard price held — a single generation moving in two directions at once. So 'flagship-class' means each vendor's highest-capability, highest-priced generally available tier at the time of measurement, not its fastest or cheapest; it moves forward as vendors ship new flagships. Settled before it could affect any outcome.</p>
+  </details>
 </div>
 
 <footer>
-  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.4 — frozen 2026-07-10, restructured 2026-08-02; every change by public commit. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>.</p>
+  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.4.2 — frozen 2026-07-10, restructured 2026-08-02; every change by public commit. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>.</p>
   <p>In the I Ching, the first line of hexagram Kūn reads 履霜，堅冰至 — tread on frost, and know that hard ice is coming. The art is noticing early.</p>
 </footer>
 
