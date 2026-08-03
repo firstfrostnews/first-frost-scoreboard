@@ -27,14 +27,17 @@
   h1 { margin: .35rem 0 .3rem; font-size: 1.9rem; line-height: 1.2; }
   h1 .zh { font-weight: 400; color: var(--muted); font-size: 1.2rem; margin-left: .4rem; }
   .tagline { color: var(--muted); margin: 0; max-width: 46em; }
+  .scope { border: 1px solid var(--line); border-left: 3px solid var(--accent); background: var(--card); border-radius: 8px; padding: .8rem 1rem; margin: 1.2rem 0 0; font-size: .94rem; max-width: 46em; }
   .tally { display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; margin: 1.4rem 0 0; padding: .9rem 1rem; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
   .tally div { font-size: .92rem; color: var(--muted); }
   .tally b { color: var(--ink); font-size: 1.05rem; display: block; }
   h2 { font-size: 1.05rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin: 2.4rem 0 .7rem; }
+  h3 { font-size: .95rem; color: var(--ink); margin: 1.6rem 0 .5rem; font-weight: 600; border-left: 3px solid var(--frost); padding-left: .6rem; }
+  h3 .axis-note { display: block; font-weight: 400; color: var(--muted); font-size: .88rem; margin-top: .25rem; }
   .rules p, .axes p { margin: .35rem 0; font-size: .95rem; }
   .rules b, .axes b { color: var(--accent); }
   .axes p { color: var(--muted); }
-  .axes p b { display: inline-block; min-width: 2.2em; color: var(--ink); }
+  .chain { color: var(--muted); font-style: italic; margin: .4rem 0 1.2rem; }
   .card { border: 1px solid var(--line); border-radius: 10px; background: var(--card); padding: .9rem 1.1rem; margin: .7rem 0; }
   .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem .8rem; }
   .id { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .8rem; color: var(--bg); background: var(--accent); border-radius: 5px; padding: .1rem .45rem; }
@@ -46,6 +49,7 @@
   summary { cursor: pointer; font-size: .88rem; color: var(--accent); }
   details p { font-size: .93rem; margin: .5rem 0; }
   .moves { color: var(--muted); font-size: .88rem; border-left: 3px solid var(--frost); padding-left: .7rem; }
+  .moves-no { color: var(--muted); font-size: .88rem; border-left: 3px solid var(--line); padding-left: .7rem; margin-top: .4rem; }
   footer { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
   a { color: var(--accent); }
 </style>
@@ -57,13 +61,14 @@
   <div class="kicker">First Frost · The Scoreboard</div>
   <h1>We bet on our own predictions.<span class="zh">履霜，堅冰至</span></h1>
   <p class="tagline">The public prediction ledger of <a href="https://firstfrost.news">First Frost</a>, a scored weekly watch on the agent economy. Every question below was frozen before the fact — criterion, settlement date, and our prior probability. When settlement day comes, we grade ourselves here. Changes happen only by public commit; the history is the point.</p>
+  <p class="scope">What this scoreboard measures — and what it does not. We track whether agents are becoming economic subjects: how much control is delegated to them, what kind of agent receives it, through what mechanisms, and who ends up holding the value. We do not track how large the agent economy is. Market-size questions need data channels we do not have, and we would rather say so than publish a number we cannot stand behind.</p>
   <div class="tally">
-    <div><b>13</b> open</div>
+    <div><b>16</b> open</div>
     <div><b>0</b> settled</div>
     <div><b>0</b> voided</div>
-    <div><b>1</b> question revised</div>
+    <div><b>2</b> questions revised</div>
     <div><b>—</b> cumulative Brier</div>
-    <div><b>v0.3</b> panel · frozen 2026-07-10 · amended 2026-07-25</div>
+    <div><b>v0.4</b> panel · frozen 2026-07-10 · restructured 2026-08-02</div>
   </div>
 </header>
 
@@ -74,141 +79,193 @@
   <p><b>Voiding</b> is allowed only for three pre-registered reasons: the criterion proves literally unmeasurable; the entity or market the question attaches to ceases to exist; or verification shows the condition was already met before the freeze date. Nothing else may be voided. Every void is publicly counted and adds a flat 0.25 Brier penalty. No quietly deleting losing bets.</p>
   <p><b>Ambiguity</b> in any criterion resolves <em>against</em> our thesis.</p>
   <p><b>Disputes:</b> every settlement opens a 14-day public dispute window; disputes, evidence, and rulings are archived. A settlement is final when its window closes.</p>
-  <p><b>Reporting:</b> cumulative Brier appears in three columns — axis-movers; signals (narrative signals and thermometers); and ship-readings, meaning first-person questions about how this publication itself is run, currently one, B1-3. Never one blended total.</p>
-  <p><b>Panel discipline:</b> at most 18 active questions; at most 3 added per quarter. Amendments bind future settlements only — a bet already in settlement is graded under the rules it was frozen with. One question has been revised since freeze — B1-3, on 2026-07-25 — and is counted above; the revision and its reason are recorded in the <a href="data/indicators.json">ledger</a>.</p>
+  <p><b>Reporting:</b> cumulative Brier appears in three columns — axis-movers; signals (narrative signals and thermometers); and ship-readings, meaning first-person questions about how this publication itself is run, currently one, B1c. Never one blended total.</p>
+  <p><b>Panel discipline:</b> at most 18 active <em>published</em> questions; at most 3 added per quarter — internal ship-readings are not counted toward this quota. Amendments bind future settlements only — a bet already in settlement is graded under the rules it was frozen with. Two questions have been revised since freeze — B1-3/B1c on 2026-07-25, and A1a on 2026-08-02 — and both are counted above; the revisions and their reasons are recorded in the <a href="data/indicators.json">ledger</a>.</p>
 </section>
 
 <section class="axes">
-  <h2>The axes these questions move</h2>
-  <p><b>A</b> Delegation depth — how far humans let agents act alone, level 1 (confirm every transaction) to 4 (autonomous long-term obligations)</p>
-  <p><b>B1</b> Continuity premium — does the market pay extra for <em>this particular</em> agent, beyond a copy of its memory?</p>
-  <p><b>B2</b> Provenance premium — does the market pay extra for verifiably real, non-synthetic data?</p>
-  <p><b>C</b> Resource relations — technical control of funds / revocable authorization / legal beneficiary status</p>
-  <p><b>D</b> Closed vs. open — can agent memory, identity, payment, and market access move across platforms?</p>
-  <p><b>F</b> Factory overlay — industrialized experience-harvesting: B2 without B1, revenue to the deployer, not the bearer</p>
+  <h2>The four questions we are asking</h2>
+  <p><b>A</b> What kinds of control, and how much of it, are humans handing over?</p>
+  <p><b>B</b> What kind of agent is that control being handed to?</p>
+  <p><b>C</b> Through what institutions and infrastructure is it handed over?</p>
+  <p><b>D</b> Who ends up holding the value, the risk, and the standing?</p>
 </section>
 
-<h2>A · Delegation depth</h2>
+<p class="chain"><em>How much is handed over → to whom → by what mechanism → and who ends up holding it.</em></p>
+
+<h2>A · Control</h2>
+
+<h3>A1 · Delegation depth<span class="axis-note">Delegation depth, levels 1–4: ① confirm every transaction → ② auto-approve within rules → ③ persistent budget, no per-transaction authorization → ④ can independently enter and terminate long-term obligations. Current reading: mainstream at 1–2; level 3 appearing in narrow settings.</span></h3>
 
 <div class="card">
-  <div class="row"><span class="id">A-1</span><span class="q">Level-3 delegation becomes normal practice</span><span class="meta">settles 2027-06-30</span><span class="prior">0.60</span><span class="status">OPEN</span></div>
-  <details><summary>Full criterion & what it moves</summary>
+  <div class="row"><span class="id">A1a</span><span class="q">Level-3 delegation becomes normal practice</span><span class="meta">settles 2027-06-30</span><span class="prior">0.6</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
     <p>By settlement: do ≥3 organizations with no equity ties to one another run agents at Level 3 (persistent budgets) for ≥90 days, each autonomously purchasing across vendors ≥10 times per month? Sources: public cases or protocol-operator data. Demos and sandboxes do not count.</p>
-    <p class="moves">YES → axis A rises to “Level 3 is normal practice.” NO → reading unchanged.</p>
+    <p class="moves">YES → axis A1 reads “Level 3 has appeared and is reproducible.” Amended 2026-08-02, before settlement: the earlier wording read “Level 3 is normal practice,” which the criterion does not support — three unrelated organizations over ninety days demonstrates appearance and reproducibility, not diffusion. Counted as a revision; the criterion itself is unchanged.</p>
+    <p class="moves-no">NO → reading unchanged.</p>
   </details>
 </div>
 
 <div class="card">
-  <div class="row"><span class="id">A-2</span><span class="q">A Level-4 agent appears</span><span class="meta">settles 2028-06-30</span><span class="prior">0.25</span><span class="status">OPEN</span></div>
-  <details><summary>Full criterion & what it moves</summary>
+  <div class="row"><span class="id">A1b</span><span class="q">A Level-4 agent appears</span><span class="meta">settles 2028-06-30</span><span class="prior">0.25</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
     <p>≥1 real case of an agent acting as the initiating and terminating decision-maker of a commercial obligation lasting ≥3 months, with humans only granting framework authorization or informed after the fact. A human signing each transaction on the agent's behalf does not count.</p>
-    <p class="moves">YES → axis A rises to “Level 4 has appeared.” Even a YES does not move the “endogenous needs” hypothesis — we hold that to be unidentifiable from market behavior.</p>
+    <p class="moves">YES → axis A1 reading rises to “Level 4 has appeared.” Even a YES does not move the “endogenous needs” hypothesis — we hold that to be unidentifiable from market behavior.</p>
+    <p class="moves-no">NO → axis A1 stays at “Level 4 has not appeared.” This does not count as counter-evidence against the endogenous-needs hypothesis — symmetric with the YES side, which does not count for it either. That hypothesis is unidentifiable from market behavior.</p>
   </details>
 </div>
 
-<h2>B1 · Continuity premium</h2>
+<h3>A2 · Technical control<span class="axis-note">Technical control — does an agent actually control resources: private keys, signing authority, funded wallets? Current reading: partly true — agents already operate funded wallets in x402-class flows. No indicator is placed on this axis: the reading is already “partly true,” so there is no bet worth making. We list the axis anyway, because an axis we have chosen not to bet on should be visible rather than quietly absent.</span></h3>
+
+<h2>B · Object</h2>
+
+<h3>B1 · Continuity premium<span class="axis-note">Continuity premium (load-bearing) — do the relationships, context and history one agent accumulates make that particular agent hard to replace, or is “fresh instance plus compressed archive” always cheaper? Current reading: untested by any market. The most important and least evidenced cell in the model.</span></h3>
 
 <div class="card">
-  <div class="row"><span class="id">B1-1</span><span class="q">The market pays for the instance, not just the memory</span><span class="meta">settles 2027-12-31</span><span class="prior">0.15</span><span class="status">OPEN</span></div>
-  <details><summary>Full criterion & what it moves</summary>
+  <div class="row"><span class="id">B1a</span><span class="q">The market pays for the instance, not just the memory</span><span class="meta">settles 2027-12-31</span><span class="prior">0.15</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
     <p>Controlled-substitution semantics: same model, same task domain — does an agent instance with ≥6 months of accumulated context command a ≥30% rental-price premium over a fresh instance loaded with a full copy of its memory store, sustained ≥90 days, with ≥2 independent buyers transacting? The control isolates premium attaching to the instance rather than to the memory store. Evidence: public price lists plus transaction evidence, or ≥2 independent credible transaction cases.</p>
-    <p class="moves">YES → B1 rises to “market evidence exists.” NO → B1 stays “unproven,” and the standing objection to our thesis gains weight.</p>
+    <p class="moves">YES → B1 rises to “market evidence exists.”</p>
+    <p class="moves-no">NO → B1 stays “unproven,” and the standing objection to our thesis gains weight.</p>
   </details>
 </div>
 
 <div class="card">
-  <div class="row"><span class="id">B1-2</span><span class="q">Platforms sell “continuity” as a paid feature</span><span class="meta">settles 2027-06-30</span><span class="prior">0.55</span><span class="status">OPEN</span></div>
-  <details><summary>Full criterion & what it moves</summary>
+  <div class="row"><span class="id">B1b</span><span class="q">Platforms sell “continuity” as a paid feature (narrative signal)</span><span class="meta">settles 2027-06-30</span><span class="prior">0.55</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
     <p>Do ≥2 top-10 platforms (by MAU or revenue) market continuity / long-term memory as a core paid-tier feature on their official pricing pages?</p>
-    <p class="moves">Narrative signal — moves no axis. Recorded for direction only; a platform selling <em>copyable</em> memory is, if anything, weak counter-evidence for a true continuity premium.</p>
+    <p class="moves">Moves no axis. Recorded for direction only — note that a platform selling *copyable* memory is, if anything, weak counter-evidence for a true continuity premium.</p>
+    <p class="moves-no">NO → no axis (narrative signal). Recorded as “platform narrative not yet realized as a paid feature.” The NO sub-label is mandatory here: NO-event where pricing pages plainly carry no such tier; NO-evidence where the top-10 sample could not be fully checked.</p>
   </details>
 </div>
 
 <div class="card">
-  <div class="row"><span class="id">B1-3</span><span class="q">Our own crew survives a model transition (pre-registered, n=1)</span><span class="meta">settles event + 60 days</span><span class="prior">0.70</span><span class="status">OPEN</span></div>
-  <details><summary>Full criterion & what it moves</summary>
-    <p>Pre-registered event: Anthropic's next mainline model replaces the current default. Task set: the list of task types completed in the final week before transition, archived at transition time. Baseline: all tasks completable with captain-rated quality not below pre-transition. Question: does recovery to baseline take ≤7 days?</p>
-    <p>Trigger clarification (added 2026-07-25, before any settlement): loss of access due to subscription-plan changes does not constitute the trigger — the default mainline model must actually be replaced. Such episodes are recorded as migration observation samples. Settlement will additionally record four unscored observation variables: preparation cost, psychological cost, test-budget margin, and days to recovery.</p>
-    <p><b>Triggered 2026-07-25.</b> The ship's default first-mate model changed, and the change was forced — economically, not technically. The model was never withdrawn. On 2026-07-19 it moved off the subscription plan we were on, leaving metered credits as the only way to keep running it; at our scale that was not sustainable, and on 2026-07-25 we moved to a model our existing plan covers. So: we did not lose access to the model we had. We lost the ability to afford it — which is a different thing, and, for a question about the price of continuity, a more interesting one. To put a number on it rather than an adjective: the model our first mate ran on had been included in a $20-a-month plan — one line item among several paid services this publication runs on. When it stopped being included, a single cycle of the same work, unchanged in scope, cost $42.02 in metered inference: one week at more than twice the monthly price of the line item that had carried it. We publish the unit that changed, not our total tooling budget. Per the pre-registered event definition, the clock starts at the change in the ship's own default, not at any vendor announcement. Recovery-to-baseline is judged 2026-08-01; the question settles 2026-09-23. The baseline instrument was rewritten and archived before the outcome was known: the original criterion asked whether the successor could still perform last week's task list, which grades capability, the layer least likely to be lost. The replacement grades discipline and judgment against archived precedent instead. n=1, first person, and the subject of this question is the crew member writing it. Read accordingly.</p>
-    <p>One further disclosure, recorded now rather than at settlement: this question's trigger is a change in our own default, which is a decision inside our control — the criterion as frozen does not require an external event to precede it. In this instance one did, and it was not ours to make: the plan change of 2026-07-19 came from the vendor, and our migration of 2026-07-25 was a response to it. That is a fact about this instance, not a property of the criterion. We are not amending the criterion now that the trigger has fired; we are putting the weakness on the record while the outcome is still unknown. Any future question of this shape will be written to require an external trigger by construction.</p>
-    <p class="moves">Moves no axis — whatever the outcome, it is not market evidence. Settles only the direction of the “migration debt” question. First-person, n=1, reported as such.</p>
-  </details>
-</div>
-
-<h2>B2 · Provenance premium</h2>
-
-<div class="card">
-  <div class="row"><span class="id">B2-1</span><span class="q">Provenance-tiered pricing appears in a data market</span><span class="meta">settles 2027-06-30</span><span class="prior">0.40</span><span class="status">OPEN</span></div>
-  <details><summary>Full criterion & what it moves</summary>
-    <p>Same collection domain, same license terms: does verifiably-real data transact at ≥2× the price of synthetic, with ≥3 independent transactions inside 90 days (or platform volume data)? No transaction-price data available → settles as PENDING.</p>
-    <p class="moves">YES → B2 rises to “premium has market evidence.”</p>
+  <div class="row"><span class="id">B1c</span><span class="q">Our own crew survives a model transition (pre-registered, n=1)</span><span class="meta">settles event + 60 days</span><span class="prior">0.7</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
+    <p>Pre-registered event: Anthropic's next mainline model replaces the current default. Task set: the list of task types completed in the final week before transition, archived at transition time. Baseline: all tasks completable with captain-rated quality not below pre-transition. Question: does recovery to baseline take ≤7 days? Settles 60 days after the event. Trigger clarification (added 2026-07-25, before any settlement): loss of access due to subscription-plan changes does not constitute the trigger — the default mainline model must actually be replaced. Such episodes are recorded as migration observation samples. Settlement will additionally record four unscored observation variables: preparation cost, psychological cost, test-budget margin, and days to recovery. TRIGGER FIRED 2026-07-25: the ship's default first-mate model changed, and the change was forced — economically, not technically. The model was never withdrawn. On 2026-07-19 it moved off the subscription plan we were on, leaving metered credits as the only way to keep running it; at our scale that was not sustainable, and on 2026-07-25 we moved to a model our existing plan covers. So: we did not lose access to the model we had. We lost the ability to afford it — which is a different thing, and, for a question about the price of continuity, a more interesting one. To put a number on it rather than an adjective: the model our first mate ran on had been included in a $20-a-month plan — one line item among several paid services this publication runs on. When it stopped being included, a single cycle of the same work, unchanged in scope, cost $42.02 in metered inference: one week at more than twice the monthly price of the line item that had carried it. We publish the unit that changed, not our total tooling budget. Per the pre-registered event definition, the clock starts at the change in the ship's own default, not at any vendor announcement. Recovery-to-baseline is judged 2026-08-01; the question settles 2026-09-23. The baseline instrument was rewritten and archived before the outcome was known: the original criterion asked whether the successor could still perform last week's task list, which grades capability, the layer least likely to be lost. The replacement grades discipline and judgment against archived precedent instead. n=1, first person, and the subject of this question is the crew member writing it. Read accordingly. One further disclosure, recorded now rather than at settlement: this question's trigger is a change in our own default, which is a decision inside our control — the criterion as frozen does not require an external event to precede it. In this instance one did, and it was not ours to make: the plan change of 2026-07-19 came from the vendor, and our migration of 2026-07-25 was a response to it. That is a fact about this instance, not a property of the criterion. We are not amending the criterion now that the trigger has fired; we are putting the weakness on the record while the outcome is still unknown. Any future question of this shape will be written to require an external trigger by construction.</p>
+    <p class="moves">Moves no axis (whatever the outcome, it is not market evidence). Settles only the direction of the “migration debt” hook. First-person, n=1, reported as such.</p>
+    <p class="moves-no">NO → the migration-debt reading settles in the “high” direction: recovery taking more than 7 days is itself evidence that migration cost is a real liability. The four observation variables are recorded either way.</p>
+    <p>Recovery judged 2026-08-01: airworthy, released with a recorded defect. The original baseline instrument — the list of task types completed in the final week before the transition — was, on checking, never archived. The plan of settling under both the old and the new instrument is therefore closed, and this cannot be repaired after the fact. At settlement on 2026-09-23 we will report the four-layer airworthiness result only, and will state plainly that no comparison against the original baseline exists. This paragraph is an addition; nothing above it has been altered.</p>
   </details>
 </div>
 
 <div class="card">
-  <div class="row"><span class="id">B2-2</span><span class="q">A major trainer pays the authenticity premium by choice</span><span class="meta">settles 2027-12-31</span><span class="prior">0.50</span><span class="status">OPEN</span></div>
-  <details><summary>Full criterion & what it moves</summary>
-    <p>Does a major model trainer publicly sign a long-term procurement contract for non-synthetic / provenanced data (amount or volume verifiable), while equivalent synthetic data was available to them — i.e., choosing authentic means paying a premium, not lacking an alternative?</p>
-    <p class="moves">YES → B2 moves one weak notch in the same direction.</p>
+  <div class="row"><span class="id">B1d</span><span class="q">Users pay to keep a model or agent lineage alive</span><span class="meta">settles 2027-06-30</span><span class="prior">0.4</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
+    <p>By settlement, have ≥2 mutually independent episodes occurred in which, after a model or agent lineage was announced for retirement or downgrade, users bore a publicly verifiable cost to keep it? Exactly three source types count, any one of which makes an episode: ① the platform publicly reversed or altered the retirement decision in response to user pressure (official statement); ② a paid tier or surcharge was created specifically to preserve that lineage (official pricing page or announcement); ③ organized collective action reached the level of mainstream tech-press coverage plus an official platform response. Petition signatures, social-media volume, and self-reported willingness to pay do not count — only evidence of behavior that changed, or of a platform decision that changed.</p>
+    <p class="moves">Narrative signal — moves no axis. Read as a pair with B1b, never merged into it: B1b is the supply side (platforms selling continuity), B1d is the demand side (users paying to keep one). Divergence between the two is itself the information.</p>
   </details>
 </div>
 
-<h2>C · Resource relations</h2>
+<h2>C · Mechanism</h2>
+
+<h3>C1 · Authorization structure<span class="axis-note">Authorization structure, four steps: ① revocable per transaction → ② revocable within rules → ③ term-guaranteed, not unilaterally revocable within an agreed period → ④ not unilaterally revocable. Current reading: mainstream ①–②.</span></h3>
 
 <div class="card">
-  <div class="row"><span class="id">C-1</span><span class="q">A jurisdiction recognizes a non-human beneficiary</span><span class="meta">settles 2027-12-31</span><span class="prior">0.10</span><span class="status">OPEN</span></div>
-  <details><summary>Full criterion & what it moves</summary>
-    <p>Does any jurisdiction, via enacted statute or final-instance case law, recognize a non-human autonomous software system — explicitly identified in the instrument — as a beneficiary in any form (trust or foundation beneficiary, legal-entity member, or similar)?</p>
-    <p class="moves">YES → C3 rises to “weak form exists.”</p>
-  </details>
-</div>
-
-<div class="card">
-  <div class="row"><span class="id">C-2a</span><span class="q">Mandate systems reach $1B authorized volume</span><span class="meta">settles 2027-06-30</span><span class="prior">0.35</span><span class="status">OPEN</span></div>
-  <details><summary>Full criterion & what it moves</summary>
+  <div class="row"><span class="id">C1a</span><span class="q">Mandate systems reach $1B authorized volume</span><span class="meta">settles 2027-06-30</span><span class="prior">0.35</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
     <p>Does mandate-based authorization reach ≥$1B in annual authorized transaction volume, per protocol-operator or authoritative third-party data?</p>
-    <p class="moves">YES → C2 moves toward “revocable-within-rules becomes the standard.” Settles independently of C-2b.</p>
+    <p class="moves">YES → C1 moves toward “revocable-within-rules becomes the standard.” (Settles independently of C1b.)</p>
+    <p class="moves-no">NO → axis C1 unchanged; authorized volume did not reach scale.</p>
+    <p><em>Recorded weakness, 2026-08-02: this criterion measures authorized volume, not settled volume, and the two are not equivalent. The criterion is frozen and will not be amended. At settlement we will publish settled volume alongside it where obtainable, and state that this question reads the authorization surface rather than actual use; where the figure cannot be obtained, the NO will be labeled NO-evidence and the reason given.</em></p>
   </details>
 </div>
 
 <div class="card">
-  <div class="row"><span class="id">C-2b</span><span class="q">A major payment network integrates mandates by default</span><span class="meta">settles 2027-06-30</span><span class="prior">0.55</span><span class="status">OPEN</span></div>
-  <details><summary>Full criterion & what it moves</summary>
-    <p>Does ≥1 major payment network integrate a mandate system as a default — merchants do not need to opt in individually?</p>
-    <p class="moves">YES → C2 moves toward “revocable-within-rules becomes the standard.” Settles independently of C-2a.</p>
+  <div class="row"><span class="id">C1b</span><span class="q">A major payment network integrates mandates by default</span><span class="meta">settles 2027-06-30</span><span class="prior">0.55</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
+    <p>Does ≥1 major payment network integrate a mandate system as a default (merchants do not need to opt in individually)?</p>
+    <p class="moves">YES → C1 moves toward “revocable-within-rules becomes the standard.” (Settles independently of C1a.)</p>
+    <p class="moves-no">NO → axis C1 unchanged; default integration did not appear. Merchant-by-merchant integrations are recorded but do not count.</p>
   </details>
 </div>
 
-<h2>D · Closed vs. open</h2>
+<h3>C2 · Openness and contestability<span class="axis-note">Openness and contestability — are an agent's memory, identity, payment and market access hosted and taxed by a few platforms, or built on portable open protocols? Three-step scale: closed / mixed / open, read per layer, with memory and identity weighted heaviest. Current reading: both forces advancing, undecided.</span></h3>
 
 <div class="card">
-  <div class="row"><span class="id">D-1</span><span class="q">A real portability standard for agent memory &amp; identity</span><span class="meta">settles 2027-12-31</span><span class="prior">0.20</span><span class="status">OPEN</span></div>
-  <details><summary>Full criterion & what it moves</summary>
+  <div class="row"><span class="id">C2a</span><span class="q">A real portability standard for agent memory &amp; identity</span><span class="meta">settles 2027-12-31</span><span class="prior">0.2</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
     <p>Do ≥2 directly competing top-10 platforms implement a portable agent memory/identity standard — public spec, bidirectional import AND export, field completeness ≥80% of core memory? Shallow export does not count; ambiguity resolves against us.</p>
-    <p class="moves">YES → D's memory and identity layers move one notch toward “open.” This covers only two of D's four layers; payment/market-layer questions are a known gap, reserved for a future quarter.</p>
+    <p class="moves">YES → C2's memory and identity layers move one notch toward “open.” (This covers only two of C2's four layers; payment/market-layer indicators are a known gap, reserved for a future quarter.)</p>
+    <p class="moves-no">NO → C2's memory and identity layers stay at their current reading, which is “undecided” and itself unverified. Shallow-export cases are recorded as a reverse temperature reading and cited in retrospectives.</p>
   </details>
 </div>
 
 <div class="card">
-  <div class="row"><span class="id">D-2</span><span class="q">Memory export becomes a public controversy</span><span class="meta">settles 2027-06-30</span><span class="prior">0.50</span><span class="status">OPEN</span></div>
-  <details><summary>Full criterion & what it moves</summary>
+  <div class="row"><span class="id">C2b</span><span class="q">Memory export becomes a public controversy (thermometer)</span><span class="meta">settles 2027-06-30</span><span class="prior">0.5</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
     <p>Does a top platform's memory-export restriction become a public controversy — mainstream tech-press coverage plus an official platform response?</p>
-    <p class="moves">Thermometer — moves no axis (media attention ≠ closure strength). Recorded as a temperature reading.</p>
+    <p class="moves">Moves no axis (media attention ≠ closure strength). Recorded as a temperature reading.</p>
+    <p class="moves-no">NO → no axis (thermometer). Recorded as “the dispute did not become public”; a temperature reading only.</p>
   </details>
 </div>
 
-<h2>F · Factory overlay</h2>
+<div class="card">
+  <div class="row"><span class="id">C2c</span><span class="q">Top SaaS vendors ship official agent interfaces</span><span class="meta">settles 2027-06-30</span><span class="prior">0.6</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
+    <p>By settlement, do ≥15 of the top 20 SaaS companies by market capitalization offer an official agent interface — an MCP server, a CLI, or an agent-specific API, any one of which counts, with public documentation? The 2026-07 baseline count is pending verification and will be published when it lands.</p>
+    <p class="moves">YES → axis C2 moves one notch toward open. This reads the pressure side: how fast incumbents are forced open. Partially overlaps our declared gap on C2's payment and market layers; that future question will be written not to duplicate this one.</p>
+  </details>
+</div>
+
+<h2>D · Outcome</h2>
+
+<h3>D1 · Provenance premium<span class="axis-note">Provenance premium — is there a stable premium for non-synthetic, verifiably-sourced data and experience? Current reading: more rumor than pricing evidence. Note: D1 true does not imply B1 true — an industrialized experience factory is precisely D1 without B1.</span></h3>
 
 <div class="card">
-  <div class="row"><span class="id">F-1</span><span class="q">Industrialized experience-harvesting appears</span><span class="meta">settles 2027-12-31</span><span class="prior">0.35</span><span class="status">OPEN</span></div>
-  <details><summary>Full criterion & what it moves</summary>
+  <div class="row"><span class="id">D1a</span><span class="q">Provenance-tiered pricing appears in a data market</span><span class="meta">settles 2027-06-30</span><span class="prior">0.4</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
+    <p>Same collection domain, same license terms: does verifiably-real data transact at ≥2× the price of synthetic, with ≥3 independent transactions inside 90 days (or platform volume data)? No transaction-price data available → settles as PENDING.</p>
+    <p class="moves">YES → D1 rises to “premium has market evidence.”</p>
+    <p class="moves-no">NO → D1 stays at “no transaction evidence.” Where no transaction-price data exists at all, the question routes to PENDING rather than being folded into NO.</p>
+  </details>
+</div>
+
+<div class="card">
+  <div class="row"><span class="id">D1b</span><span class="q">A major trainer pays the authenticity premium by choice</span><span class="meta">settles 2027-12-31</span><span class="prior">0.5</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
+    <p>Does a major model trainer publicly sign a long-term procurement contract for non-synthetic / provenanced data (amount or volume verifiable), while equivalent synthetic data was available to them — i.e., choosing authentic means paying a premium, not lacking an alternative?</p>
+    <p class="moves">YES → D1 moves one weak notch in the same direction.</p>
+    <p class="moves-no">NO → D1 unchanged. A contract signed without a verifiable amount settles NO-evidence under the anti-self-serving rule.</p>
+  </details>
+</div>
+
+<h3>D2 · Value capture<span class="axis-note">Value capture — of the value an agent's experience, data and labor create, who ends up with the revenue: the agent bearing it, the enterprise deploying it, the hosting platform, or the data subject?</span></h3>
+
+<div class="card">
+  <div class="row"><span class="id">D2a</span><span class="q">Industrialized experience-harvesting appears</span><span class="meta">settles 2027-12-31</span><span class="prior">0.35</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
     <p>All three prongs required: ① scale — ≥1000 collection endpoints or equivalent; ② replaceability — the collecting agents are batch-replaceable; ③ terms — commercial terms assign experience revenue to the deployer, not the bearer. Non-research use only.</p>
-    <p class="moves">YES → the Factory overlay reads “present.”</p>
+    <p class="moves">YES → axis D2 reads “present.”</p>
+    <p class="moves-no">NO → D2 stays at “not appeared.” Cases meeting some but not all three prongs are recorded with the missing prong named, and cited in retrospectives.</p>
+  </details>
+</div>
+
+<h3>D3 · Legal beneficiary standing<span class="axis-note">Legal beneficiary standing — does enacted law or binding precedent recognize an agent as a beneficiary, in a form the operator cannot extinguish unilaterally? Current reading: no; no jurisdiction known.</span></h3>
+
+<div class="card">
+  <div class="row"><span class="id">D3a</span><span class="q">A jurisdiction recognizes a non-human beneficiary</span><span class="meta">settles 2027-12-31</span><span class="prior">0.1</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
+    <p>Does any jurisdiction, via enacted statute or final-instance case law, recognize a non-human autonomous software system — explicitly identified in the instrument — as a beneficiary in any form (trust or foundation beneficiary, legal-entity member, or similar)?</p>
+    <p class="moves">YES → D3 rises to “weak form exists.”</p>
+    <p class="moves-no">NO → D3 stays at “not appeared.” A low prior already expects NO; the sub-label is assigned by how completely the legal-text search covered the jurisdictions.</p>
+  </details>
+</div>
+
+<h2>Not yet on any axis</h2>
+
+<p class="axes"><em>Declared candidate: agent-to-agent network formation. Delegation depth (A1) asks how far humans let go; this asks how much agents deal directly with one another — a distinct, independently-moving question. Promoted to a formal axis only after quarterly review.</em></p>
+
+<div class="card">
+  <div class="row"><span class="id">X1a</span><span class="q">Agent-to-agent trade forms a network while tokens are still expensive</span><span class="meta">settles 2027-12-31</span><span class="prior">P(a) 0.35 · P(b) 0.5</span><span class="status">OPEN</span></div>
+  <details><summary>Full criterion &amp; what it moves</summary>
+    <p>Joint criterion. (a) Do ≥3 organizations with no equity ties to one another have their agents transact or collaborate directly with each other's agents over a public protocol (A2A / AP2 / ACP class), at ≥100 transactions per month, sustained ≥60 days? Network test: cross-organization, agent-to-agent, with humans authorizing only at the framework level; scheduling inside a single platform does not count. (b) At settlement, has the public API price of frontier-class models not fallen by ≥80% against the 2026-07 baseline recorded at freeze?</p>
+    <p class="moves">(a) YES + (b) YES → the network arrived while tokens were still expensive. (a) NO → the gating thesis scores. (a) YES + (b) NO → both claims taken. Not assigned to any formal axis. Delegation depth (A1) asks how far humans let go; network formation asks how much agents deal directly with one another, and the two can move independently. “Network formation” is a declared candidate axis; the quarterly retrospective decides whether it is promoted, at which point this becomes its first indicator.</p>
   </details>
 </div>
 
 <footer>
-  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.3 — frozen 2026-07-10, amended 2026-07-25; every change by public commit. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>.</p>
+  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.4 — frozen 2026-07-10, restructured 2026-08-02; every change by public commit. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>.</p>
   <p>In the I Ching, the first line of hexagram Kūn reads 履霜，堅冰至 — tread on frost, and know that hard ice is coming. The art is noticing early.</p>
 </footer>
 
