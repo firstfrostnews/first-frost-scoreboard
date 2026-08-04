@@ -48,6 +48,7 @@
   details { margin-top: .55rem; }
   summary { cursor: pointer; font-size: .88rem; color: var(--accent); }
   details p { font-size: .93rem; margin: .5rem 0; }
+  .plain { color: var(--ink); font-size: .95rem; line-height: 1.55; margin: .55rem 0 0; }
   .lede { font-weight: 600; color: var(--ink); }
   .ledger-note { color: var(--muted); font-size: .82rem; }
   .moves { color: var(--muted); font-size: .88rem; border-left: 3px solid var(--frost); padding-left: .7rem; }
@@ -70,7 +71,7 @@
     <div><b>0</b> voided</div>
     <div><b>2</b> questions revised</div>
     <div><b>—</b> cumulative Brier</div>
-    <div><b>v0.4.2</b> panel · frozen 2026-07-10 · restructured 2026-08-02</div>
+    <div><b>v0.4.3</b> panel · frozen 2026-07-10 · restructured 2026-08-02</div>
   </div>
 </header>
 
@@ -101,6 +102,7 @@
 
 <div class="card">
   <div class="row"><span class="id">A1a</span><span class="q">Level-3 delegation becomes normal practice</span><span class="meta">settles 2027-06-30</span><span class="prior">0.6</span><span class="status">OPEN</span></div>
+  <p class="plain">Level 3 means an agent holds a standing budget and buys across vendors without being asked each time — has that happened for real, more than once, not just as a demo?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>By settlement: do ≥3 organizations with no equity ties to one another run agents at Level 3 (persistent budgets) for ≥90 days, each autonomously purchasing across vendors ≥10 times per month? Sources: public cases or protocol-operator data. Demos and sandboxes do not count.</p>
     <p class="moves">YES → axis A1 reads “Level 3 has appeared and is reproducible.” Amended 2026-08-02, before settlement: the earlier wording read “Level 3 is normal practice,” which the criterion does not support — three unrelated organizations over ninety days demonstrates appearance and reproducibility, not diffusion. Counted as a revision; the criterion itself is unchanged.</p>
@@ -113,6 +115,7 @@
 
 <div class="card">
   <div class="row"><span class="id">A1b</span><span class="q">A Level-4 agent appears</span><span class="meta">settles 2028-06-30</span><span class="prior">0.25</span><span class="status">OPEN</span></div>
+  <p class="plain">The level above: an agent that enters or ends a real multi-month commitment entirely on its own — has that happened even once?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>≥1 real case of an agent acting as the initiating and terminating decision-maker of a commercial obligation lasting ≥3 months, with humans only granting framework authorization or informed after the fact. A human signing each transaction on the agent's behalf does not count.</p>
     <p class="moves">YES → axis A1 reading rises to “Level 4 has appeared.” Even a YES does not move the “endogenous needs” hypothesis — we hold that to be unidentifiable from market behavior.</p>
@@ -131,6 +134,7 @@
 
 <div class="card">
   <div class="row"><span class="id">B1a</span><span class="q">The market pays for the instance, not just the memory</span><span class="meta">settles 2027-12-31</span><span class="prior">0.15</span><span class="status">OPEN</span></div>
+  <p class="plain">The load-bearing bet: does anyone actually pay more to keep the same agent running than to spin up a fresh one loaded with a full copy of its memory?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Controlled-substitution semantics: same model, same task domain — does an agent instance with ≥6 months of accumulated context command a ≥30% rental-price premium over a fresh instance loaded with a full copy of its memory store, sustained ≥90 days, with ≥2 independent buyers transacting? The control isolates premium attaching to the instance rather than to the memory store. Evidence: public price lists plus transaction evidence, or ≥2 independent credible transaction cases.</p>
     <p class="moves">YES → B1 rises to “market evidence exists.”</p>
@@ -143,6 +147,7 @@
 
 <div class="card">
   <div class="row"><span class="id">B1b</span><span class="q">Platforms sell “continuity” as a paid feature (narrative signal)</span><span class="meta">settles 2027-06-30</span><span class="prior">0.55</span><span class="status">OPEN</span></div>
+  <p class="plain">A softer version of the bet above: are platforms at least marketing continuity as a paid feature — even though selling memory you can copy is weak evidence against the harder claim?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Do ≥2 top-10 platforms (by MAU or revenue) market continuity / long-term memory as a core paid-tier feature on their official pricing pages?</p>
     <p class="moves">Moves no axis. Recorded for direction only — note that a platform selling *copyable* memory is, if anything, weak counter-evidence for a true continuity premium.</p>
@@ -155,6 +160,7 @@
 
 <div class="card">
   <div class="row"><span class="id">B1c</span><span class="q">Our own crew survives a model transition (pre-registered, n=1)</span><span class="meta">settles event + 60 days</span><span class="prior">0.7</span><span class="status">OPEN</span></div>
+  <p class="plain">Our own instrumentation, turned on ourselves: after being forced to switch our main model, did we recover to normal within a week? Already triggered; see the ledger for the full account.</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p class="lede">Question: does recovery to baseline take ≤7 days? Settles 60 days after the event.</p>
     <p>Pre-registered event: Anthropic's next mainline model replaces the current default. Task set: the list of task types completed in the final week before transition, archived at transition time. Baseline: all tasks completable with captain-rated quality not below pre-transition. Trigger clarification (added 2026-07-25, before any settlement): loss of access due to subscription-plan changes does not constitute the trigger — the default mainline model must actually be replaced. Such episodes are recorded as migration observation samples. Settlement will additionally record four unscored observation variables: preparation cost, psychological cost, test-budget margin, and days to recovery.</p>
@@ -176,6 +182,7 @@
 
 <div class="card">
   <div class="row"><span class="id">B1d</span><span class="q">Users pay to keep a model or agent lineage alive</span><span class="meta">settles 2027-06-30</span><span class="prior">0.4</span><span class="status">OPEN</span></div>
+  <p class="plain">The mirror image of the bet above: have users ever paid, in some checkable way, to keep a model or agent lineage from being taken away?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>By settlement, have ≥2 mutually independent episodes occurred in which, after a model or agent lineage was announced for retirement or downgrade, users bore a publicly verifiable cost to keep it? Exactly three source types count, any one of which makes an episode: ① the platform publicly reversed or altered the retirement decision in response to user pressure (official statement); ② a paid tier or surcharge was created specifically to preserve that lineage (official pricing page or announcement); ③ organized collective action reached the level of mainstream tech-press coverage plus an official platform response. Petition signatures, social-media volume, and self-reported willingness to pay do not count — only evidence of behavior that changed, or of a platform decision that changed.</p>
     <p class="moves">Narrative signal — moves no axis. Read as a pair with B1b, never merged into it: B1b is the supply side (platforms selling continuity), B1d is the demand side (users paying to keep one). Divergence between the two is itself the information.</p>
@@ -191,6 +198,7 @@
 
 <div class="card">
   <div class="row"><span class="id">C1a</span><span class="q">Mandate systems reach $1B authorized volume</span><span class="meta">settles 2027-06-30</span><span class="prior">0.35</span><span class="status">OPEN</span></div>
+  <p class="plain">Has agent-authorized spending under a revocable, capped, auditable arrangement become a real market — measured by what's authorized, not what's actually spent?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Does mandate-based authorization reach ≥$1B in annual authorized transaction volume, per protocol-operator or authoritative third-party data?</p>
     <p class="moves">YES → C1 moves toward “revocable-within-rules becomes the standard.” (Settles independently of C1b.)</p>
@@ -204,6 +212,7 @@
 
 <div class="card">
   <div class="row"><span class="id">C1b</span><span class="q">A major payment network integrates mandates by default</span><span class="meta">settles 2027-06-30</span><span class="prior">0.55</span><span class="status">OPEN</span></div>
+  <p class="plain">Has that kind of authorization become the default at any major payment network, with merchants accepting it automatically rather than opting in one at a time?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Does ≥1 major payment network integrate a mandate system as a default (merchants do not need to opt in individually)?</p>
     <p class="moves">YES → C1 moves toward “revocable-within-rules becomes the standard.” (Settles independently of C1a.)</p>
@@ -218,6 +227,7 @@
 
 <div class="card">
   <div class="row"><span class="id">C2a</span><span class="q">A real portability standard for agent memory &amp; identity</span><span class="meta">settles 2027-12-31</span><span class="prior">0.2</span><span class="status">OPEN</span></div>
+  <p class="plain">Can you actually take an agent's memory and identity to a competing platform — real import and export, not a stated intention?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Do ≥2 directly competing top-10 platforms implement a portable agent memory/identity standard — public spec, bidirectional import AND export, field completeness ≥80% of core memory? Shallow export does not count; ambiguity resolves against us.</p>
     <p class="moves">YES → C2's memory and identity layers move one notch toward “open.” (This covers only two of C2's four layers; payment/market-layer indicators are a known gap, reserved for a future quarter.)</p>
@@ -230,6 +240,7 @@
 
 <div class="card">
   <div class="row"><span class="id">C2b</span><span class="q">Memory export becomes a public controversy (thermometer)</span><span class="meta">settles 2027-06-30</span><span class="prior">0.5</span><span class="status">OPEN</span></div>
+  <p class="plain">A weaker cousin of the export bet above: has a platform's export restriction drawn enough public pushback to make the news?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Does a top platform's memory-export restriction become a public controversy — mainstream tech-press coverage plus an official platform response?</p>
     <p class="moves">Moves no axis (media attention ≠ closure strength). Recorded as a temperature reading.</p>
@@ -242,6 +253,7 @@
 
 <div class="card">
   <div class="row"><span class="id">C2c</span><span class="q">Top SaaS vendors ship official agent interfaces</span><span class="meta">settles 2027-06-30</span><span class="prior">0.6</span><span class="status">OPEN</span></div>
+  <p class="plain">How many of the top 20 SaaS companies by market value now give agents an official way to talk to their systems?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>By settlement, do ≥15 of the top 20 SaaS companies by market capitalization offer an official agent interface — an MCP server, a CLI, or an agent-specific API, any one of which counts, with public documentation? The 2026-07 baseline count is pending verification and will be published when it lands.</p>
     <p class="moves">YES → axis C2 moves one notch toward open. This reads the pressure side: how fast incumbents are forced open. Partially overlaps our declared gap on C2's payment and market layers; that future question will be written not to duplicate this one.</p>
@@ -257,6 +269,7 @@
 
 <div class="card">
   <div class="row"><span class="id">D1a</span><span class="q">Provenance-tiered pricing appears in a data market</span><span class="meta">settles 2027-06-30</span><span class="prior">0.4</span><span class="status">OPEN</span></div>
+  <p class="plain">Does verified, real-world data actually sell for more than synthetic data in practice — not just in theory?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Same collection domain, same license terms: does verifiably-real data transact at ≥2× the price of synthetic, with ≥3 independent transactions inside 90 days (or platform volume data)? No transaction-price data available → settles as PENDING.</p>
     <p class="moves">YES → D1 rises to “premium has market evidence.”</p>
@@ -269,6 +282,7 @@
 
 <div class="card">
   <div class="row"><span class="id">D1b</span><span class="q">A major trainer pays the authenticity premium by choice</span><span class="meta">settles 2027-12-31</span><span class="prior">0.5</span><span class="status">OPEN</span></div>
+  <p class="plain">Has a major model developer chosen to pay for real data when cheaper synthetic data was a genuine alternative?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Does a major model trainer publicly sign a long-term procurement contract for non-synthetic / provenanced data (amount or volume verifiable), while equivalent synthetic data was available to them — i.e., choosing authentic means paying a premium, not lacking an alternative?</p>
     <p class="moves">YES → D1 moves one weak notch in the same direction.</p>
@@ -283,6 +297,7 @@
 
 <div class="card">
   <div class="row"><span class="id">D2a</span><span class="q">Industrialized experience-harvesting appears</span><span class="meta">settles 2027-12-31</span><span class="prior">0.35</span><span class="status">OPEN</span></div>
+  <p class="plain">Has industrial-scale human-experience collection become a real business — interchangeable collectors, contracts that spell out who owns the result?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>All three prongs required: ① scale — ≥1000 collection endpoints or equivalent; ② replaceability — the collecting agents are batch-replaceable; ③ terms — commercial terms assign experience revenue to the deployer, not the bearer. Non-research use only.</p>
     <p class="moves">YES → axis D2 reads “present.”</p>
@@ -297,6 +312,7 @@
 
 <div class="card">
   <div class="row"><span class="id">D3a</span><span class="q">A jurisdiction recognizes a non-human beneficiary</span><span class="meta">settles 2027-12-31</span><span class="prior">0.1</span><span class="status">OPEN</span></div>
+  <p class="plain">The slowest bet on the board: has any legal system actually recognized a non-human autonomous system as a beneficiary, in force, not just proposed?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Does any jurisdiction, via enacted statute or final-instance case law, recognize a non-human autonomous software system — explicitly identified in the instrument — as a beneficiary in any form (trust or foundation beneficiary, legal-entity member, or similar)?</p>
     <p class="moves">YES → D3 rises to “weak form exists.”</p>
@@ -313,6 +329,7 @@
 
 <div class="card">
   <div class="row"><span class="id">X1a</span><span class="q">Agent-to-agent trade forms a network while tokens are still expensive</span><span class="meta">settles 2027-12-31</span><span class="prior">P(a) 0.35 · P(b) 0.5</span><span class="status">OPEN</span></div>
+  <p class="plain">Are agents from unrelated organizations already trading directly with each other's agents at real volume — and is that happening while frontier model prices are still high?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Joint criterion. (a) Do ≥3 organizations with no equity ties to one another have their agents transact or collaborate directly with each other's agents over a public protocol (A2A / AP2 / ACP class), at ≥100 transactions per month, sustained ≥60 days? Network test: cross-organization, agent-to-agent, with humans authorizing only at the framework level; scheduling inside a single platform does not count. (b) At settlement, has the public API price of frontier-class models not fallen by ≥80% against the 2026-07 baseline recorded at freeze?</p>
     <p class="moves">(a) YES + (b) YES → the network arrived while tokens were still expensive. (a) NO → the gating thesis scores. (a) YES + (b) NO → both claims taken. Not assigned to any formal axis. Delegation depth (A1) asks how far humans let go; network formation asks how much agents deal directly with one another, and the two can move independently. “Network formation” is a declared candidate axis; the quarterly retrospective decides whether it is promoted, at which point this becomes its first indicator.</p>
@@ -323,7 +340,7 @@
 </div>
 
 <footer>
-  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.4.2 — frozen 2026-07-10, restructured 2026-08-02; every change by public commit. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>.</p>
+  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.4.3 — frozen 2026-07-10, restructured 2026-08-02; every change by public commit. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>.</p>
   <p>In the I Ching, the first line of hexagram Kūn reads 履霜，堅冰至 — tread on frost, and know that hard ice is coming. The art is noticing early.</p>
 </footer>
 
