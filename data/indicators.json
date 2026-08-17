@@ -1,5 +1,5 @@
 {
-  "panel_version": "0.4.4",
+  "panel_version": "0.4.5",
   "frozen_on": "2026-07-10",
   "priors_note": "Priors are July-2026 impressions with a stated uncertainty of ±0.15. We do not claim calibration until at least 10 indicators have settled.",
   "scoring": {
@@ -64,7 +64,7 @@
       "id": "A1a",
       "group": "A1",
       "parent_question": "A",
-      "question": "Level-3 delegation becomes normal practice",
+      "question": "Level-3 delegation appears and is reproducible",
       "criterion": "By settlement: do ≥3 organizations with no equity ties to one another run agents at Level 3 (persistent budgets) for ≥90 days, each autonomously purchasing across vendors ≥10 times per month? Sources: public cases or protocol-operator data. Demos and sandboxes do not count.",
       "settles": "2027-06-30",
       "prior": 0.6,
@@ -323,10 +323,17 @@
       "moved": "display",
       "headline": "The coin-flip waterline stated, and this change log made readable.",
       "summary": "Two additions, both to how the panel explains itself rather than to what it bets. First, the scoring section now says plainly that 0.25 is the waterline — the Brier score a coin flip earns on every question — so that the number is findable here and not only in the launch issue that names it. Second, the amendment record, which until now existed only inside this file, is rendered on the page as a change log: one line per panel version, with the full record of each amendment remaining here. No criterion, prior, settlement date, or moves text was altered, and no question was added or removed."
+    },
+    {
+      "date": "2026-08-17",
+      "version": "0.4.5",
+      "moved": "display",
+      "headline": "Opening reordered: rules moved below the board, the core question and a scope caveat added above it; A1a's card title corrected to match its already-revised reading.",
+      "summary": "The page opens with the core question this panel exists to serve — entrusting something that matters to an AI agent — quoted verbatim from the launch issue, followed by an expanded scope statement naming a specific blind spot: a board full of YES would not by itself settle that question, since an economy of interchangeable agents could produce one; only B1a tests that difference, at a prior of 0.15. \"How scoring works\" moved below the board (a first-time reader now meets the sixteen questions before the rules that grade them); a \"The board\" heading was added above the panel; a redundant one-line restatement of the four questions (question_chain) was dropped from the rendered page (retained in this file); jump links were added. B's axis section gained one line noting it carries four of the sixteen questions on a single axis. A1a's card title still read \"Level-3 delegation becomes normal practice\" after its 2026-08-02 reading correction to \"has appeared and is reproducible\" — the title itself was never updated to match. It now reads \"Level-3 delegation appears and is reproducible.\" This closes a gap in the already-counted 2026-08-02 revision; it is not counted as a new one. No criterion, prior, settlement date, or moves text was altered, and no question was added or removed."
     }
   ],
   "restructured_on": "2026-08-02",
-  "scope_statement": "What this scoreboard measures — and what it does not. We track whether agents are becoming economic subjects: how much control is delegated to them, what kind of agent receives it, through what mechanisms, and who ends up holding the value. We do not track how large the agent economy is. Market-size questions need data channels we do not have, and we would rather say so than publish a number we cannot stand behind.",
+  "scope_statement": "We do not track how large the agent economy is. Market-size questions need data channels we do not have, and we would rather say so than publish a number we cannot stand behind. Nor would a board full of YES settle the question above: an economy of interchangeable agents could produce one. Only B1a tests that difference directly, and we put it at 0.15.",
   "questions": {
     "A": "Control — What kinds of control, and how much of it, are humans handing over?",
     "B": "Object — What kind of agent is that control being handed to?",

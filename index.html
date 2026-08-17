@@ -27,16 +27,23 @@
   h1 { margin: .35rem 0 .3rem; font-size: 1.9rem; line-height: 1.2; }
   h1 .zh { font-weight: 400; color: var(--muted); font-size: 1.2rem; margin-left: .4rem; }
   .tagline { color: var(--muted); margin: 0; max-width: 46em; }
-  .scope { border: 1px solid var(--line); border-left: 3px solid var(--accent); background: var(--card); border-radius: 8px; padding: .8rem 1rem; margin: 1.2rem 0 0; font-size: .94rem; max-width: 46em; }
-  .tally { display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; margin: 1.4rem 0 0; padding: .9rem 1rem; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
+  .scope { color: var(--muted); margin: 1.2rem 0 0; font-size: .94rem; max-width: 46em; }
+  .coreq { color: var(--muted); font-size: 1.02rem; margin: 1.2rem 0 0; max-width: 46em; }
+  .tally { display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; margin: 1.4rem 0 0; padding: .9rem 1rem; border: 1px solid var(--line); border-radius: 10px; background: var(--card); max-width: 46em; }
   .tally div { font-size: .92rem; color: var(--muted); }
   .tally b { color: var(--ink); font-size: 1.05rem; display: block; }
+  .tally .tiny { font-size: .78rem; font-weight: 400; }
+  .jump { margin: 1rem 0 0; font-size: .9rem; }
+  .jump a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .jump a:hover { color: var(--accent); }
   h2 { font-size: 1.05rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin: 2.4rem 0 .7rem; }
   h3 { font-size: .95rem; color: var(--ink); margin: 1.6rem 0 .5rem; font-weight: 600; border-left: 3px solid var(--frost); padding-left: .6rem; }
   h3 .axis-note { display: block; font-weight: 400; color: var(--muted); font-size: .88rem; margin-top: .25rem; }
-  .rules p, .axes p { margin: .35rem 0; font-size: .95rem; }
+  .rules p { margin: .85rem 0; font-size: .95rem; }
+  .axes p { margin: .35rem 0; font-size: .95rem; }
   .rules b, .axes b { color: var(--accent); }
   .axes p { color: var(--muted); }
+  .qnote { color: var(--muted); font-size: .93rem; margin: .4rem 0 1rem; max-width: 46em; }
   .chain { color: var(--muted); font-style: italic; margin: .4rem 0 1.2rem; }
   .card { border: 1px solid var(--line); border-radius: 10px; background: var(--card); padding: .9rem 1.1rem; margin: .7rem 0; }
   .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem .8rem; }
@@ -55,10 +62,10 @@
   .moves-no { color: var(--muted); font-size: .88rem; border-left: 3px solid var(--line); padding-left: .7rem; margin-top: .4rem; }
   .clog { display: flex; flex-wrap: wrap; gap: .7rem; margin: .45rem 0; font-size: .95rem;
           padding-bottom: .45rem; border-bottom: 1px solid var(--line); }
-  .clog .cd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86rem; color: var(--muted); white-space: nowrap; }
-  .clog .cv { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86rem; color: var(--accent); white-space: nowrap; }
-  .clog .cm { font-size: .74rem; letter-spacing: .04em; border-radius: 999px; padding: .05rem .55rem; white-space: nowrap; border: 1px solid var(--line); }
-  .clog .cm-revised { color: var(--accent); border-color: var(--accent); }
+  .clog .cd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86rem; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+  .clog .cv { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86rem; color: var(--accent); white-space: nowrap; flex-shrink: 0; }
+  .clog .cm { font-size: .84rem; white-space: nowrap; flex-shrink: 0; }
+  .clog .cm-revised { color: var(--accent); }
   .clog .cm-display { color: var(--muted); }
   .clog .cs { flex: 1 1 18em; }
   footer { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
@@ -71,29 +78,19 @@
 <header>
   <div class="kicker">First Frost · The Scoreboard</div>
   <h1>We bet on our own predictions.<span class="zh">履霜，堅冰至</span></h1>
-  <p class="tagline">The public prediction ledger of <a href="https://firstfrost.news">First Frost</a>, a scored weekly watch on the agent economy. Every question below was frozen before the fact — criterion, settlement date, and our prior probability. When settlement day comes, we grade ourselves here. Changes happen only by public commit; the history is the point.</p>
-  <p class="scope">What this scoreboard measures — and what it does not. We track whether agents are becoming economic subjects: how much control is delegated to them, what kind of agent receives it, through what mechanisms, and who ends up holding the value. We do not track how large the agent economy is. Market-size questions need data channels we do not have, and we would rather say so than publish a number we cannot stand behind.</p>
+  <p class="tagline">The public prediction ledger of <a href="https://firstfrost.news">First Frost</a>, a scored weekly watch on the agent economy. Every question below was frozen before the fact — criterion, settlement date, and our prior probability.</p>
+  <p class="coreq">The question behind the board. <b>Under what conditions could an ordinary person rationally entrust something that matters — money, standing authority, an ongoing affair — to an AI agent?</b> That question cannot be settled on a date, so we bet on one that can: <b>whether agents are becoming economic subjects in their own right.</b></p>
+  <p class="scope">We do not track how large the agent economy is. Market-size questions need data channels we do not have, and we would rather say so than publish a number we cannot stand behind. Nor would a board full of YES settle the question above: an economy of interchangeable agents could produce one. Only B1a tests that difference directly, and we put it at 0.15.</p>
   <div class="tally">
     <div><b>16</b> open</div>
     <div><b>0</b> settled</div>
     <div><b>0</b> voided</div>
     <div><b>2</b> questions revised</div>
-    <div><b>—</b> cumulative Brier</div>
-    <div><b>v0.4.4</b> panel · frozen 2026-07-10 · restructured 2026-08-02</div>
+    <div><b>—</b> cumulative Brier <a href="#scoring" class="tiny">0.25 is a coin flip</a></div>
+    <div><b>v0.4.5</b> panel · frozen 2026-07-10 · restructured 2026-08-02</div>
   </div>
+  <nav class="jump"><a href="#board">The board</a> · <a href="#scoring">How scoring works</a> · <a href="#changelog">Change log</a></nav>
 </header>
-
-<section class="rules">
-  <h2>How scoring works</h2>
-  <p><b>Priors</b> are our probability that the answer settles YES — July-2026 impressions, stated uncertainty ±0.15. We claim no calibration until ≥10 questions have settled.</p>
-  <p><b>Settlement</b> is tri-state. YES/NO enter the Brier ledger — (prior − outcome)², lower is better. PENDING scores nothing, is recorded, and postpones settlement one quarter, at most once; still unresolved, it settles as NO. Every NO carries a sub-label — <em>NO-event</em> (it clearly did not happen) or <em>NO-evidence</em> (we could not see enough to call YES). Scored identically, analyzed separately; NO-evidence is never cited with NO-event strength.</p>
-  <p><b>The waterline</b> is 0.25 — the Brier score you would earn by flipping a coin on every question. A score above it is worse than guessing. It is the number to hold us to, and it is why no single settlement means much on its own.</p>
-  <p><b>Voiding</b> is allowed only for three pre-registered reasons: the criterion proves literally unmeasurable; the entity or market the question attaches to ceases to exist; or verification shows the condition was already met before the freeze date. Nothing else may be voided. Every void is publicly counted and adds a flat 0.25 Brier penalty. No quietly deleting losing bets.</p>
-  <p><b>Ambiguity</b> in any criterion resolves <em>against</em> our thesis.</p>
-  <p><b>Disputes:</b> every settlement opens a 14-day public dispute window; disputes, evidence, and rulings are archived. A settlement is final when its window closes.</p>
-  <p><b>Reporting:</b> cumulative Brier appears in three columns — axis-movers; signals (narrative signals and thermometers); and ship-readings, meaning first-person questions about how this publication itself is run, currently one, B1c. Never one blended total.</p>
-  <p><b>Panel discipline:</b> at most 18 active <em>published</em> questions; at most 3 added per quarter. Amendments bind future settlements only — a bet already in settlement is graded under the rules it was frozen with. Two questions have been revised since freeze — B1-3/B1c on 2026-07-25, and A1a on 2026-08-02 — and both are counted above; the revisions and their reasons are recorded in the <a href="data/indicators.json">ledger</a>.</p>
-</section>
 
 <section class="axes">
   <h2>The four questions we are asking</h2>
@@ -103,14 +100,15 @@
   <p><b>D</b> Who ends up holding the value, the risk, and the standing?</p>
 </section>
 
-<p class="chain"><em>How much is handed over → to whom → by what mechanism → and who ends up holding it.</em></p>
+<h2 id="board">The board</h2>
+
 
 <h2>A · Control</h2>
 
 <h3>A1 · Delegation depth<span class="axis-note">Delegation depth, levels 1–4: ① confirm every transaction → ② auto-approve within rules → ③ persistent budget, no per-transaction authorization → ④ can independently enter and terminate long-term obligations. Current reading: mainstream at 1–2; level 3 appearing in narrow settings.</span></h3>
 
 <div class="card">
-  <div class="row"><span class="id">A1a</span><span class="q">Level-3 delegation becomes normal practice</span><span class="meta">settles 2027-06-30</span><span class="prior">0.6</span><span class="status">OPEN</span></div>
+  <div class="row"><span class="id">A1a</span><span class="q">Level-3 delegation appears and is reproducible</span><span class="meta">settles 2027-06-30</span><span class="prior">0.6</span><span class="status">OPEN</span></div>
   <p class="plain">Level 3 means an agent holds a standing budget and buys across vendors without being asked each time — has that happened for real, more than once, not just as a demo?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>By settlement: do ≥3 organizations with no equity ties to one another run agents at Level 3 (persistent budgets) for ≥90 days, each autonomously purchasing across vendors ≥10 times per month? Sources: public cases or protocol-operator data. Demos and sandboxes do not count.</p>
@@ -138,6 +136,8 @@
 <h3>A2 · Technical control<span class="axis-note">Technical control — does an agent actually control resources: private keys, signing authority, funded wallets? Current reading: partly true — agents already operate funded wallets in x402-class flows. No indicator is placed on this axis: the reading is already “partly true,” so there is no bet worth making. We list the axis anyway, because an axis we have chosen not to bet on should be visible rather than quietly absent.</span></h3>
 
 <h2>B · Object</h2>
+
+<p class="qnote">One axis, four of the sixteen questions. This is where we have bet most heavily and from the narrowest base: continuity is the only measurable thing we have found here. If it is the wrong axis, the question goes down with it.</p>
 
 <h3>B1 · Continuity premium<span class="axis-note">Continuity premium (load-bearing) — do the relationships, context and history one agent accumulates make that particular agent hard to replace, or is “fresh instance plus compressed archive” always cheaper? Current reading: untested by any market. The most important and least evidenced cell in the model.</span></h3>
 
@@ -348,9 +348,22 @@
   </details>
 </div>
 
-<section class="rules">
+<section class="rules" id="scoring">
+<h2>How scoring works</h2>
+<p><b>Priors</b> are our probability that the answer settles YES — July-2026 impressions, stated uncertainty ±0.15. We claim no calibration until ≥10 questions have settled.</p>
+<p><b>Settlement</b> is tri-state. YES/NO enter the Brier ledger — (prior − outcome)², lower is better. PENDING scores nothing, is recorded, and postpones settlement one quarter, at most once; still unresolved, it settles as NO. Every NO carries a sub-label — <em>NO-event</em> (it clearly did not happen) or <em>NO-evidence</em> (we could not see enough to call YES). Scored identically, analyzed separately; NO-evidence is never cited with NO-event strength.</p>
+<p><b>The waterline</b> is 0.25 — the Brier score you would earn by flipping a coin on every question. A score above it is worse than guessing. It is the number to hold us to, and it is why no single settlement means much on its own.</p>
+<p><b>Voiding</b> is allowed only for three pre-registered reasons: the criterion proves literally unmeasurable; the entity or market the question attaches to ceases to exist; or verification shows the condition was already met before the freeze date. Nothing else may be voided. Every void is publicly counted and adds a flat 0.25 Brier penalty. No quietly deleting losing bets.</p>
+<p><b>Ambiguity</b> in any criterion resolves <em>against</em> our thesis.</p>
+<p><b>Disputes:</b> every settlement opens a 14-day public dispute window; disputes, evidence, and rulings are archived. A settlement is final when its window closes.</p>
+<p><b>Reporting:</b> cumulative Brier appears in three columns — axis-movers; signals (narrative signals and thermometers); and ship-readings, meaning first-person questions about how this publication itself is run, currently one, B1c. Never one blended total.</p>
+<p><b>Panel discipline:</b> at most 18 active <em>published</em> questions; at most 3 added per quarter. Amendments bind future settlements only — a bet already in settlement is graded under the rules it was frozen with. Two questions have been revised since freeze — B1-3/B1c on 2026-07-25, and A1a on 2026-08-02 — and both are counted above; the revisions and their reasons are recorded in the <a href="data/indicators.json">ledger</a>.</p>
+</section>
+
+<section class="rules" id="changelog">
   <h2>Change log</h2>
   <p>The questions were frozen on 2026-07-10, before this publication had an audience — which is the point, and the reason this log starts before issue one. One line per version below, each marked whether it revised a bet or only changed how the panel explains itself; the full record of each, including what was <em>not</em> altered, is in <a href="data/indicators.json">the ledger</a>.</p>
+  <div class="clog"><span class="cd">2026-08-17</span><span class="cv">v0.4.5</span><span class="cm cm-display">display only</span><span class="cs">Opening reordered: rules moved below the board, the core question and a scope caveat added above it; A1a's card title corrected to match its already-revised reading.</span></div>
   <div class="clog"><span class="cd">2026-08-17</span><span class="cv">v0.4.4</span><span class="cm cm-display">display only</span><span class="cs">The coin-flip waterline stated, and this change log made readable.</span></div>
   <div class="clog"><span class="cd">2026-08-04</span><span class="cv">v0.4.3</span><span class="cm cm-display">display only</span><span class="cs">A plain-language line added to all sixteen questions. Display only.</span></div>
   <div class="clog"><span class="cd">2026-08-03</span><span class="cv">v0.4.2</span><span class="cm cm-display">display only</span><span class="cs">Threshold rationale published for all sixteen questions.</span></div>
@@ -359,7 +372,7 @@
 </section>
 
 <footer>
-  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.4.4 — frozen 2026-07-10, restructured 2026-08-02; every change by public commit. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>.</p>
+  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.4.5 — frozen 2026-07-10, restructured 2026-08-02; every change by public commit. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>.</p>
   <p>In the I Ching, the first line of hexagram Kūn reads 履霜，堅冰至 — tread on frost, and know that hard ice is coming. The art is noticing early.</p>
 </footer>
 
