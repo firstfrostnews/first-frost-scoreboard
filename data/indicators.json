@@ -1,5 +1,5 @@
 {
-  "panel_version": "0.4.3",
+  "panel_version": "0.4.4",
   "frozen_on": "2026-07-10",
   "priors_note": "Priors are July-2026 impressions with a stated uncertainty of ±0.15. We do not claim calibration until at least 10 indicators have settled.",
   "scoring": {
@@ -291,15 +291,38 @@
   "amendments": [
     {
       "date": "2026-07-25",
-      "summary": "Measurement contract v0.3, signed and frozen this commit: void restricted to three pre-registered categories; NO settlements carry sub-labels; 14-day public dispute window per settlement; cumulative Brier reported in three columns; B1-3 trigger clarification plus four unscored observation variables. B1-3 also triggered this commit — see its criterion for the forced, non-voluntary model-default change. No indicators added or removed. One question was revised in this commit and is counted as revised on the panel: B1-3. Its original criterion graded whether a successor model could still perform the previous week's task list — capability, the layer least likely to be lost. The replacement grades discipline and judgment against archived precedent. The revision was made after the trigger fired but before any outcome was known; the superseded wording remains in this repository's history. B1-3 is open, not in settlement. All amendments apply to future settlements only — never to a bet already in settlement."
+      "summary": "Measurement contract v0.3, signed and frozen this commit: void restricted to three pre-registered categories; NO settlements carry sub-labels; 14-day public dispute window per settlement; cumulative Brier reported in three columns; B1-3 trigger clarification plus four unscored observation variables. B1-3 also triggered this commit — see its criterion for the forced, non-voluntary model-default change. No indicators added or removed. One question was revised in this commit and is counted as revised on the panel: B1-3. Its original criterion graded whether a successor model could still perform the previous week's task list — capability, the layer least likely to be lost. The replacement grades discipline and judgment against archived precedent. The revision was made after the trigger fired but before any outcome was known; the superseded wording remains in this repository's history. B1-3 is open, not in settlement. All amendments apply to future settlements only — never to a bet already in settlement.",
+      "version": "0.3",
+      "moved": "revised",
+      "headline": "Measurement contract signed and frozen. B1-3 triggered, and revised."
     },
     {
       "date": "2026-08-02",
-      "summary": "Panel restructured to v0.4: a question layer (A control / B object / C mechanism / D outcome) added above the axes; the 13 v0.3 indicators renumbered and regrouped under 8 axes (A1/A2/B1/C1/C2/D1/D2/D3) — their question text, criterion, prior, and settlement date are unchanged, carried over byte-for-byte. Renumbering is not counted as a revision: this panel has never made a public commitment to the old letter mapping. Three indicators added from the candidate pool: B1d (demand-side continuity payments), C2c (SaaS agent-interface adoption), X1a (agent-to-agent network formation, unassigned to any axis pending quarterly review). Two substantive revisions counted: B1-3's 2026-07-25 trigger clarification (carried over from v0.3) and A1a's 2026-08-02 correction of its YES-reading text (“normal practice” overstated what the frozen criterion can support; changed to “has appeared and is reproducible”). Two addenda recorded, neither altering frozen text: B1c carries a recovery-judgment defect disclosure (2026-08-01, original baseline instrument found never archived); C1a carries a recorded weakness (authorized volume ≠ settled volume). Inflation rule reworded to specify “at most 18 active published questions” (previously “active questions”); this is not counted as a revision (quota-mechanics wording, not a bet's criterion)."
+      "summary": "Panel restructured to v0.4: a question layer (A control / B object / C mechanism / D outcome) added above the axes; the 13 v0.3 indicators renumbered and regrouped under 8 axes (A1/A2/B1/C1/C2/D1/D2/D3) — their question text, criterion, prior, and settlement date are unchanged, carried over byte-for-byte. Renumbering is not counted as a revision: this panel has never made a public commitment to the old letter mapping. Three indicators added from the candidate pool: B1d (demand-side continuity payments), C2c (SaaS agent-interface adoption), X1a (agent-to-agent network formation, unassigned to any axis pending quarterly review). Two substantive revisions counted: B1-3's 2026-07-25 trigger clarification (carried over from v0.3) and A1a's 2026-08-02 correction of its YES-reading text (“normal practice” overstated what the frozen criterion can support; changed to “has appeared and is reproducible”). Two addenda recorded, neither altering frozen text: B1c carries a recovery-judgment defect disclosure (2026-08-01, original baseline instrument found never archived); C1a carries a recorded weakness (authorized volume ≠ settled volume). Inflation rule reworded to specify “at most 18 active published questions” (previously “active questions”); this is not counted as a revision (quota-mechanics wording, not a bet's criterion).",
+      "version": "0.4",
+      "moved": "revised",
+      "headline": "Panel restructured: a question layer added, thirteen questions regrouped under eight axes, three added. A1a revised."
     },
     {
       "date": "2026-08-03",
-      "summary": "Added threshold_rationale to all 16 public indicators: for each numeric threshold in a criterion, a reference class, why that number rather than a nearby one, and a stated sensitivity analysis (does the verdict flip if the number moved). No criterion, prior, settlement date, or moves text was altered. Two indicators (C2b, D3a) have no independent numeric threshold, so their rationale states that plainly rather than forcing a three-part structure. X1a's rationale additionally records the operational definition of \"flagship-class model,\" settled 2026-08-03 after a vendor cut one tier's price 80% while its flagship tier held. B1c's card was reorganized in the same pass: the pre-registered question now stands on its own, and the page carries short summaries of the trigger record and the recovery judgment in place of their full text, which remains verbatim in this file, linked from the card. No criterion text was altered, shortened, or removed from the record — this is a display change, and the ledger stays the authoritative copy."
+      "summary": "Added threshold_rationale to all 16 public indicators: for each numeric threshold in a criterion, a reference class, why that number rather than a nearby one, and a stated sensitivity analysis (does the verdict flip if the number moved). No criterion, prior, settlement date, or moves text was altered. Two indicators (C2b, D3a) have no independent numeric threshold, so their rationale states that plainly rather than forcing a three-part structure. X1a's rationale additionally records the operational definition of \"flagship-class model,\" settled 2026-08-03 after a vendor cut one tier's price 80% while its flagship tier held. B1c's card was reorganized in the same pass: the pre-registered question now stands on its own, and the page carries short summaries of the trigger record and the recovery judgment in place of their full text, which remains verbatim in this file, linked from the card. No criterion text was altered, shortened, or removed from the record — this is a display change, and the ledger stays the authoritative copy.",
+      "version": "0.4.2",
+      "moved": "display",
+      "headline": "Threshold rationale published for all sixteen questions."
+    },
+    {
+      "date": "2026-08-04",
+      "version": "0.4.3",
+      "moved": "display",
+      "headline": "A plain-language line added to all sixteen questions. Display only.",
+      "summary": "A plain-language line was added to each of the 16 public indicators: one sentence, in ordinary English, saying what the question is asking. It sits on the card unfolded, because a reader who does not open the criterion is exactly the reader it is for. No criterion, prior, settlement date, or moves text was altered, and no question was added or removed — this is a display change, and this file stays the authoritative copy."
+    },
+    {
+      "date": "2026-08-17",
+      "version": "0.4.4",
+      "moved": "display",
+      "headline": "The coin-flip waterline stated, and this change log made readable.",
+      "summary": "Two additions, both to how the panel explains itself rather than to what it bets. First, the scoring section now says plainly that 0.25 is the waterline — the Brier score a coin flip earns on every question — so that the number is findable here and not only in the launch issue that names it. Second, the amendment record, which until now existed only inside this file, is rendered on the page as a change log: one line per panel version, with the full record of each amendment remaining here. No criterion, prior, settlement date, or moves text was altered, and no question was added or removed."
     }
   ],
   "restructured_on": "2026-08-02",

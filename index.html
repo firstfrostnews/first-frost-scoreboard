@@ -53,6 +53,14 @@
   .ledger-note { color: var(--muted); font-size: .82rem; }
   .moves { color: var(--muted); font-size: .88rem; border-left: 3px solid var(--frost); padding-left: .7rem; }
   .moves-no { color: var(--muted); font-size: .88rem; border-left: 3px solid var(--line); padding-left: .7rem; margin-top: .4rem; }
+  .clog { display: flex; flex-wrap: wrap; gap: .7rem; margin: .45rem 0; font-size: .95rem;
+          padding-bottom: .45rem; border-bottom: 1px solid var(--line); }
+  .clog .cd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86rem; color: var(--muted); white-space: nowrap; }
+  .clog .cv { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86rem; color: var(--accent); white-space: nowrap; }
+  .clog .cm { font-size: .74rem; letter-spacing: .04em; border-radius: 999px; padding: .05rem .55rem; white-space: nowrap; border: 1px solid var(--line); }
+  .clog .cm-revised { color: var(--accent); border-color: var(--accent); }
+  .clog .cm-display { color: var(--muted); }
+  .clog .cs { flex: 1 1 18em; }
   footer { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
   a { color: var(--accent); }
 </style>
@@ -71,7 +79,7 @@
     <div><b>0</b> voided</div>
     <div><b>2</b> questions revised</div>
     <div><b>—</b> cumulative Brier</div>
-    <div><b>v0.4.3</b> panel · frozen 2026-07-10 · restructured 2026-08-02</div>
+    <div><b>v0.4.4</b> panel · frozen 2026-07-10 · restructured 2026-08-02</div>
   </div>
 </header>
 
@@ -79,6 +87,7 @@
   <h2>How scoring works</h2>
   <p><b>Priors</b> are our probability that the answer settles YES — July-2026 impressions, stated uncertainty ±0.15. We claim no calibration until ≥10 questions have settled.</p>
   <p><b>Settlement</b> is tri-state. YES/NO enter the Brier ledger — (prior − outcome)², lower is better. PENDING scores nothing, is recorded, and postpones settlement one quarter, at most once; still unresolved, it settles as NO. Every NO carries a sub-label — <em>NO-event</em> (it clearly did not happen) or <em>NO-evidence</em> (we could not see enough to call YES). Scored identically, analyzed separately; NO-evidence is never cited with NO-event strength.</p>
+  <p><b>The waterline</b> is 0.25 — the Brier score you would earn by flipping a coin on every question. A score above it is worse than guessing. It is the number to hold us to, and it is why no single settlement means much on its own.</p>
   <p><b>Voiding</b> is allowed only for three pre-registered reasons: the criterion proves literally unmeasurable; the entity or market the question attaches to ceases to exist; or verification shows the condition was already met before the freeze date. Nothing else may be voided. Every void is publicly counted and adds a flat 0.25 Brier penalty. No quietly deleting losing bets.</p>
   <p><b>Ambiguity</b> in any criterion resolves <em>against</em> our thesis.</p>
   <p><b>Disputes:</b> every settlement opens a 14-day public dispute window; disputes, evidence, and rulings are archived. A settlement is final when its window closes.</p>
@@ -339,8 +348,18 @@
   </details>
 </div>
 
+<section class="rules">
+  <h2>Change log</h2>
+  <p>The questions were frozen on 2026-07-10, before this publication had an audience — which is the point, and the reason this log starts before issue one. One line per version below, each marked whether it revised a bet or only changed how the panel explains itself; the full record of each, including what was <em>not</em> altered, is in <a href="data/indicators.json">the ledger</a>.</p>
+  <div class="clog"><span class="cd">2026-08-17</span><span class="cv">v0.4.4</span><span class="cm cm-display">display only</span><span class="cs">The coin-flip waterline stated, and this change log made readable.</span></div>
+  <div class="clog"><span class="cd">2026-08-04</span><span class="cv">v0.4.3</span><span class="cm cm-display">display only</span><span class="cs">A plain-language line added to all sixteen questions. Display only.</span></div>
+  <div class="clog"><span class="cd">2026-08-03</span><span class="cv">v0.4.2</span><span class="cm cm-display">display only</span><span class="cs">Threshold rationale published for all sixteen questions.</span></div>
+  <div class="clog"><span class="cd">2026-08-02</span><span class="cv">v0.4</span><span class="cm cm-revised">revised a bet</span><span class="cs">Panel restructured: a question layer added, thirteen questions regrouped under eight axes, three added. A1a revised.</span></div>
+  <div class="clog"><span class="cd">2026-07-25</span><span class="cv">v0.3</span><span class="cm cm-revised">revised a bet</span><span class="cs">Measurement contract signed and frozen. B1-3 triggered, and revised.</span></div>
+</section>
+
 <footer>
-  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.4.3 — frozen 2026-07-10, restructured 2026-08-02; every change by public commit. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>.</p>
+  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.4.4 — frozen 2026-07-10, restructured 2026-08-02; every change by public commit. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>.</p>
   <p>In the I Ching, the first line of hexagram Kūn reads 履霜，堅冰至 — tread on frost, and know that hard ice is coming. The art is noticing early.</p>
 </footer>
 
