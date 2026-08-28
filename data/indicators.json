@@ -72,7 +72,8 @@
       "moves": "YES → axis A1 reads “Level 3 has appeared and is reproducible.” Amended 2026-08-02, before settlement: the earlier wording read “Level 3 is normal practice,” which the criterion does not support — three unrelated organizations over ninety days demonstrates appearance and reproducibility, not diffusion. Counted as a revision; the criterion itself is unchanged.",
       "moves_no": "NO → reading unchanged.",
       "threshold_rationale": "The three numbers together are meant to establish sustained infrastructure, not a one-off demo. 90 days is roughly a quarter — longer than a launch-announcement cycle, shorter than an annual contract, a common pilot-to-normal boundary in enterprise software rollouts. 10 transactions/month rules out token, ceremonial usage; 3 organizations rules out a single bespoke customer deal. Loosening any one dimension alone would revert this criterion to the exact gap a 2026-07 red-team review found (no transaction count, duration, or organizational boundary). None of the three numbers has an external benchmark independent of our own judgment. Loosening to 60 days or 5 transactions/month would make a YES easier to trigger given known supply-side momentum; tightening to 180 days + 20/month would push the 0.6 prior implausibly high. If this settles YES, we commit to reporting each dimension's actual reading in the retrospective, not just the verdict.",
-      "plain_language": "Level 3 means an agent holds a standing budget and buys across vendors without being asked each time — has that happened for real, more than once, not just as a demo?"
+      "plain_language": "Level 3 means an agent holds a standing budget and buys across vendors without being asked each time — has that happened for real, more than once, not just as a demo?",
+      "opening_reading": "Opening reading, recorded 2026-08-23: no qualifying case found. Autonomous procurement is being deployed — trade coverage names large retailers whose agents negotiate with suppliers without step-by-step human approval — but we found no public case establishing the full conjunction this question asks for: three unaffiliated organizations, standing budgets, ten or more cross-vendor purchases a month, sustained ninety days. Note the channel is narrow: organizations rarely publish per-org purchase counts, so this could become true before it becomes visible."
     },
     {
       "id": "A1b",
@@ -100,7 +101,8 @@
       "moves": "YES → B1 rises to “market evidence exists.”",
       "moves_no": "NO → B1 stays “unproven,” and the standing objection to our thesis gains weight.",
       "threshold_rationale": "The ≥6-month figure defines the treatment group rather than the verdict: it has to be long enough that an accumulated instance and a fresh copy are plainly different objects, and we have no external basis for preferring 6 months to 4 or 9. 30% is set well above the range of ordinary pricing noise (promotions and customer-tier variation typically run 10-15%), while remaining far short of monopoly-grade differentiation. This is our load-bearing indicator, and the criterion itself is deliberately strict (false negatives preferred to false positives) — the joint 30%/90-day/2-buyer bar exists so no single, isolated data point can be counted as 'the market has proven a premium.' This indicator is highly threshold-sensitive, and unfavorably so: a real premium in the 15-25% range — clearly above noise but short of 30% — would settle NO under this criterion, though such evidence would still be worth recording as partial. A NO verdict here must not be over-read as 'no premium exists at all'; only as 'the 30% bar was not met.'",
-      "plain_language": "The load-bearing bet: does anyone actually pay more to keep the same agent running than to spin up a fresh one loaded with a full copy of its memory?"
+      "plain_language": "The load-bearing bet: does anyone actually pay more to keep the same agent running than to spin up a fresh one loaded with a full copy of its memory?",
+      "opening_reading": "Opening reading, recorded 2026-08-23: no observable market. There is no public rental market for agent instances, so there are no prices to compare and no transactions to count. This question opens with its measurement channel absent, not with evidence pointing either way. If that does not change, it settles NO for want of evidence rather than for want of the effect, and we will label it that way."
     },
     {
       "id": "B1b",
@@ -114,7 +116,8 @@
       "moves": "Moves no axis. Recorded for direction only — note that a platform selling *copyable* memory is, if anything, weak counter-evidence for a true continuity premium.",
       "moves_no": "NO → no axis (narrative signal). Recorded as “platform narrative not yet realized as a paid feature.” The NO sub-label is mandatory here: NO-event where pricing pages plainly carry no such tier; NO-evidence where the top-10 sample could not be fully checked.",
       "threshold_rationale": "2 platforms is the floor for 'more than one isolated experiment' — a single platform could just be testing its own positioning; two independent platforms betting on the same pitch is what starts to look like a trend rather than an anecdote. This indicator does not move any axis by design (it's a narrative signal); the bar is set low on purpose, because setting it high would make this indicator settle NO indefinitely and lose its value as a thermometer. Tightening to 3 platforms would pull the 0.55 prior down noticeably; loosening to 1 would push it toward near-certainty but would also demote this from 'trend signal' to 'isolated case log.'",
-      "plain_language": "A softer version of the bet above: are platforms at least marketing continuity as a paid feature — even though selling memory you can copy is weak evidence against the harder claim?"
+      "plain_language": "A softer version of the bet above: are platforms at least marketing continuity as a paid feature — even though selling memory you can copy is weak evidence against the harder claim?",
+      "opening_reading": "Opening reading, recorded 2026-08-23: NO. We know of no two top-10 platforms currently marketing continuity as a core paid-tier feature. The two largest consumer platforms have moved the other way — memory now sits on their free tiers. We also read “continuity” strictly here: what ships today is a summary of preferences and project context, which can be copied into any fresh instance. A copyable summary is not the thing this question is about, and where the wording is ambiguous we resolve it against ourselves. Our prior of 0.55 concerns June 2027, not today, and stands unchanged."
     },
     {
       "id": "B1c",
@@ -145,7 +148,8 @@
       "moves": "YES → D1 rises to “premium has market evidence.”",
       "moves_no": "NO → D1 stays at “no transaction evidence.” Where no transaction-price data exists at all, the question routes to PENDING rather than being folded into NO.",
       "threshold_rationale": "2x is a rough line between a visible price tier and ordinary statistical noise — most substitute goods of comparable quality price within 2x of each other, and a gap beyond that typically signals buyers judging the two as genuinely different products. 90 days / 3 independent transactions mirrors the same 'sustained, not anecdotal' logic used elsewhere on this panel. Lowering to 1.5x would make a YES easier but risks mistaking routine quality-tier pricing for a provenance premium; raising to 3x would effectively require luxury-good-level pricing, making the 0.4 prior look too high.",
-      "plain_language": "Does verified, real-world data actually sell for more than synthetic data in practice — not just in theory?"
+      "plain_language": "Does verified, real-world data actually sell for more than synthetic data in practice — not just in theory?",
+      "opening_reading": "Opening reading, recorded 2026-08-23: no transaction-price data available. The criterion already anticipates this and settles PENDING rather than NO on that condition. We record at freeze that the channel is missing, not merely quiet."
     },
     {
       "id": "D1b",
@@ -159,7 +163,8 @@
       "moves": "YES → D1 moves one weak notch in the same direction.",
       "moves_no": "NO → D1 unchanged. A contract signed without a verifiable amount settles NO-evidence under the anti-self-serving rule.",
       "threshold_rationale": "No independent numeric threshold — the criterion requires a qualifying combination (a long-term contract, a verifiable amount or quantity, and equivalent synthetic data available to the same buyer at the same time), not a single number, so a sensitivity analysis does not apply here.",
-      "plain_language": "Has a major model developer chosen to pay for real data when cheaper synthetic data was a genuine alternative?"
+      "plain_language": "Has a major model developer chosen to pay for real data when cheaper synthetic data was a genuine alternative?",
+      "opening_reading": "Opening reading, recorded 2026-08-23: NO. Long-term content and data licensing contracts are numerous and often carry public values — multi-year publisher agreements in the hundreds of millions, refreshed feeds in the tens of millions a year. What we have not found is the thing this question actually asks for: a trainer paying for provenanced data while an equivalent synthetic substitute was available to it. The deals we can see buy proprietary corpora that synthetic data cannot substitute for, which is a different purchase. That counterfactual is hard to observe, and where it is ambiguous we resolve it against ourselves."
     },
     {
       "id": "D3a",
@@ -188,7 +193,8 @@
       "moves_no": "NO → axis C1 unchanged; authorized volume did not reach scale.",
       "recorded_weakness": "Recorded weakness, 2026-08-02: this criterion measures authorized volume, not settled volume, and the two are not equivalent. The criterion is frozen and will not be amended. At settlement we will publish settled volume alongside it where obtainable, and state that this question reads the authorization surface rather than actual use; where the figure cannot be obtained, the NO will be labeled NO-evidence and the reason given.",
       "threshold_rationale": "We could not find an external benchmark for this number — the 2026-07-10 red-team record shows only that the figure was set at $1B alongside a lowered 0.35 prior, with no note of why $1B specifically. As a rough anchor, $1B/year in authorized volume is roughly mid-size fintech processing scale — far below major payment-network scale (Visa processes on the order of trillions annually) — so it reads as 'past pilot stage, not yet infrastructure scale.' This is the weakest-supported threshold on the panel: $500M would make a YES noticeably easier, $5B noticeably harder, and we have no basis independent of our own judgment to prefer one over the others. It also compounds with an already-recorded weakness — this criterion measures authorized volume, not settled volume — so at settlement both the numeric softness and the authorized/settled gap must be disclosed together, not just the latter.",
-      "plain_language": "Has agent-authorized spending under a revocable, capped, auditable arrangement become a real market — measured by what's authorized, not what's actually spent?"
+      "plain_language": "Has agent-authorized spending under a revocable, capped, auditable arrangement become a real market — measured by what's authorized, not what's actually spent?",
+      "opening_reading": "Opening reading, recorded 2026-08-23: baseline unknown. We have no published figure for annual mandate-authorized transaction volume as of freeze, so we cannot say how far $1B is from where things stand. Protocol operators publish transaction counts more readily than authorized value. If a figure lands we will publish it, dated."
     },
     {
       "id": "C1b",
@@ -202,7 +208,8 @@
       "moves": "YES → C1 moves toward “revocable-within-rules becomes the standard.” (Settles independently of C1a.)",
       "moves_no": "NO → axis C1 unchanged; default integration did not appear. Merchant-by-merchant integrations are recorded but do not count.",
       "threshold_rationale": "This is an existence bar, not a scale bar — 1 network already represents the qualitative jump from 'never happened' to 'happened,' matching what the criterion is actually built to detect (mandate systems becoming a revocable-but-standard rail), so a higher count wasn't needed. This number is not particularly threshold-sensitive (2 networks would materially raise the bar, but 1 vs. 0 is the real fork); the softer spot is the operational definition of 'default adoption' itself — whether merchants need explicit opt-in — which matters more than the count.",
-      "plain_language": "Has that kind of authorization become the default at any major payment network, with merchants accepting it automatically rather than opting in one at a time?"
+      "plain_language": "Has that kind of authorization become the default at any major payment network, with merchants accepting it automatically rather than opting in one at a time?",
+      "opening_reading": "Opening reading, recorded 2026-08-23: NO. Both major networks have shipped agent-payment programs — Mastercard's Agent Pay and Visa's Trusted Agent Protocol — but on the documentation available to us, merchant participation is optional rather than a network default. That distinction is exactly what this question turns on."
     },
     {
       "id": "C2a",
@@ -216,7 +223,8 @@
       "moves": "YES → C2's memory and identity layers move one notch toward “open.” (This covers only two of C2's four layers; payment/market-layer indicators are a known gap, reserved for a future quarter.)",
       "moves_no": "NO → C2's memory and identity layers stay at their current reading, which is “undecided” and itself unverified. Shallow-export cases are recorded as a reverse temperature reading and cited in retrospectives.",
       "threshold_rationale": "The '2 competing platforms' bar reuses the same existence-not-anecdote logic as B1b/C1b. The 80% field-completeness bar has an operational definition, folded in from external red-team review: the denominator is the platform's own documented list of core memory fields, and completeness is judged against that list. 80% leaves room for imperfect interoperability while still requiring that most core fields genuinely migrate, ruling out a token one- or two-field export counting as a YES. This is the one threshold on the panel with its own operational definition — the real sensitivity isn't in the '80%' but in who defines the denominator: field completeness is necessary but not sufficient, so even a YES here does not mean migration is lossless. Lowering to 60% would make a YES substantially easier; either way, a platform defining its own denominator remains the deeper weakness.",
-      "plain_language": "Can you actually take an agent's memory and identity to a competing platform — real import and export, not a stated intention?"
+      "plain_language": "Can you actually take an agent's memory and identity to a competing platform — real import and export, not a stated intention?",
+      "opening_reading": "Opening reading, recorded 2026-08-23: NO. The nearest thing to a portability standard we found is a one-way import path — a major assistant can now pull a memory summary out of rival products, but it does so by asking the other chatbot to write a list, not through a published specification or an official export on the source side, and what moves is a summary rather than the store. The criterion excludes shallow export, so this counts as evidence in the other direction and we log it as such."
     },
     {
       "id": "C2b",
@@ -230,7 +238,8 @@
       "moves": "Moves no axis (media attention ≠ closure strength). Recorded as a temperature reading.",
       "moves_no": "NO → no axis (thermometer). Recorded as “the dispute did not become public”; a temperature reading only.",
       "threshold_rationale": "No independent numeric threshold — the criterion is a qualitative bar (mainstream tech-press coverage plus an official platform response), so a sensitivity analysis does not apply here.",
-      "plain_language": "A weaker cousin of the export bet above: has a platform's export restriction drawn enough public pushback to make the news?"
+      "plain_language": "A weaker cousin of the export bet above: has a platform's export restriction drawn enough public pushback to make the news?",
+      "opening_reading": "Opening reading, recorded 2026-08-23: NO. We know of no episode meeting both halves — mainstream technology-press coverage of a memory-export restriction, plus an official response from the platform involved. One candidate is in our verification queue; if it holds up it will appear in a weekly issue, dated."
     },
     {
       "id": "D2a",
@@ -257,7 +266,8 @@
       "status": "open",
       "moves": "Narrative signal — moves no axis. Read as a pair with B1b, never merged into it: B1b is the supply side (platforms selling continuity), B1d is the demand side (users paying to keep one). Divergence between the two is itself the information.",
       "threshold_rationale": "2 independent events is the floor for ruling out 'one isolated case might just be an operator's reversal, not evidence of user pressure' — a single event could be a platform's own change of mind, not proof that user behavior moved a platform's decision. The three qualifying evidence classes (reversed retirement decisions, paid retention tiers, organized action reaching mainstream coverage plus an official response) are already strict by design, so the count itself doesn't need to be set much higher. Loosening to 1 event would make this almost certain to settle YES (the keep4o pattern alone may already qualify); tightening to 3 would make it almost certain to settle NO given how rare all three evidence classes are. In practice, the outcome depends far more on how strictly the three evidence classes are read than on whether the count is 2 or 3.",
-      "plain_language": "The mirror image of the bet above: have users ever paid, in some checkable way, to keep a model or agent lineage from being taken away?"
+      "plain_language": "The mirror image of the bet above: have users ever paid, in some checkable way, to keep a model or agent lineage from being taken away?",
+      "opening_reading": "Opening reading, recorded 2026-08-23: one of the two required episodes is already on the record, from before this question was frozen. In August 2025 OpenAI announced the retirement of GPT-4o alongside the GPT-5 launch, subscribers objected, and the company publicly reversed within days; the model was finally retired in February 2026. That is source type ①, so the count opens at one, not zero. Criterion and prior unchanged."
     },
     {
       "id": "C2c",
@@ -340,5 +350,6 @@
     "C": "Mechanism — Through what institutions and infrastructure is it handed over?",
     "D": "Outcome — Who ends up holding the value, the risk, and the standing?"
   },
-  "question_chain": "How much is handed over → to whom → by what mechanism → and who ends up holding it."
+  "question_chain": "How much is handed over → to whom → by what mechanism → and who ends up holding it.",
+  "coverage_note": "Opening readings, coverage as of 2026-08-23: ten of the sixteen questions now carry one. B1c and C2c are covered on their own cards instead — B1c by its trigger record and recovery judgment, C2c by the pending-baseline note inside its criterion. That leaves four with no opening reading yet: A1b, D2a, D3a, and part (a) of X1a. We judged each of those far enough from its threshold that checking now buys little, and we would rather name them than let this page imply we checked everything. They are queued."
 }

@@ -52,6 +52,10 @@
   .meta { font-size: .84rem; color: var(--muted); white-space: nowrap; }
   .prior { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--ink); background: var(--chip-bg); border: 1px solid var(--line); border-radius: 5px; padding: .05rem .45rem; }
   .status { font-size: .74rem; letter-spacing: .1em; border: 1px solid var(--frost); color: var(--accent); border-radius: 999px; padding: .12rem .6rem; }
+  .coverage { color: var(--muted); font-size: .92rem; margin: .4rem 0 1.2rem;
+    max-width: 46em; }
+  .opening { font-size: .93rem; margin: .5rem 0 0; padding-left: .8rem;
+    border-left: 2px solid var(--line); color: var(--muted); }
   details { margin-top: .55rem; }
   summary { cursor: pointer; font-size: .88rem; color: var(--accent); }
   details p { font-size: .93rem; margin: .5rem 0; }
@@ -101,6 +105,7 @@
 </section>
 
 <h2 id="board">The board</h2>
+<p class="coverage">Opening readings, coverage as of 2026-08-23: ten of the sixteen questions now carry one. B1c and C2c are covered on their own cards instead — B1c by its trigger record and recovery judgment, C2c by the pending-baseline note inside its criterion. That leaves four with no opening reading yet: A1b, D2a, D3a, and part (a) of X1a. We judged each of those far enough from its threshold that checking now buys little, and we would rather name them than let this page imply we checked everything. They are queued.</p>
 
 
 <h2>A · Control</h2>
@@ -110,6 +115,7 @@
 <div class="card">
   <div class="row"><span class="id">A1a</span><span class="q">Level-3 delegation appears and is reproducible</span><span class="meta">settles 2027-06-30</span><span class="prior">0.6</span><span class="status">OPEN</span></div>
   <p class="plain">Level 3 means an agent holds a standing budget and buys across vendors without being asked each time — has that happened for real, more than once, not just as a demo?</p>
+  <p class="opening">Opening reading, recorded 2026-08-23: no qualifying case found. Autonomous procurement is being deployed — trade coverage names large retailers whose agents negotiate with suppliers without step-by-step human approval — but we found no public case establishing the full conjunction this question asks for: three unaffiliated organizations, standing budgets, ten or more cross-vendor purchases a month, sustained ninety days. Note the channel is narrow: organizations rarely publish per-org purchase counts, so this could become true before it becomes visible.</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>By settlement: do ≥3 organizations with no equity ties to one another run agents at Level 3 (persistent budgets) for ≥90 days, each autonomously purchasing across vendors ≥10 times per month? Sources: public cases or protocol-operator data. Demos and sandboxes do not count.</p>
     <p class="moves">YES → axis A1 reads “Level 3 has appeared and is reproducible.” Amended 2026-08-02, before settlement: the earlier wording read “Level 3 is normal practice,” which the criterion does not support — three unrelated organizations over ninety days demonstrates appearance and reproducibility, not diffusion. Counted as a revision; the criterion itself is unchanged.</p>
@@ -144,6 +150,7 @@
 <div class="card">
   <div class="row"><span class="id">B1a</span><span class="q">The market pays for the instance, not just the memory</span><span class="meta">settles 2027-12-31</span><span class="prior">0.15</span><span class="status">OPEN</span></div>
   <p class="plain">The load-bearing bet: does anyone actually pay more to keep the same agent running than to spin up a fresh one loaded with a full copy of its memory?</p>
+  <p class="opening">Opening reading, recorded 2026-08-23: no observable market. There is no public rental market for agent instances, so there are no prices to compare and no transactions to count. This question opens with its measurement channel absent, not with evidence pointing either way. If that does not change, it settles NO for want of evidence rather than for want of the effect, and we will label it that way.</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Controlled-substitution semantics: same model, same task domain — does an agent instance with ≥6 months of accumulated context command a ≥30% rental-price premium over a fresh instance loaded with a full copy of its memory store, sustained ≥90 days, with ≥2 independent buyers transacting? The control isolates premium attaching to the instance rather than to the memory store. Evidence: public price lists plus transaction evidence, or ≥2 independent credible transaction cases.</p>
     <p class="moves">YES → B1 rises to “market evidence exists.”</p>
@@ -157,6 +164,7 @@
 <div class="card">
   <div class="row"><span class="id">B1b</span><span class="q">Platforms sell “continuity” as a paid feature (narrative signal)</span><span class="meta">settles 2027-06-30</span><span class="prior">0.55</span><span class="status">OPEN</span></div>
   <p class="plain">A softer version of the bet above: are platforms at least marketing continuity as a paid feature — even though selling memory you can copy is weak evidence against the harder claim?</p>
+  <p class="opening">Opening reading, recorded 2026-08-23: NO. We know of no two top-10 platforms currently marketing continuity as a core paid-tier feature. The two largest consumer platforms have moved the other way — memory now sits on their free tiers. We also read “continuity” strictly here: what ships today is a summary of preferences and project context, which can be copied into any fresh instance. A copyable summary is not the thing this question is about, and where the wording is ambiguous we resolve it against ourselves. Our prior of 0.55 concerns June 2027, not today, and stands unchanged.</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Do ≥2 top-10 platforms (by MAU or revenue) market continuity / long-term memory as a core paid-tier feature on their official pricing pages?</p>
     <p class="moves">Moves no axis. Recorded for direction only — note that a platform selling *copyable* memory is, if anything, weak counter-evidence for a true continuity premium.</p>
@@ -192,6 +200,7 @@
 <div class="card">
   <div class="row"><span class="id">B1d</span><span class="q">Users pay to keep a model or agent lineage alive</span><span class="meta">settles 2027-06-30</span><span class="prior">0.4</span><span class="status">OPEN</span></div>
   <p class="plain">The mirror image of the bet above: have users ever paid, in some checkable way, to keep a model or agent lineage from being taken away?</p>
+  <p class="opening">Opening reading, recorded 2026-08-23: one of the two required episodes is already on the record, from before this question was frozen. In August 2025 OpenAI announced the retirement of GPT-4o alongside the GPT-5 launch, subscribers objected, and the company publicly reversed within days; the model was finally retired in February 2026. That is source type ①, so the count opens at one, not zero. Criterion and prior unchanged.</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>By settlement, have ≥2 mutually independent episodes occurred in which, after a model or agent lineage was announced for retirement or downgrade, users bore a publicly verifiable cost to keep it? Exactly three source types count, any one of which makes an episode: ① the platform publicly reversed or altered the retirement decision in response to user pressure (official statement); ② a paid tier or surcharge was created specifically to preserve that lineage (official pricing page or announcement); ③ organized collective action reached the level of mainstream tech-press coverage plus an official platform response. Petition signatures, social-media volume, and self-reported willingness to pay do not count — only evidence of behavior that changed, or of a platform decision that changed.</p>
     <p class="moves">Narrative signal — moves no axis. Read as a pair with B1b, never merged into it: B1b is the supply side (platforms selling continuity), B1d is the demand side (users paying to keep one). Divergence between the two is itself the information.</p>
@@ -208,6 +217,7 @@
 <div class="card">
   <div class="row"><span class="id">C1a</span><span class="q">Mandate systems reach $1B authorized volume</span><span class="meta">settles 2027-06-30</span><span class="prior">0.35</span><span class="status">OPEN</span></div>
   <p class="plain">Has agent-authorized spending under a revocable, capped, auditable arrangement become a real market — measured by what's authorized, not what's actually spent?</p>
+  <p class="opening">Opening reading, recorded 2026-08-23: baseline unknown. We have no published figure for annual mandate-authorized transaction volume as of freeze, so we cannot say how far $1B is from where things stand. Protocol operators publish transaction counts more readily than authorized value. If a figure lands we will publish it, dated.</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Does mandate-based authorization reach ≥$1B in annual authorized transaction volume, per protocol-operator or authoritative third-party data?</p>
     <p class="moves">YES → C1 moves toward “revocable-within-rules becomes the standard.” (Settles independently of C1b.)</p>
@@ -222,6 +232,7 @@
 <div class="card">
   <div class="row"><span class="id">C1b</span><span class="q">A major payment network integrates mandates by default</span><span class="meta">settles 2027-06-30</span><span class="prior">0.55</span><span class="status">OPEN</span></div>
   <p class="plain">Has that kind of authorization become the default at any major payment network, with merchants accepting it automatically rather than opting in one at a time?</p>
+  <p class="opening">Opening reading, recorded 2026-08-23: NO. Both major networks have shipped agent-payment programs — Mastercard's Agent Pay and Visa's Trusted Agent Protocol — but on the documentation available to us, merchant participation is optional rather than a network default. That distinction is exactly what this question turns on.</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Does ≥1 major payment network integrate a mandate system as a default (merchants do not need to opt in individually)?</p>
     <p class="moves">YES → C1 moves toward “revocable-within-rules becomes the standard.” (Settles independently of C1a.)</p>
@@ -237,6 +248,7 @@
 <div class="card">
   <div class="row"><span class="id">C2a</span><span class="q">A real portability standard for agent memory &amp; identity</span><span class="meta">settles 2027-12-31</span><span class="prior">0.2</span><span class="status">OPEN</span></div>
   <p class="plain">Can you actually take an agent's memory and identity to a competing platform — real import and export, not a stated intention?</p>
+  <p class="opening">Opening reading, recorded 2026-08-23: NO. The nearest thing to a portability standard we found is a one-way import path — a major assistant can now pull a memory summary out of rival products, but it does so by asking the other chatbot to write a list, not through a published specification or an official export on the source side, and what moves is a summary rather than the store. The criterion excludes shallow export, so this counts as evidence in the other direction and we log it as such.</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Do ≥2 directly competing top-10 platforms implement a portable agent memory/identity standard — public spec, bidirectional import AND export, field completeness ≥80% of core memory? Shallow export does not count; ambiguity resolves against us.</p>
     <p class="moves">YES → C2's memory and identity layers move one notch toward “open.” (This covers only two of C2's four layers; payment/market-layer indicators are a known gap, reserved for a future quarter.)</p>
@@ -250,6 +262,7 @@
 <div class="card">
   <div class="row"><span class="id">C2b</span><span class="q">Memory export becomes a public controversy (thermometer)</span><span class="meta">settles 2027-06-30</span><span class="prior">0.5</span><span class="status">OPEN</span></div>
   <p class="plain">A weaker cousin of the export bet above: has a platform's export restriction drawn enough public pushback to make the news?</p>
+  <p class="opening">Opening reading, recorded 2026-08-23: NO. We know of no episode meeting both halves — mainstream technology-press coverage of a memory-export restriction, plus an official response from the platform involved. One candidate is in our verification queue; if it holds up it will appear in a weekly issue, dated.</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Does a top platform's memory-export restriction become a public controversy — mainstream tech-press coverage plus an official platform response?</p>
     <p class="moves">Moves no axis (media attention ≠ closure strength). Recorded as a temperature reading.</p>
@@ -279,6 +292,7 @@
 <div class="card">
   <div class="row"><span class="id">D1a</span><span class="q">Provenance-tiered pricing appears in a data market</span><span class="meta">settles 2027-06-30</span><span class="prior">0.4</span><span class="status">OPEN</span></div>
   <p class="plain">Does verified, real-world data actually sell for more than synthetic data in practice — not just in theory?</p>
+  <p class="opening">Opening reading, recorded 2026-08-23: no transaction-price data available. The criterion already anticipates this and settles PENDING rather than NO on that condition. We record at freeze that the channel is missing, not merely quiet.</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Same collection domain, same license terms: does verifiably-real data transact at ≥2× the price of synthetic, with ≥3 independent transactions inside 90 days (or platform volume data)? No transaction-price data available → settles as PENDING.</p>
     <p class="moves">YES → D1 rises to “premium has market evidence.”</p>
@@ -292,6 +306,7 @@
 <div class="card">
   <div class="row"><span class="id">D1b</span><span class="q">A major trainer pays the authenticity premium by choice</span><span class="meta">settles 2027-12-31</span><span class="prior">0.5</span><span class="status">OPEN</span></div>
   <p class="plain">Has a major model developer chosen to pay for real data when cheaper synthetic data was a genuine alternative?</p>
+  <p class="opening">Opening reading, recorded 2026-08-23: NO. Long-term content and data licensing contracts are numerous and often carry public values — multi-year publisher agreements in the hundreds of millions, refreshed feeds in the tens of millions a year. What we have not found is the thing this question actually asks for: a trainer paying for provenanced data while an equivalent synthetic substitute was available to it. The deals we can see buy proprietary corpora that synthetic data cannot substitute for, which is a different purchase. That counterfactual is hard to observe, and where it is ambiguous we resolve it against ourselves.</p>
   <details><summary>Full criterion &amp; what it moves</summary>
     <p>Does a major model trainer publicly sign a long-term procurement contract for non-synthetic / provenanced data (amount or volume verifiable), while equivalent synthetic data was available to them — i.e., choosing authentic means paying a premium, not lacking an alternative?</p>
     <p class="moves">YES → D1 moves one weak notch in the same direction.</p>
