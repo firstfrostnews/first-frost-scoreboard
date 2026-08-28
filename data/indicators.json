@@ -1,5 +1,5 @@
 {
-  "panel_version": "0.4.5",
+  "panel_version": "0.4.6",
   "frozen_on": "2026-07-10",
   "priors_note": "Priors are July-2026 impressions with a stated uncertainty of ±0.15. We do not claim calibration until at least 10 indicators have settled.",
   "scoring": {
@@ -340,6 +340,13 @@
       "moved": "display",
       "headline": "Opening reordered: rules moved below the board, the core question and a scope caveat added above it; A1a's card title corrected to match its already-revised reading.",
       "summary": "The page opens with the core question this panel exists to serve — entrusting something that matters to an AI agent — quoted verbatim from the launch issue, followed by an expanded scope statement naming a specific blind spot: a board full of YES would not by itself settle that question, since an economy of interchangeable agents could produce one; only B1a tests that difference, at a prior of 0.15. \"How scoring works\" moved below the board (a first-time reader now meets the sixteen questions before the rules that grade them); a \"The board\" heading was added above the panel; a redundant one-line restatement of the four questions (question_chain) was dropped from the rendered page (retained in this file); jump links were added. B's axis section gained one line noting it carries four of the sixteen questions on a single axis. A1a's card title still read \"Level-3 delegation becomes normal practice\" after its 2026-08-02 reading correction to \"has appeared and is reproducible\" — the title itself was never updated to match. It now reads \"Level-3 delegation appears and is reproducible.\" This closes a gap in the already-counted 2026-08-02 revision; it is not counted as a new one. No criterion, prior, settlement date, or moves text was altered, and no question was added or removed."
+    },
+    {
+      "date": "2026-08-28",
+      "version": "0.4.6",
+      "moved": "display",
+      "headline": "Opening readings published for ten of the sixteen questions, and the four still without one are named.",
+      "summary": "Ten of the sixteen public questions now carry an opening reading: a short note, shown unfolded, stating where the question stands on the day it went public — and, where a baseline or a price channel is simply missing, saying that instead of implying a finding. The readings are dated 2026-08-23, when they were taken; this entry is dated when they went up. Two are worth stating here. B1d opens at one of its two required episodes rather than zero: in August 2025 a major platform announced the retirement of a model, subscribers objected, and the company publicly reversed within days — source type (1) as the criterion is written, and a year before this question was frozen. B1b opens at NO, and carries a strict reading of “continuity” recorded now rather than at settlement: what ships today is a copyable summary of preferences and project context, which is not the thing that question asks about, and where the wording is ambiguous we resolve it against ourselves. A note above the board names the four questions that carry no opening reading yet — A1b, D2a, D3a, and part (a) of X1a — so the page cannot be read as claiming the whole board was checked. No criterion, prior, settlement date or moves text was altered, and no question was added or removed: this is a display change, and this file stays the authoritative copy."
     }
   ],
   "restructured_on": "2026-08-02",
