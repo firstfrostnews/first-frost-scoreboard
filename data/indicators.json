@@ -1,5 +1,5 @@
 {
-  "panel_version": "0.4.6",
+  "panel_version": "0.4.7",
   "frozen_on": "2026-07-10",
   "priors_note": "Priors are July-2026 impressions with a stated uncertainty of ±0.15. We do not claim calibration until at least 10 indicators have settled.",
   "scoring": {
@@ -86,7 +86,7 @@
       "status": "open",
       "moves": "YES → axis A1 reading rises to “Level 4 has appeared.” Even a YES does not move the “endogenous needs” hypothesis — we hold that to be unidentifiable from market behavior.",
       "moves_no": "NO → axis A1 stays at “Level 4 has not appeared.” This does not count as counter-evidence against the endogenous-needs hypothesis — symmetric with the YES side, which does not count for it either. That hypothesis is unidentifiable from market behavior.",
-      "threshold_rationale": "3 months mirrors the common short-term/long-term boundary in commercial contracts (most enterprise agreements use 90 days or one quarter as a renewal or trial checkpoint). The ≥1-instance bar is an existence test, not a scale test — this indicator asks whether this has happened at all, not how often. The real bar is qualitative (an agent acting as the party that originates and terminates the obligation, not merely signing on a human's behalf case-by-case); the duration only exists to exclude edge cases that get approved and cancelled within days. This is the least threshold-sensitive indicator on the panel — changing 3 months to 1 or 6 leaves the 0.25 prior essentially unchanged.",
+      "threshold_rationale": "3 months mirrors the common short-term/long-term boundary in commercial contracts (most enterprise agreements use 90 days or one quarter as a renewal or trial checkpoint). The ≥1-instance bar is an existence test, not a scale test — this indicator asks whether this has happened at all, not how often. The real bar is qualitative (an agent acting as the party that originates and terminates the obligation, not merely signing on a human's behalf case-by-case); the duration only exists to exclude edge cases that get approved and canceled within days. This is the least threshold-sensitive indicator on the panel — changing 3 months to 1 or 6 leaves the 0.25 prior essentially unchanged.",
       "plain_language": "The level above: an agent that enters or ends a real multi-month commitment entirely on its own — has that happened even once?"
     },
     {
@@ -347,6 +347,13 @@
       "moved": "display",
       "headline": "Opening readings published for ten of the sixteen questions, and the four still without one are named.",
       "summary": "Ten of the sixteen public questions now carry an opening reading: a short note, shown unfolded, stating where the question stands on the day it went public — and, where a baseline or a price channel is simply missing, saying that instead of implying a finding. The readings are dated 2026-08-23, when they were taken; this entry is dated when they went up. Two are worth stating here. B1d opens at one of its two required episodes rather than zero: in August 2025 a major platform announced the retirement of a model, subscribers objected, and the company publicly reversed within days — source type (1) as the criterion is written, and a year before this question was frozen. B1b opens at NO, and carries a strict reading of “continuity” recorded now rather than at settlement: what ships today is a copyable summary of preferences and project context, which is not the thing that question asks about, and where the wording is ambiguous we resolve it against ourselves. A note above the board names the four questions that carry no opening reading yet — A1b, D2a, D3a, and part (a) of X1a — so the page cannot be read as claiming the whole board was checked. No criterion, prior, settlement date or moves text was altered, and no question was added or removed: this is a display change, and this file stays the authoritative copy."
+    },
+    {
+      "date": "2026-09-05",
+      "version": "0.4.7",
+      "moved": "display",
+      "headline": "One British spelling corrected to American, to match the rest of the public record.",
+      "summary": "In A1b's threshold note, \"cancelled\" now reads \"canceled\". This is a spelling correction and nothing else: no criterion, prior, settlement date or moves text was altered, and no question was added or removed. It is logged because this file's version label and its contents are meant to move together — a change that goes unrecorded here, however small, is the thing this log exists to make impossible."
     }
   ],
   "restructured_on": "2026-08-02",
