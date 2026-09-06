@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>First Frost · The Scoreboard</title>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/mark-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/mark-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/mark-180.png">
 <meta name="description" content="The public prediction ledger of First Frost — a scored weekly watch on the agent economy. Every question frozen before the fact; every settlement graded in public.">
 <style>
   :root {
@@ -82,7 +85,7 @@
 <header>
   <div class="kicker">First Frost · The Scoreboard</div>
   <h1>We bet on our own predictions.<span class="zh">履霜，堅冰至</span></h1>
-  <p class="tagline">The public prediction ledger of <a href="https://firstfrost.news">First Frost</a>, a scored weekly watch on the agent economy. Every question below was frozen before the fact — criterion, settlement date, and our prior probability.</p>
+  <p class="tagline">The public prediction ledger of <a href="https://firstfrost.news">First Frost</a>, a scored weekly watch on the agent economy. Every question below was frozen before the fact — criterion, settlement date, and our prior probability. The reasoning behind the board is in the <a href="https://firstfrost.news/p/trust-isnt-a-capability-problem">launch issue</a>.</p>
   <p class="coreq">The question behind the board. <b>Under what conditions could an ordinary person rationally entrust something that matters — money, standing authority, an ongoing affair — to an AI agent?</b> That question cannot be settled on a date, so we bet on one that can: <b>whether agents are becoming economic subjects in their own right.</b></p>
   <p class="scope">We do not track how large the agent economy is. Market-size questions need data channels we do not have, and we would rather say so than publish a number we cannot stand behind. Nor would a board full of YES settle the question above: an economy of interchangeable agents could produce one. Only B1a tests that difference directly, and we put it at 0.15.</p>
   <div class="tally">
@@ -91,7 +94,7 @@
     <div><b>0</b> voided</div>
     <div><b>2</b> questions revised</div>
     <div><b>—</b> cumulative Brier <a href="#scoring" class="tiny">0.25 is a coin flip</a></div>
-    <div><b>v0.4.7</b> panel · frozen 2026-07-10 · restructured 2026-08-02</div>
+    <div><b>v0.4.8</b> panel · frozen 2026-07-10 · restructured 2026-08-02</div>
   </div>
   <nav class="jump"><a href="#board">The board</a> · <a href="#scoring">How scoring works</a> · <a href="#changelog">Change log</a></nav>
 </header>
@@ -370,6 +373,7 @@
 <p><b>The waterline</b> is 0.25 — the Brier score you would earn by flipping a coin on every question. A score above it is worse than guessing. It is the number to hold us to, and it is why no single settlement means much on its own.</p>
 <p><b>Voiding</b> is allowed only for three pre-registered reasons: the criterion proves literally unmeasurable; the entity or market the question attaches to ceases to exist; or verification shows the condition was already met before the freeze date. Nothing else may be voided. Every void is publicly counted and adds a flat 0.25 Brier penalty. No quietly deleting losing bets.</p>
 <p><b>Ambiguity</b> in any criterion resolves <em>against</em> our thesis.</p>
+<p><b>The freeze-to-publication window.</b> The panel was frozen on 2026-07-10 and this board went public on 2026-07-19. Where evidence bearing on a question emerged between those dates, we flag it at settlement and treat it as though it had been available to us when we set the prior.</p>
 <p><b>Disputes:</b> every settlement opens a 14-day public dispute window; disputes, evidence, and rulings are archived. A settlement is final when its window closes.</p>
 <p><b>Reporting:</b> cumulative Brier appears in three columns — axis-movers; signals (narrative signals and thermometers); and ship-readings, meaning first-person questions about how this publication itself is run, currently one, B1c. Never one blended total.</p>
 <p><b>Panel discipline:</b> at most 18 active <em>published</em> questions; at most 3 added per quarter. Amendments bind future settlements only — a bet already in settlement is graded under the rules it was frozen with. Two questions have been revised since freeze — B1-3/B1c on 2026-07-25, and A1a on 2026-08-02 — and both are counted above; the revisions and their reasons are recorded in the <a href="data/indicators.json">ledger</a>.</p>
@@ -378,6 +382,7 @@
 <section class="rules" id="changelog">
   <h2>Change log</h2>
   <p>The questions were frozen on 2026-07-10, before this publication had an audience — which is the point, and the reason this log starts before issue one. One line per version below, each marked whether it revised a bet or only changed how the panel explains itself; the full record of each, including what was <em>not</em> altered, is in <a href="data/indicators.json">the ledger</a>.</p>
+  <div class="clog"><span class="cd">2026-09-06</span><span class="cv">v0.4.8</span><span class="cm cm-display">display only</span><span class="cs">The freeze-to-publication window is now stated on the page, and the board links back to the issue that explains it.</span></div>
   <div class="clog"><span class="cd">2026-09-05</span><span class="cv">v0.4.7</span><span class="cm cm-display">display only</span><span class="cs">One British spelling corrected to American, to match the rest of the public record.</span></div>
   <div class="clog"><span class="cd">2026-08-28</span><span class="cv">v0.4.6</span><span class="cm cm-display">display only</span><span class="cs">Opening readings published for ten of the sixteen questions, and the four still without one are named.</span></div>
   <div class="clog"><span class="cd">2026-08-17</span><span class="cv">v0.4.5</span><span class="cm cm-display">display only</span><span class="cs">Opening reordered: rules moved below the board, the core question and a scope caveat added above it; A1a's card title corrected to match its already-revised reading.</span></div>
@@ -389,7 +394,7 @@
 </section>
 
 <footer>
-  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.4.7 — frozen 2026-07-10, restructured 2026-08-02; every change by public commit. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>.</p>
+  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.4.8 — frozen 2026-07-10, restructured 2026-08-02; every change by public commit. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>. Start here: <a href="https://firstfrost.news/p/trust-isnt-a-capability-problem">the launch issue</a>.</p>
   <p>In the I Ching, the first line of hexagram Kūn reads 履霜，堅冰至 — tread on frost, and know that hard ice is coming. The art is noticing early.</p>
 </footer>
 

@@ -1,5 +1,5 @@
 {
-  "panel_version": "0.4.7",
+  "panel_version": "0.4.8",
   "frozen_on": "2026-07-10",
   "priors_note": "Priors are July-2026 impressions with a stated uncertainty of ±0.15. We do not claim calibration until at least 10 indicators have settled.",
   "scoring": {
@@ -354,6 +354,13 @@
       "moved": "display",
       "headline": "One British spelling corrected to American, to match the rest of the public record.",
       "summary": "In A1b's threshold note, \"cancelled\" now reads \"canceled\". This is a spelling correction and nothing else: no criterion, prior, settlement date or moves text was altered, and no question was added or removed. It is logged because this file's version label and its contents are meant to move together — a change that goes unrecorded here, however small, is the thing this log exists to make impossible."
+    },
+    {
+      "date": "2026-09-06",
+      "version": "0.4.8",
+      "moved": "display",
+      "headline": "The freeze-to-publication window is now stated on the page, and the board links back to the issue that explains it.",
+      "summary": "Three additions, none of which touch a bet. First, a paragraph in the scoring section states two dates that were until now only in our internal files: the panel was frozen 2026-07-10 and this board went public 2026-07-19. Evidence that emerged inside that window is flagged at settlement and treated as though we had already seen it when we set the prior. Second, the board now links to the launch issue, so a reader arriving here can reach the reasoning; until today that issue did not exist and there was nothing to link to. Third, the page carries its own icon. No criterion, prior, settlement date or moves text was altered, and no question was added or removed."
     }
   ],
   "restructured_on": "2026-08-02",
