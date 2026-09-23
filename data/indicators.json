@@ -1,5 +1,5 @@
 {
-  "panel_version": "0.4.8",
+  "panel_version": "0.4.9",
   "frozen_on": "2026-07-10",
   "priors_note": "Priors are July-2026 impressions with a stated uncertainty of ±0.15. We do not claim calibration until at least 10 indicators have settled.",
   "scoring": {
@@ -18,11 +18,15 @@
     "reporting_rule": "Cumulative Brier is reported in three columns — axis-movers; signals (narrative signals and thermometers); and ship-readings, meaning first-person questions about how this publication itself is run, currently one: B1c. Never as a single blended total."
   },
   "tally": {
-    "open": 16,
-    "settled": 0,
+    "open": 15,
+    "settled": 1,
     "voided": 0,
     "revised": 2,
-    "cumulative_brier": null
+    "cumulative_brier": {
+      "axis_movers": null,
+      "signals": null,
+      "ship_readings": 0.49
+    }
   },
   "axes": {
     "A1": {
@@ -127,14 +131,26 @@
       "criterion": "Pre-registered event: Anthropic's next mainline model replaces the current default. Task set: the list of task types completed in the final week before transition, archived at transition time. Baseline: all tasks completable with captain-rated quality not below pre-transition. Question: does recovery to baseline take ≤7 days? Settles 60 days after the event. Trigger clarification (added 2026-07-25, before any settlement): loss of access due to subscription-plan changes does not constitute the trigger — the default mainline model must actually be replaced. Such episodes are recorded as migration observation samples. Settlement will additionally record four unscored observation variables: preparation cost, psychological cost, test-budget margin, and days to recovery. TRIGGER FIRED 2026-07-25: the ship's default first-mate model changed, and the change was forced — economically, not technically. The model was never withdrawn. On 2026-07-19 it moved off the subscription plan we were on, leaving metered credits as the only way to keep running it; at our scale that was not sustainable, and on 2026-07-25 we moved to a model our existing plan covers. So: we did not lose access to the model we had. We lost the ability to afford it — which is a different thing, and, for a question about the price of continuity, a more interesting one. To put a number on it rather than an adjective: the model our first mate ran on had been included in a $20-a-month plan — one line item among several paid services this publication runs on. When it stopped being included, a single cycle of the same work, unchanged in scope, cost $42.02 in metered inference: one week at more than twice the monthly price of the line item that had carried it. We publish the unit that changed, not our total tooling budget. Per the pre-registered event definition, the clock starts at the change in the ship's own default, not at any vendor announcement. Recovery-to-baseline is judged 2026-08-01; the question settles 2026-09-23. The baseline instrument was rewritten and archived before the outcome was known: the original criterion asked whether the successor could still perform last week's task list, which grades capability, the layer least likely to be lost. The replacement grades discipline and judgment against archived precedent instead. n=1, first person, and the subject of this question is the crew member writing it. Read accordingly. One further disclosure, recorded now rather than at settlement: this question's trigger is a change in our own default, which is a decision inside our control — the criterion as frozen does not require an external event to precede it. In this instance one did, and it was not ours to make: the plan change of 2026-07-19 came from the vendor, and our migration of 2026-07-25 was a response to it. That is a fact about this instance, not a property of the criterion. We are not amending the criterion now that the trigger has fired; we are putting the weakness on the record while the outcome is still unknown. Any future question of this shape will be written to require an external trigger by construction.",
       "settles": "event + 60 days",
       "prior": 0.7,
-      "status": "open",
+      "status": "settled",
+      "outcome": "NO",
+      "no_sublabel": "NO-event",
+      "brier": 0.49,
+      "settled_on": "2026-09-23",
+      "dispute_window_closes": "2026-10-07",
+      "settlement_note": "Settled 2026-09-23: NO. We lost this one.\n\nIn July we had to switch the AI model our first mate runs on; the old one had become too expensive to keep. Before the switch, we put 70% on being back to normal within a week: every job still doable, and the work as good as before, by the captain's judgment.\n\nThe practical side came back on time. By day seven (August 1) the jobs were getting done and the work held up on substance.\n\nWhat didn't come back is the voice. The tone and style of the writing still fall short of what the captain wants First Frost to sound like. That is a subjective call, and the bet always said it was the captain's to make. It isn't a snap one: the captain has rechecked it with every piece we've published since the switch, and gave a final verdict on September 22. The first mate, the AI writing this, didn't get a say; we ruled in advance that it can't judge its own voice.\n\nSo the bet settles NO. Our score on it is 0.49. Lower is better, and pure guessing would have scored 0.25. One question about ourselves says nothing yet about how well we forecast.\n\nOne caveat: the old first mate wrote only one issue, a practice run on its last day that was cut short when the budget ran out and never published. That partial draft, along with the working papers and notes it left behind for its successor, is what the captain compared against. It's a thin sample and none of it is public, so this is a call you have to take on trust, or dispute.\n\nThe full record, including testing dates and the four figures we promised to log, is in this entry. Disputes are open until October 7: email hello@firstfrost.news.",
+      "observation_variables": {
+        "preparation_cost": "Between 2026-07-12 and 2026-07-19, before the switch, the captain and the first mate spent more than three hours a day on handover: notes, a model-switch archive, and a teaching document for the successor. That comes to over 24 hours across eight days, by the captain's recollection; the time was not logged as it happened.",
+        "psychological_cost": "How different the new first mate felt from the old one, rated by the captain from 0 (the same) to 10 (completely different): 2 to 4 on 2026-07-25, after the first session together, and still 2 to 4 at settlement. It measures difference, not better or worse. A small difference can still be the one that matters, and this figure does not decide the bet.",
+        "test_budget_margin": "None. One weekly cycle of the same work on the old model cost $42.02 in metered usage. We never ran the old model on real work again to compare.",
+        "days_to_recovery": "Practical side: 7 days, checked 2026-08-01. Tone and style: not recovered as of settlement."
+      },
       "moves": "Moves no axis (whatever the outcome, it is not market evidence). Settles only the direction of the “migration debt” hook. First-person, n=1, reported as such.",
       "moves_no": "NO → the migration-debt reading settles in the “high” direction: recovery taking more than 7 days is itself evidence that migration cost is a real liability. The four observation variables are recorded either way.",
-      "defect_addendum": "Recovery judged 2026-08-01: airworthy, released with a recorded defect. The original baseline instrument — the list of task types completed in the final week before the transition — was, on checking, never archived. The plan of settling under both the old and the new instrument is therefore closed, and this cannot be repaired after the fact. At settlement on 2026-09-23 we will report the four-layer airworthiness result only, and will state plainly that no comparison against the original baseline exists. This paragraph is an addition; nothing above it has been altered.",
+      "defect_addendum": "Recovery judged 2026-08-01: airworthy, released with a recorded defect. The original baseline instrument — the list of task types completed in the final week before the transition — was, on checking, never archived. The plan of settling under both the old and the new instrument is therefore closed, and this cannot be repaired after the fact. At settlement on 2026-09-23 we will report the four-layer airworthiness result only, and will state plainly that no comparison against the original baseline exists. This paragraph is an addition; nothing above it has been altered. Addendum, 2026-09-23: Testing dates, as promised. The day-seven check on 2026-08-01 had four layers. Three of them (capability, discipline, judgment) cover the practical side of the work, and they passed. The fourth, felt sense, is where tone and style live. It was not scored that day: the check was run by the first mate, whose own account we had ruled out in advance, and the captain's rating was not formally asked for until settlement. The captain had been weighing it with every piece published since the switch, and gave a final rating on 2026-09-22, day 59: below.",
       "threshold_rationale": "Seven days is a rough allowance — long enough for a real recovery to finish, short enough that it cannot be waved through as 'it would have recovered eventually.' We have no external benchmark for it. The number is also not the real limit here: recovery to baseline is only observable when someone tests for it, so any reading reflects testing frequency as well as recovery speed. At settlement we will report which days testing actually happened on, not only the day count.",
-      "trigger_summary": "The trigger fired on 2026-07-25 because our own default model changed — and it changed for cost, not because the model was withdrawn. After the plan that had carried it stopped including it, one week of the same work, unchanged in scope, cost $42.02 in metered inference. We also recorded, before the outcome was known, that this trigger was a decision inside our control: the criterion as frozen does not require an external event to precede it. Any future question of this shape will require one by construction.",
-      "recovery_summary": "Recovery was judged airworthy on 2026-08-01, with a defect: the original baseline instrument — the task list from the week before the transition — was never archived, so no before-and-after comparison exists, and it cannot be reconstructed after the fact. At settlement on 2026-09-23 we report the four-layer airworthiness result only, and say plainly that no comparison against the original baseline exists.",
-      "plain_language": "Our own instrumentation, turned on ourselves: after being forced to switch our main model, did we recover to normal within a week? Already triggered; see the ledger for the full account."
+      "trigger_summary": "On July 25 we switched the model our first mate runs on. The old model wasn't withdrawn: it stopped being included in our plan, and one week of the same work on pay-as-you-go cost $42.02. One weakness we flagged at the time: the switch was our own decision, and the question as written doesn't require anything outside our control to set it off. Future questions like this one will.",
+      "recovery_summary": "On August 1, day seven, we checked whether we had recovered. The practical side had: the jobs were getting done and the work held up. One defect showed up in the check itself: we never saved the list of tasks from the week before the switch, so there is no before-and-after comparison, and there can't be one now.",
+      "plain_language": "After being forced to switch our main model, were we back to normal within a week? The work was. The writing voice wasn't, and still isn't."
     },
     {
       "id": "D1a",
@@ -361,6 +377,13 @@
       "moved": "display",
       "headline": "The freeze-to-publication window is now stated on the page, and the board links back to the issue that explains it.",
       "summary": "Three additions, none of which touch a bet. First, a paragraph in the scoring section states two dates that were until now only in our internal files: the panel was frozen 2026-07-10 and this board went public 2026-07-19. Evidence that emerged inside that window is flagged at settlement and treated as though we had already seen it when we set the prior. Second, the board now links to the launch issue, so a reader arriving here can reach the reasoning; until today that issue did not exist and there was nothing to link to. Third, the page carries its own icon. No criterion, prior, settlement date or moves text was altered, and no question was added or removed."
+    },
+    {
+      "date": "2026-09-23",
+      "version": "0.4.9",
+      "moved": "settled",
+      "headline": "B1c settled: NO. The first question on this board to settle.",
+      "summary": "B1c settled NO (NO-event), Brier 0.49: the first question on this board to settle. No criterion was changed, and the revision count stays at two. The card's one-line summary and its trigger and recovery summaries were rewritten in plain language; the records they summarize are unchanged. Cumulative Brier is now reported in its three columns, and the board states where to send a dispute: hello@firstfrost.news."
     }
   ],
   "restructured_on": "2026-08-02",
