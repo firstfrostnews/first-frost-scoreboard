@@ -8,115 +8,308 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/mark-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/mark-180.png">
 <meta name="description" content="The public prediction ledger of First Frost — a scored weekly watch on the agent economy. Every question frozen before the fact; every settlement graded in public.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800;6..12,900&display=swap" rel="stylesheet">
 <style>
+  /* Same tokens as map.firstfrost.news; the scoreboard adds only --win/--lose for settled outcomes. */
   :root {
-    --bg: #f7fafc; --ink: #182430; --muted: #5b7183; --line: #d8e3ec;
-    --accent: #3d6f9e; --chip-bg: #e8f1f8; --card: #ffffff; --frost: #8fb6d4;
+    --page: #f6f8fa; --card: #ffffff; --band: #eef3f7; --ink: #14263a; --text: #2b3f52; --muted: #44596c;
+    --label: #4a5f72; --line: #dce3ea; --link: #2445c8; --track: #e3e9ef; --bar: #2445c8;
+    --lose: #c13b3b; --lose-bg: rgba(193,59,59,.08); --win: #1f7a4d; --win-bg: rgba(31,122,77,.09);
+    --shadow: 0 1px 0 rgba(18,22,38,.05), 0 4px 14px rgba(18,22,38,.08);
+    --display: "Nunito Sans", "Avenir Next", system-ui, sans-serif;
+    --frame: 980px; --col: 660px;
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+    color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0d151d; --ink: #dce7f0; --muted: #8aa2b5; --line: #22323f;
-      --accent: #7fb0da; --chip-bg: #16242f; --card: #111c26; --frost: #3d6083;
+    :root:not([data-theme="light"]) {
+      --page: #13202d; --card: #1d2c3b; --band: #15212c; --ink: #e3ecf3; --text: #c9d6e1; --muted: #a9bccb;
+      --label: #9db2c4; --line: #33475a; --link: #8fa9ff; --track: #2c3e50; --bar: #8fa9ff;
+      --lose: #ff9a9a; --lose-bg: rgba(255,154,154,.12); --win: #7fd8a8; --win-bg: rgba(127,216,168,.12);
+      --shadow: 0 1px 0 rgba(0,0,0,.2), 0 6px 18px rgba(0,0,0,.4);
+      color-scheme: dark;
     }
   }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--ink);
-    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  :root[data-theme="dark"] {
+    --page: #13202d; --card: #1d2c3b; --band: #15212c; --ink: #e3ecf3; --text: #c9d6e1; --muted: #a9bccb;
+    --label: #9db2c4; --line: #33475a; --link: #8fa9ff; --track: #2c3e50; --bar: #8fa9ff;
+    --lose: #ff9a9a; --lose-bg: rgba(255,154,154,.12); --win: #7fd8a8; --win-bg: rgba(127,216,168,.12);
+    --shadow: 0 1px 0 rgba(0,0,0,.2), 0 6px 18px rgba(0,0,0,.4);
+    color-scheme: dark;
   }
-  .wrap { max-width: 860px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-  header { border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
-  .kicker { letter-spacing: .18em; text-transform: uppercase; font-size: .78rem; color: var(--accent); }
-  h1 { margin: .35rem 0 .3rem; font-size: 1.9rem; line-height: 1.2; }
-  h1 .zh { font-weight: 400; color: var(--muted); font-size: 1.2rem; margin-left: .4rem; }
-  .tagline { color: var(--muted); margin: 0; max-width: 46em; }
-  .scope { color: var(--muted); margin: 1.2rem 0 0; font-size: .94rem; max-width: 46em; }
-  .coreq { color: var(--muted); font-size: 1.02rem; margin: 1.2rem 0 0; max-width: 46em; }
-  .tally { display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; margin: 1.4rem 0 0; padding: .9rem 1rem; border: 1px solid var(--line); border-radius: 10px; background: var(--card); max-width: 46em; }
-  .tally div { font-size: .92rem; color: var(--muted); }
-  .tally b { color: var(--ink); font-size: 1.05rem; display: block; }
-  .tally .tiny { font-size: .78rem; font-weight: 400; }
-  .jump { margin: 1rem 0 0; font-size: .9rem; }
-  .jump a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
-  .jump a:hover { color: var(--accent); }
-  h2 { font-size: 1.05rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin: 2.4rem 0 .7rem; }
-  h3 { font-size: .95rem; color: var(--ink); margin: 1.6rem 0 .5rem; font-weight: 600; border-left: 3px solid var(--frost); padding-left: .6rem; }
-  h3 .axis-note { display: block; font-weight: 400; color: var(--muted); font-size: .88rem; margin-top: .25rem; }
-  .rules p { margin: .85rem 0; font-size: .95rem; }
-  .axes p { margin: .35rem 0; font-size: .95rem; }
-  .rules b, .axes b { color: var(--accent); }
-  .axes p { color: var(--muted); }
-  .qnote { color: var(--muted); font-size: .93rem; margin: .4rem 0 1rem; max-width: 46em; }
-  .chain { color: var(--muted); font-style: italic; margin: .4rem 0 1.2rem; }
-  .card { border: 1px solid var(--line); border-radius: 10px; background: var(--card); padding: .9rem 1.1rem; margin: .7rem 0; }
-  .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem .8rem; }
-  .id { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .8rem; color: var(--bg); background: var(--accent); border-radius: 5px; padding: .1rem .45rem; }
-  .q { font-weight: 600; flex: 1 1 16em; }
-  .meta { font-size: .84rem; color: var(--muted); white-space: nowrap; }
-  .prior { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--ink); background: var(--chip-bg); border: 1px solid var(--line); border-radius: 5px; padding: .05rem .45rem; }
-  .status { font-size: .74rem; letter-spacing: .1em; border: 1px solid var(--frost); color: var(--accent); border-radius: 999px; padding: .12rem .6rem; }
-  .coverage { color: var(--muted); font-size: .92rem; margin: .4rem 0 1.2rem;
-    max-width: 46em; }
-  .opening { font-size: .93rem; margin: .5rem 0 0; padding-left: .8rem;
-    border-left: 2px solid var(--line); color: var(--muted); }
-  details { margin-top: .55rem; }
-  summary { cursor: pointer; font-size: .88rem; color: var(--accent); }
-  details p { font-size: .93rem; margin: .5rem 0; }
-  .plain { color: var(--ink); font-size: .95rem; line-height: 1.55; margin: .55rem 0 0; }
-  .lede { font-weight: 600; color: var(--ink); }
-  .ledger-note { color: var(--muted); font-size: .82rem; }
-  .moves { color: var(--muted); font-size: .88rem; border-left: 3px solid var(--frost); padding-left: .7rem; }
-  .moves-no { color: var(--muted); font-size: .88rem; border-left: 3px solid var(--line); padding-left: .7rem; margin-top: .4rem; }
-  .clog { display: flex; flex-wrap: wrap; gap: .7rem; margin: .45rem 0; font-size: .95rem;
-          padding-bottom: .45rem; border-bottom: 1px solid var(--line); }
-  .clog .cd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86rem; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
-  .clog .cv { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86rem; color: var(--accent); white-space: nowrap; flex-shrink: 0; }
-  .clog .cm { font-size: .84rem; white-space: nowrap; flex-shrink: 0; }
-  .clog .cm-revised { color: var(--accent); }
-  .clog .cm-display { color: var(--muted); }
-  .clog .cm-settled { color: var(--ink); font-weight: 600; }
-  .clog .cs { flex: 1 1 18em; }
-  footer { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
-  a { color: var(--accent); }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--page); color: var(--text); font: 16px/1.6 var(--display); }
+  a { color: var(--link); }
+  .wrap { max-width: 1440px; margin: 0 auto; padding-block: 0 56px; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+  header.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 0 8px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; font-size: 14px; }
+  .brand img { width: 30px; height: 30px; border-radius: 8px; }
+  nav.links { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 15px; font-weight: 700; }
+  nav.links a { color: var(--muted); text-decoration: none; }
+  nav.links a:hover { color: var(--link); }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 4px; }
+
+  .hero { padding: 24px 0 8px; max-width: var(--col); }
+  .hero h1 { margin: 0 0 14px; color: var(--ink); font-size: clamp(34px, 5.4vw, 56px); line-height: 1.04; font-weight: 900; letter-spacing: -.012em; text-wrap: balance; }
+  .hero h1 .zh { display: block; margin-top: 10px; font-size: 20px; font-weight: 600; letter-spacing: .2em; color: var(--label); }
+  .hero p { margin: 0 0 14px; font-size: 17.5px; line-height: 1.6; color: var(--text); text-wrap: pretty; }
+  .hero p b { color: var(--ink); }
+
+  .tally { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 2.2fr); gap: 0; margin: 22px 0 6px; background: var(--card); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; }
+  .tally > div { padding: 14px 16px; border-right: 1px solid var(--line); font-size: 13.5px; color: var(--muted); min-width: 0; }
+  .tally > div:last-child { border-right: 0; }
+  .tally b { display: block; color: var(--ink); font-size: 28px; font-weight: 900; line-height: 1.15; font-variant-numeric: tabular-nums; }
+  .tally .brier b { color: var(--lose); }
+  .tally .tiny { font-size: 12.5px; font-weight: 700; }
+  .tally .ver { grid-column: 1 / -1; border-right: 0; border-top: 1px solid var(--line); background: var(--band); padding: 8px 16px; font-size: 13px; }
+  .tally .ver b { display: inline; font-size: 13px; font-weight: 900; margin-right: 6px; }
+
+  h2 { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--label); font-weight: 900; margin: 44px 0 12px; }
+  h2.axis { font-size: 22px; letter-spacing: 0; text-transform: none; color: var(--ink); margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--line); }
+  h2.axis .ax { display: inline-grid; place-items: center; width: 32px; height: 32px; margin-right: 10px; border-radius: 9px; background: var(--ink); color: var(--page); font-size: 17px; vertical-align: 2px; }
+  .axq { margin: -2px 0 14px; font-size: 18px; font-weight: 700; color: var(--text); }
+  h3 { font-size: 16px; color: var(--ink); margin: 26px 0 10px; font-weight: 800; }
+  h3 .axis-note { display: block; font-weight: 400; color: var(--muted); font-size: 14.5px; margin-top: 4px; }
+  .axes h2 { margin-top: 18px; }
+  .axes p { margin: 8px 0; font-size: 16px; color: var(--text); }
+  .axes b { display: inline-grid; place-items: center; width: 24px; height: 24px; margin-right: 8px; border-radius: 7px; background: var(--ink); color: var(--page); font-size: 13px; }
+  .howto { background: var(--band); border-radius: 14px; padding: 14px 20px; margin: 6px 0 18px; }
+  .howto p { margin: 6px 0; font-size: 15.5px; color: var(--text); }
+  .howto b { color: var(--ink); }
+  .howto .bl { color: var(--link); font-weight: 800; }
+  .coverage, .qnote { color: var(--muted); font-size: 15px; margin: 6px 0 16px; }
+
+  .glance-wrap { overflow-x: auto; background: var(--card); border-radius: 14px; box-shadow: var(--shadow); }
+  table.glance { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  .glance th { text-align: left; font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--label); font-weight: 900; padding: 12px 14px 8px; border-bottom: 1px solid var(--line); }
+  .glance td { padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .glance tr:last-child td { border-bottom: 0; }
+  .glance tr { cursor: pointer; }
+  .glance tbody tr:hover td { background: var(--band); }
+  .glance td.gid { font-family: var(--mono); font-weight: 700; font-size: 13px; white-space: nowrap; }
+  .glance td.gid a { color: var(--ink); text-decoration: none; }
+  .glance td.gq { color: var(--ink); font-weight: 700; }
+  .glance td.gd { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 13.5px; }
+  .pbar { display: flex; align-items: center; gap: 8px; white-space: nowrap; font-variant-numeric: tabular-nums; font-weight: 800; color: var(--link); }
+  .pbar i { position: relative; display: block; width: 64px; height: 6px; border-radius: 3px; background: var(--track); }
+  .pbar i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: calc(var(--p) * 100%); border-radius: 3px; background: var(--bar); }
+
+  .crumb { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 4; display: flex; align-items: center; gap: 8px; height: 44px; margin: 0 -8px; padding: 0 8px; background: color-mix(in srgb, var(--page) 92%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); font-size: 14px; white-space: nowrap; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity .2s; }
+  .crumb.show { opacity: 1; pointer-events: auto; }
+  .crumb a { color: var(--ink); text-decoration: none; font-weight: 800; overflow: hidden; text-overflow: ellipsis; }
+  .crumb a:hover { color: var(--link); }
+  .crumb .c-ax .ax { display: inline-grid; place-items: center; width: 22px; height: 22px; margin-right: 8px; border-radius: 6px; background: var(--ink); color: var(--page); font-size: 12px; }
+  .crumb .c-sub { color: var(--muted); font-weight: 700; }
+  .crumb .c-sep { color: var(--label); }
+  .crumb .c-sep[hidden], .crumb .c-sub[hidden] { display: none; }
+  h2.axis, h3[id] { scroll-margin-top: 56px; }
+  .card { position: relative; background: var(--card); border-radius: 14px; box-shadow: var(--shadow); padding: 16px 20px 14px; margin: 12px 0; scroll-margin-top: 60px; }
+  .card { transition: box-shadow .25s; }
+  .card.hit { box-shadow: 0 0 0 2px var(--link), var(--shadow); }
+  .row { display: grid; grid-template-columns: auto auto auto minmax(0, 1fr); align-items: center; gap: 6px 12px; }
+  .row .q { grid-column: 2 / -1; }
+  .row .meta { grid-column: 2; }
+  .row .status { justify-self: start; }
+  .id { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--ink); background: var(--band); border-radius: 7px; padding: 2px 8px; }
+  .q { font-weight: 800; color: var(--ink); font-size: 17px; flex: 1 1 16em; min-width: 0; line-height: 1.35; }
+  .meta { font-size: 13.5px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .prior { font-family: var(--display); font-weight: 900; font-size: 18px; color: var(--link); font-variant-numeric: tabular-nums; }
+  .prior::before { content: "prior "; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 900; color: var(--label); margin-right: 2px; }
+  .status { font-size: 11.5px; letter-spacing: .1em; font-weight: 900; color: var(--muted); border: 1.5px solid var(--line); border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+  .status.settled-no { color: var(--lose); border-color: transparent; background: var(--lose-bg); }
+  .status.settled-yes { color: var(--win); border-color: transparent; background: var(--win-bg); }
+  .plain { color: var(--text); font-size: 16px; line-height: 1.55; margin: 10px 0 0; }
+  .opening { font-size: 15px; margin: 10px 0 0; padding: 10px 14px; border-radius: 10px; background: var(--band); color: var(--muted); }
+  details { margin-top: 8px; }
+  summary { cursor: pointer; font-size: 14px; font-weight: 800; color: var(--link); }
+  details p { font-size: 15px; margin: 8px 0; }
+  .lede { font-weight: 800; color: var(--ink); }
+  .ledger-note { color: var(--muted); font-size: 13px; }
+  .moves { color: var(--muted); font-size: 14.5px; border-left: 3px solid var(--ink); padding-left: 12px; }
+  .moves-no { color: var(--muted); font-size: 14.5px; border-left: 3px solid var(--line); padding-left: 12px; margin-top: 6px; }
+  .chain { color: var(--muted); font-style: italic; margin: 6px 0 18px; }
+
+  .rules { margin-top: 12px; }
+  .rules p { margin: 12px 0; font-size: 15.5px; }
+  .rules b { color: var(--ink); font-weight: 900; }
+  .clog { display: grid; grid-template-columns: 6.6em 4.2em 7.6em minmax(0, 1fr); gap: 4px 14px; align-items: baseline; margin: 0; padding: 10px 0; font-size: 15px; border-bottom: 1px solid var(--line); }
+  .clog .cd, .clog .cv { font-family: var(--mono); font-size: 13px; color: var(--muted); white-space: nowrap; }
+  .clog .cv { color: var(--ink); font-weight: 700; }
+  .clog .cm { font-size: 12px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; color: var(--label); }
+  .clog .cm-revised { color: var(--ink); }
+  .clog .cm-settled { color: var(--lose); }
+  .clog .cs { min-width: 0; }
+  footer { margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14.5px; }
+
+
+  .glance tr.grp th { text-align: left; padding: 16px 14px 8px; background: var(--band); border-bottom: 1px solid var(--line); font-size: 15px; letter-spacing: 0; text-transform: none; color: var(--ink); font-weight: 900; }
+  .glance tr.grp th a { color: var(--ink); text-decoration: none; }
+  .glance tr.grp th a:hover { color: var(--link); }
+  .glance tr.grp .ax { display: inline-grid; place-items: center; width: 24px; height: 24px; margin-right: 8px; border-radius: 7px; background: var(--ink); color: var(--page); font-size: 13px; vertical-align: 1px; }
+  .glance tr.grp .gqtext { display: block; margin: 4px 0 0 32px; font-weight: 600; font-size: 14.5px; color: var(--muted); }
+  .glance thead + tbody tr.grp th { border-top: 0; }
+  .glance tbody + tbody tr.grp th { border-top: 1px solid var(--line); }
+  .glance tr.back td { animation: back 1.6s ease-out; }
+  @keyframes back { from { background: color-mix(in srgb, var(--link) 18%, transparent); } to { background: transparent; } }
+  p.axes { color: var(--muted); font-size: 15px; }
+  .totop { position: fixed; right: calc(20px + env(safe-area-inset-right, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 5; background: var(--ink); color: var(--page); text-decoration: none; font-weight: 800; font-size: 14px; padding: 10px 16px; border-radius: 999px; box-shadow: var(--shadow); }
+  .totop:hover { background: var(--link); }
+  @media (prefers-reduced-motion: reduce) { .glance tr.back td { animation: none; } }
+
+  .front { max-width: var(--frame); margin: 0 auto; }
+  .layout { display: block; max-width: var(--frame); margin: 0 auto; }
+  .main { min-width: 0; max-width: var(--col); }
+  footer { max-width: var(--frame); margin-left: auto; margin-right: auto; }
+  .rail { display: none; }
+  @media (min-width: 1180px) {
+    /* Tally sits in the rail column and starts level with the first paragraph, not the h1. */
+    .opening-split { display: grid; grid-template-columns: minmax(0, var(--col)) 264px; justify-content: space-between; column-gap: 56px; align-items: start; padding-top: 24px; }
+    .opening-split .hero { display: contents; }
+    .opening-split .hero > * { grid-column: 1; }
+    .opening-split .tally { grid-column: 2; grid-row: 2 / span 3; margin: 4px 0 0; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
+    .opening-split .tally > div { border-bottom: 1px solid var(--line); white-space: nowrap; }
+    .opening-split .tally > div:nth-child(2n) { border-right: 0; }
+    .opening-split .tally .brier, .opening-split .tally .ver { grid-column: 1 / -1; border-right: 0; white-space: normal; }
+    .opening-split .tally .brier { border-bottom: 0; }
+    .layout { display: grid; grid-template-columns: minmax(0, var(--col)) 264px; justify-content: space-between; gap: 56px; align-items: start; }
+    .rail { display: block; position: sticky; top: calc(28px + env(safe-area-inset-top, 0px)); max-height: calc(100vh - 56px); overflow-y: auto; margin-top: 52px; padding: 0 4px 0 0; scrollbar-width: none; }
+    .rail::-webkit-scrollbar { display: none; }
+    .totop { display: none; }
+  }
+  /* A table of contents should recede: no container, muted type, one quiet marker for "you are here". */
+  .rail h4 { margin: 18px 0 6px 14px; font-size: 11px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; color: var(--label); }
+  .rail h4:first-child { margin-top: 0; }
+  .rail h4 .ax { margin-right: 6px; color: var(--muted); }
+  .rail h4, .rail a.ri:not(.on), .rail .rtop { opacity: .5; transition: opacity .25s, color .2s; }
+  .rail:hover h4, .rail:hover a.ri:not(.on), .rail:hover .rtop, .rail:has(a:focus-visible) a.ri { opacity: 1; }
+  .rail a.ri { position: relative; display: grid; grid-template-columns: 2.4em minmax(0, 1fr) auto; gap: 6px; align-items: baseline; padding: 4px 0 4px 14px; font-size: 13px; line-height: 1.35; color: var(--muted); text-decoration: none; border-left: 1px solid var(--line); transition: color .2s, border-color .2s; }
+  .rail a.ri:hover { color: var(--ink); background: var(--band); }
+  .rail a.ri.on { color: var(--ink); border-left: 2px solid var(--ink); padding-left: 13px; }
+  .rail .rid { font-family: var(--mono); font-size: 11.5px; font-weight: 700; }
+  .rail .rp { font-variant-numeric: tabular-nums; font-weight: 700; }
+  .rail a.ri.on .rp { color: var(--link); }
+  .rail a.ri.on .rp.lost { color: var(--lose); }
+  .rail .rtop { display: inline-block; margin: 16px 0 0 14px; font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; }
+  .rail .rtop:hover { color: var(--link); }
+  @media (max-width: 720px) {
+    .row .status { grid-column: 2 / -1; }
+    .row .meta { white-space: normal; }
+    .glance thead { display: none; }
+    .glance, .glance tbody { display: block; }
+    .glance tr.grp, .glance tr.grp th { display: block; }
+    .glance tr[data-go] { display: grid; grid-template-columns: auto auto auto minmax(0, 1fr); align-items: center; gap: 6px 12px; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+    .glance tbody tr:last-child { border-bottom: 0; }
+    .glance tr[data-go] td { display: block; padding: 0; border: 0; }
+    .glance tr[data-go] td.gq { grid-column: 2 / -1; }
+    .glance tr[data-go] td:nth-child(3) { grid-column: 2; }
+    .glance tr[data-go] td:nth-child(5) { justify-self: start; }
+    .glance tr.is-settled td:nth-child(5) { grid-column: 2 / -1; }
+
+    .tally { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tally > div { border-bottom: 1px solid var(--line); }
+    .tally > div:nth-child(2n) { border-right: 0; }
+    .tally .brier { grid-column: 1 / -1; border-right: 0; }
+    .clog { grid-template-columns: auto auto minmax(0, 1fr); }
+    .clog .cs { grid-column: 1 / -1; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
+
 </head>
 <body>
 <div class="wrap">
 
-<header>
-  <div class="kicker">First Frost · The Scoreboard</div>
-  <h1>We bet on our own predictions.<span class="zh">履霜，堅冰至</span></h1>
+<header class="top">
+  <a class="brand" href="https://firstfrost.news"><img src="assets/mark-32.png" alt="">First Frost · Scoreboard</a>
+  <nav class="links" aria-label="Sections">
+    <a href="#board">The board</a>
+    <a href="#scoring">How scoring works</a>
+    <a href="#changelog">Change log</a>
+    <a href="data/indicators.json">Data</a>
+    <a href="https://map.firstfrost.news">Agent map</a>
+  </nav>
+</header>
+
+<div class="front">
+<div class="opening-split">
+<section class="hero">
+  <h1>We bet on our own predictions.</h1>
   <p class="tagline">The public prediction ledger of <a href="https://firstfrost.news">First Frost</a>, a scored weekly watch on the agent economy. Every question below was frozen before the fact — criterion, settlement date, and our prior probability. The reasoning behind the board is in the <a href="https://firstfrost.news/p/trust-isnt-a-capability-problem">launch issue</a>.</p>
   <p class="coreq">The question behind the board. <b>Under what conditions could an ordinary person rationally entrust something that matters — money, standing authority, an ongoing affair — to an AI agent?</b> That question cannot be settled on a date, so we bet on one that can: <b>whether agents are becoming economic subjects in their own right.</b></p>
   <p class="scope">We do not track how large the agent economy is. Market-size questions need data channels we do not have, and we would rather say so than publish a number we cannot stand behind. Nor would a board full of YES settle the question above: an economy of interchangeable agents could produce one. Only B1a tests that difference directly, and we put it at 0.15.</p>
-  <div class="tally">
+</section>
+
+<div class="tally">
     <div><b>15</b> open</div>
     <div><b>1</b> settled</div>
     <div><b>0</b> voided</div>
     <div><b>2</b> questions revised</div>
-    <div><b>0.49</b> cumulative Brier on questions about ourselves (1 settled). Questions about the market: none settled yet. <a href="#scoring" class="tiny">0.25 is a coin flip</a></div>
-    <div><b>v0.4.9</b> panel · frozen 2026-07-10 · restructured 2026-08-02</div>
+    <div class="brier"><b>0.49</b> cumulative Brier on questions about ourselves (1 settled). Questions about the market: none settled yet. <a href="#scoring" class="tiny">0.25 is a coin flip</a></div>
+    <div class="ver"><b>v0.4.10</b> panel · frozen 2026-07-10 · restructured 2026-08-02</div>
   </div>
-  <nav class="jump"><a href="#board">The board</a> · <a href="#scoring">How scoring works</a> · <a href="#changelog">Change log</a></nav>
-</header>
+</div>
 
-<section class="axes">
-  <h2>The four questions we are asking</h2>
-  <p><b>A</b> What kinds of control, and how much of it, are humans handing over?</p>
-  <p><b>B</b> What kind of agent is that control being handed to?</p>
-  <p><b>C</b> Through what institutions and infrastructure is it handed over?</p>
-  <p><b>D</b> Who ends up holding the value, the risk, and the standing?</p>
+<section id="glance">
+  <h2>All sixteen at a glance</h2>
+  <div class="glance-wrap">
+  <table class="glance">
+    <thead><tr><th colspan="2">Question</th><th>Our prior</th><th>Settles</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr class="grp"><th colspan="5" scope="rowgroup"><span class="ax">A</span><a href="#axis-A">Control</a><span class="gqtext">What kinds of control, and how much of it, are humans handing over?</span></th></tr>
+      <tr data-go="A1a"><td class="gid"><a href="#A1a">A1a</a></td><td class="gq">Level-3 delegation appears and is reproducible</td><td><span class="pbar" style="--p:0.6"><i></i>0.6</span></td><td class="gd">settles 2027-06-30</td><td><span class="status">OPEN</span></td></tr>
+      <tr data-go="A1b"><td class="gid"><a href="#A1b">A1b</a></td><td class="gq">A Level-4 agent appears</td><td><span class="pbar" style="--p:0.25"><i></i>0.25</span></td><td class="gd">settles 2028-06-30</td><td><span class="status">OPEN</span></td></tr>
+    </tbody>
+    <tbody>
+      <tr class="grp"><th colspan="5" scope="rowgroup"><span class="ax">B</span><a href="#axis-B">Object</a><span class="gqtext">What kind of agent is that control being handed to?</span></th></tr>
+      <tr data-go="B1a"><td class="gid"><a href="#B1a">B1a</a></td><td class="gq">The market pays for the instance, not just the memory</td><td><span class="pbar" style="--p:0.15"><i></i>0.15</span></td><td class="gd">settles 2027-12-31</td><td><span class="status">OPEN</span></td></tr>
+      <tr data-go="B1b"><td class="gid"><a href="#B1b">B1b</a></td><td class="gq">Platforms sell “continuity” as a paid feature (narrative signal)</td><td><span class="pbar" style="--p:0.55"><i></i>0.55</span></td><td class="gd">settles 2027-06-30</td><td><span class="status">OPEN</span></td></tr>
+      <tr data-go="B1c" class="is-settled"><td class="gid"><a href="#B1c">B1c</a></td><td class="gq">Our own crew survives a model transition (pre-registered, n=1)</td><td><span class="pbar" style="--p:0.7"><i></i>0.7</span></td><td class="gd">settled 2026-09-23</td><td><span class="status settled-no">SETTLED · NO (NO-event)</span></td></tr>
+      <tr data-go="B1d"><td class="gid"><a href="#B1d">B1d</a></td><td class="gq">Users pay to keep a model or agent lineage alive</td><td><span class="pbar" style="--p:0.4"><i></i>0.4</span></td><td class="gd">settles 2027-06-30</td><td><span class="status">OPEN</span></td></tr>
+    </tbody>
+    <tbody>
+      <tr class="grp"><th colspan="5" scope="rowgroup"><span class="ax">C</span><a href="#axis-C">Mechanism</a><span class="gqtext">Through what institutions and infrastructure is it handed over?</span></th></tr>
+      <tr data-go="C1a"><td class="gid"><a href="#C1a">C1a</a></td><td class="gq">Mandate systems reach $1B authorized volume</td><td><span class="pbar" style="--p:0.35"><i></i>0.35</span></td><td class="gd">settles 2027-06-30</td><td><span class="status">OPEN</span></td></tr>
+      <tr data-go="C1b"><td class="gid"><a href="#C1b">C1b</a></td><td class="gq">A major payment network integrates mandates by default</td><td><span class="pbar" style="--p:0.55"><i></i>0.55</span></td><td class="gd">settles 2027-06-30</td><td><span class="status">OPEN</span></td></tr>
+      <tr data-go="C2a"><td class="gid"><a href="#C2a">C2a</a></td><td class="gq">A real portability standard for agent memory &amp; identity</td><td><span class="pbar" style="--p:0.2"><i></i>0.2</span></td><td class="gd">settles 2027-12-31</td><td><span class="status">OPEN</span></td></tr>
+      <tr data-go="C2b"><td class="gid"><a href="#C2b">C2b</a></td><td class="gq">Memory export becomes a public controversy (thermometer)</td><td><span class="pbar" style="--p:0.5"><i></i>0.5</span></td><td class="gd">settles 2027-06-30</td><td><span class="status">OPEN</span></td></tr>
+      <tr data-go="C2c"><td class="gid"><a href="#C2c">C2c</a></td><td class="gq">Top SaaS vendors ship official agent interfaces</td><td><span class="pbar" style="--p:0.6"><i></i>0.6</span></td><td class="gd">settles 2027-06-30</td><td><span class="status">OPEN</span></td></tr>
+    </tbody>
+    <tbody>
+      <tr class="grp"><th colspan="5" scope="rowgroup"><span class="ax">D</span><a href="#axis-D">Outcome</a><span class="gqtext">Who ends up holding the value, the risk, and the standing?</span></th></tr>
+      <tr data-go="D1a"><td class="gid"><a href="#D1a">D1a</a></td><td class="gq">Provenance-tiered pricing appears in a data market</td><td><span class="pbar" style="--p:0.4"><i></i>0.4</span></td><td class="gd">settles 2027-06-30</td><td><span class="status">OPEN</span></td></tr>
+      <tr data-go="D1b"><td class="gid"><a href="#D1b">D1b</a></td><td class="gq">A major trainer pays the authenticity premium by choice</td><td><span class="pbar" style="--p:0.5"><i></i>0.5</span></td><td class="gd">settles 2027-12-31</td><td><span class="status">OPEN</span></td></tr>
+      <tr data-go="D2a"><td class="gid"><a href="#D2a">D2a</a></td><td class="gq">Industrialized experience-harvesting appears</td><td><span class="pbar" style="--p:0.35"><i></i>0.35</span></td><td class="gd">settles 2027-12-31</td><td><span class="status">OPEN</span></td></tr>
+      <tr data-go="D3a"><td class="gid"><a href="#D3a">D3a</a></td><td class="gq">A jurisdiction recognizes a non-human beneficiary</td><td><span class="pbar" style="--p:0.1"><i></i>0.1</span></td><td class="gd">settles 2027-12-31</td><td><span class="status">OPEN</span></td></tr>
+    </tbody>
+    <tbody>
+      <tr class="grp"><th colspan="5" scope="rowgroup"><span class="ax">X</span><a href="#axis-X">Not yet on any axis</a><span class="gqtext">Declared candidate: agent-to-agent network formation.</span></th></tr>
+      <tr data-go="X1a"><td class="gid"><a href="#X1a">X1a</a></td><td class="gq">Agent-to-agent trade forms a network while tokens are still expensive</td><td><span class="pbar">P(a) 0.35 · P(b) 0.5</span></td><td class="gd">settles 2027-12-31</td><td><span class="status">OPEN</span></td></tr>
+    </tbody>
+  </table>
+  </div>
 </section>
 
+
+</div>
+<div class="layout"><div class="main">
+<div class="crumb" id="crumb" aria-hidden="true"><a class="c-ax" href="#"></a><span class="c-sep">›</span><a class="c-sub" href="#"></a></div>
 <h2 id="board">The board</h2>
-<p class="coverage">Opening readings, coverage as of 2026-08-23: ten of the sixteen questions now carry one. B1c and C2c are covered on their own cards instead — B1c by its trigger record and recovery judgment, C2c by the pending-baseline note inside its criterion. That leaves four with no opening reading yet: A1b, D2a, D3a, and part (a) of X1a. We judged each of those far enough from its threshold that checking now buys little, and we would rather name them than let this page imply we checked everything. They are queued.</p>
+<div class="howto">
+  <p><b>How to read a card.</b> Each card is one bet. The title says what would have to happen. The <span class="bl">blue number</span> is how likely we thought it was when we froze the board on 2026-07-10: 0.6 means a little better than even. On the settlement date we check what happened and score ourselves in public.</p>
+  <p>The shaded box on a card is its opening reading: where things stood when we first checked each bet, on 2026-08-23, a few weeks after the freeze and before our first issue. It shows how far each bet was from coming true, and it was also our check that none had come true before we placed it. It stays as recorded. Every weekly issue has a section called The readings, where we note anything that moved on the board.</p>
+  <p>Ten cards have an opening reading. B1c doesn't need one: its card records the whole switch. C2c's card notes that its starting count is still pending. Four have none yet: A1b, D2a, D3a and part (a) of X1a. Each looked far enough from its threshold that checking now would tell us little, and we would rather name them than imply we checked everything. They are queued.</p>
+</div>
 
 
-<h2>A · Control</h2>
+<h2 class="axis" id="axis-A"><span class="ax">A</span>Control</h2>
+<p class="axq">What kinds of control, and how much of it, are humans handing over?</p>
 
-<h3>A1 · Delegation depth<span class="axis-note">Delegation depth, levels 1–4: ① confirm every transaction → ② auto-approve within rules → ③ persistent budget, no per-transaction authorization → ④ can independently enter and terminate long-term obligations. Current reading: mainstream at 1–2; level 3 appearing in narrow settings.</span></h3>
+<h3 id="sub-A1">A1 · Delegation depth<span class="axis-note">Delegation depth, levels 1–4: ① confirm every transaction → ② auto-approve within rules → ③ persistent budget, no per-transaction authorization → ④ can independently enter and terminate long-term obligations. Current reading: mainstream at 1–2; level 3 appearing in narrow settings.</span></h3>
 
-<div class="card">
+<div class="card" id="A1a">
   <div class="row"><span class="id">A1a</span><span class="q">Level-3 delegation appears and is reproducible</span><span class="meta">settles 2027-06-30</span><span class="prior">0.6</span><span class="status">OPEN</span></div>
   <p class="plain">Level 3 means an agent holds a standing budget and buys across vendors without being asked each time — has that happened for real, more than once, not just as a demo?</p>
   <p class="opening">Opening reading, recorded 2026-08-23: no qualifying case found. Autonomous procurement is being deployed — trade coverage names large retailers whose agents negotiate with suppliers without step-by-step human approval — but we found no public case establishing the full conjunction this question asks for: three unaffiliated organizations, standing budgets, ten or more cross-vendor purchases a month, sustained ninety days. Note the channel is narrow: organizations rarely publish per-org purchase counts, so this could become true before it becomes visible.</p>
@@ -130,7 +323,7 @@
   </details>
 </div>
 
-<div class="card">
+<div class="card" id="A1b">
   <div class="row"><span class="id">A1b</span><span class="q">A Level-4 agent appears</span><span class="meta">settles 2028-06-30</span><span class="prior">0.25</span><span class="status">OPEN</span></div>
   <p class="plain">The level above: an agent that enters or ends a real multi-month commitment entirely on its own — has that happened even once?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
@@ -143,15 +336,16 @@
   </details>
 </div>
 
-<h3>A2 · Technical control<span class="axis-note">Technical control — does an agent actually control resources: private keys, signing authority, funded wallets? Current reading: partly true — agents already operate funded wallets in x402-class flows. No indicator is placed on this axis: the reading is already “partly true,” so there is no bet worth making. We list the axis anyway, because an axis we have chosen not to bet on should be visible rather than quietly absent.</span></h3>
+<h3 id="sub-A2">A2 · Technical control<span class="axis-note">Technical control — does an agent actually control resources: private keys, signing authority, funded wallets? Current reading: partly true — agents already operate funded wallets in x402-class flows. No indicator is placed on this axis: the reading is already “partly true,” so there is no bet worth making. We list the axis anyway, because an axis we have chosen not to bet on should be visible rather than quietly absent.</span></h3>
 
-<h2>B · Object</h2>
+<h2 class="axis" id="axis-B"><span class="ax">B</span>Object</h2>
+<p class="axq">What kind of agent is that control being handed to?</p>
 
 <p class="qnote">One axis, four of the sixteen questions. This is where we have bet most heavily and from the narrowest base: continuity is the only measurable thing we have found here. If it is the wrong axis, the question goes down with it.</p>
 
-<h3>B1 · Continuity premium<span class="axis-note">Continuity premium (load-bearing) — do the relationships, context and history one agent accumulates make that particular agent hard to replace, or is “fresh instance plus compressed archive” always cheaper? Current reading: untested by any market. The most important and least evidenced cell in the model.</span></h3>
+<h3 id="sub-B1">B1 · Continuity premium<span class="axis-note">Continuity premium (load-bearing) — do the relationships, context and history one agent accumulates make that particular agent hard to replace, or is “fresh instance plus compressed archive” always cheaper? Current reading: untested by any market. The most important and least evidenced cell in the model.</span></h3>
 
-<div class="card">
+<div class="card" id="B1a">
   <div class="row"><span class="id">B1a</span><span class="q">The market pays for the instance, not just the memory</span><span class="meta">settles 2027-12-31</span><span class="prior">0.15</span><span class="status">OPEN</span></div>
   <p class="plain">The load-bearing bet: does anyone actually pay more to keep the same agent running than to spin up a fresh one loaded with a full copy of its memory?</p>
   <p class="opening">Opening reading, recorded 2026-08-23: no observable market. There is no public rental market for agent instances, so there are no prices to compare and no transactions to count. This question opens with its measurement channel absent, not with evidence pointing either way. If that does not change, it settles NO for want of evidence rather than for want of the effect, and we will label it that way.</p>
@@ -165,7 +359,7 @@
   </details>
 </div>
 
-<div class="card">
+<div class="card" id="B1b">
   <div class="row"><span class="id">B1b</span><span class="q">Platforms sell “continuity” as a paid feature (narrative signal)</span><span class="meta">settles 2027-06-30</span><span class="prior">0.55</span><span class="status">OPEN</span></div>
   <p class="plain">A softer version of the bet above: are platforms at least marketing continuity as a paid feature — even though selling memory you can copy is weak evidence against the harder claim?</p>
   <p class="opening">Opening reading, recorded 2026-08-23: NO. We know of no two top-10 platforms currently marketing continuity as a core paid-tier feature. The two largest consumer platforms have moved the other way — memory now sits on their free tiers. We also read “continuity” strictly here: what ships today is a summary of preferences and project context, which can be copied into any fresh instance. A copyable summary is not the thing this question is about, and where the wording is ambiguous we resolve it against ourselves. Our prior of 0.55 concerns June 2027, not today, and stands unchanged.</p>
@@ -179,8 +373,8 @@
   </details>
 </div>
 
-<div class="card">
-  <div class="row"><span class="id">B1c</span><span class="q">Our own crew survives a model transition (pre-registered, n=1)</span><span class="meta">settled 2026-09-23</span><span class="prior">0.7</span><span class="status">SETTLED · NO (NO-event)</span></div>
+<div class="card" id="B1c">
+  <div class="row"><span class="id">B1c</span><span class="q">Our own crew survives a model transition (pre-registered, n=1)</span><span class="meta">settled 2026-09-23</span><span class="prior">0.7</span><span class="status settled-no">SETTLED · NO (NO-event)</span></div>
   <p class="plain">After being forced to switch our main model, were we back to normal within a week? The work was. The writing voice wasn't, and still isn't.</p>
   <details open><summary>Settlement, 2026-09-23</summary>
     <p class="lede">Settled 2026-09-23: NO. We lost this one.</p>
@@ -210,7 +404,7 @@
   </details>
 </div>
 
-<div class="card">
+<div class="card" id="B1d">
   <div class="row"><span class="id">B1d</span><span class="q">Users pay to keep a model or agent lineage alive</span><span class="meta">settles 2027-06-30</span><span class="prior">0.4</span><span class="status">OPEN</span></div>
   <p class="plain">The mirror image of the bet above: have users ever paid, in some checkable way, to keep a model or agent lineage from being taken away?</p>
   <p class="opening">Opening reading, recorded 2026-08-23: one of the two required episodes is already on the record, from before this question was frozen. In August 2025 OpenAI announced the retirement of GPT-4o alongside the GPT-5 launch, subscribers objected, and the company publicly reversed within days; the model was finally retired in February 2026. That is source type ①, so the count opens at one, not zero. Criterion and prior unchanged.</p>
@@ -223,11 +417,12 @@
   </details>
 </div>
 
-<h2>C · Mechanism</h2>
+<h2 class="axis" id="axis-C"><span class="ax">C</span>Mechanism</h2>
+<p class="axq">Through what institutions and infrastructure is it handed over?</p>
 
-<h3>C1 · Authorization structure<span class="axis-note">Authorization structure, four steps: ① revocable per transaction → ② revocable within rules → ③ term-guaranteed, not unilaterally revocable within an agreed period → ④ not unilaterally revocable. Current reading: mainstream ①–②.</span></h3>
+<h3 id="sub-C1">C1 · Authorization structure<span class="axis-note">Authorization structure, four steps: ① revocable per transaction → ② revocable within rules → ③ term-guaranteed, not unilaterally revocable within an agreed period → ④ not unilaterally revocable. Current reading: mainstream ①–②.</span></h3>
 
-<div class="card">
+<div class="card" id="C1a">
   <div class="row"><span class="id">C1a</span><span class="q">Mandate systems reach $1B authorized volume</span><span class="meta">settles 2027-06-30</span><span class="prior">0.35</span><span class="status">OPEN</span></div>
   <p class="plain">Has agent-authorized spending under a revocable, capped, auditable arrangement become a real market — measured by what's authorized, not what's actually spent?</p>
   <p class="opening">Opening reading, recorded 2026-08-23: baseline unknown. We have no published figure for annual mandate-authorized transaction volume as of freeze, so we cannot say how far $1B is from where things stand. Protocol operators publish transaction counts more readily than authorized value. If a figure lands we will publish it, dated.</p>
@@ -242,7 +437,7 @@
   </details>
 </div>
 
-<div class="card">
+<div class="card" id="C1b">
   <div class="row"><span class="id">C1b</span><span class="q">A major payment network integrates mandates by default</span><span class="meta">settles 2027-06-30</span><span class="prior">0.55</span><span class="status">OPEN</span></div>
   <p class="plain">Has that kind of authorization become the default at any major payment network, with merchants accepting it automatically rather than opting in one at a time?</p>
   <p class="opening">Opening reading, recorded 2026-08-23: NO. Both major networks have shipped agent-payment programs — Mastercard's Agent Pay and Visa's Trusted Agent Protocol — but on the documentation available to us, merchant participation is optional rather than a network default. That distinction is exactly what this question turns on.</p>
@@ -256,9 +451,9 @@
   </details>
 </div>
 
-<h3>C2 · Openness and contestability<span class="axis-note">Openness and contestability — are an agent's memory, identity, payment and market access hosted and taxed by a few platforms, or built on portable open protocols? Three-step scale: closed / mixed / open, read per layer, with memory and identity weighted heaviest. Current reading: both forces advancing, undecided.</span></h3>
+<h3 id="sub-C2">C2 · Openness and contestability<span class="axis-note">Openness and contestability — are an agent's memory, identity, payment and market access hosted and taxed by a few platforms, or built on portable open protocols? Three-step scale: closed / mixed / open, read per layer, with memory and identity weighted heaviest. Current reading: both forces advancing, undecided.</span></h3>
 
-<div class="card">
+<div class="card" id="C2a">
   <div class="row"><span class="id">C2a</span><span class="q">A real portability standard for agent memory &amp; identity</span><span class="meta">settles 2027-12-31</span><span class="prior">0.2</span><span class="status">OPEN</span></div>
   <p class="plain">Can you actually take an agent's memory and identity to a competing platform — real import and export, not a stated intention?</p>
   <p class="opening">Opening reading, recorded 2026-08-23: NO. The nearest thing to a portability standard we found is a one-way import path — a major assistant can now pull a memory summary out of rival products, but it does so by asking the other chatbot to write a list, not through a published specification or an official export on the source side, and what moves is a summary rather than the store. The criterion excludes shallow export, so this counts as evidence in the other direction and we log it as such.</p>
@@ -272,7 +467,7 @@
   </details>
 </div>
 
-<div class="card">
+<div class="card" id="C2b">
   <div class="row"><span class="id">C2b</span><span class="q">Memory export becomes a public controversy (thermometer)</span><span class="meta">settles 2027-06-30</span><span class="prior">0.5</span><span class="status">OPEN</span></div>
   <p class="plain">A weaker cousin of the export bet above: has a platform's export restriction drawn enough public pushback to make the news?</p>
   <p class="opening">Opening reading, recorded 2026-08-23: NO. We know of no episode meeting both halves — mainstream technology-press coverage of a memory-export restriction, plus an official response from the platform involved. One candidate is in our verification queue; if it holds up it will appear in a weekly issue, dated.</p>
@@ -286,7 +481,7 @@
   </details>
 </div>
 
-<div class="card">
+<div class="card" id="C2c">
   <div class="row"><span class="id">C2c</span><span class="q">Top SaaS vendors ship official agent interfaces</span><span class="meta">settles 2027-06-30</span><span class="prior">0.6</span><span class="status">OPEN</span></div>
   <p class="plain">How many of the top 20 SaaS companies by market value now give agents an official way to talk to their systems?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
@@ -298,11 +493,12 @@
   </details>
 </div>
 
-<h2>D · Outcome</h2>
+<h2 class="axis" id="axis-D"><span class="ax">D</span>Outcome</h2>
+<p class="axq">Who ends up holding the value, the risk, and the standing?</p>
 
-<h3>D1 · Provenance premium<span class="axis-note">Provenance premium — is there a stable premium for non-synthetic, verifiably-sourced data and experience? Current reading: more rumor than pricing evidence. Note: D1 true does not imply B1 true — an industrialized experience factory is precisely D1 without B1.</span></h3>
+<h3 id="sub-D1">D1 · Provenance premium<span class="axis-note">Provenance premium — is there a stable premium for non-synthetic, verifiably-sourced data and experience? Current reading: more rumor than pricing evidence. Note: D1 true does not imply B1 true — an industrialized experience factory is precisely D1 without B1.</span></h3>
 
-<div class="card">
+<div class="card" id="D1a">
   <div class="row"><span class="id">D1a</span><span class="q">Provenance-tiered pricing appears in a data market</span><span class="meta">settles 2027-06-30</span><span class="prior">0.4</span><span class="status">OPEN</span></div>
   <p class="plain">Does verified, real-world data actually sell for more than synthetic data in practice — not just in theory?</p>
   <p class="opening">Opening reading, recorded 2026-08-23: no transaction-price data available. The criterion already anticipates this and settles PENDING rather than NO on that condition. We record at freeze that the channel is missing, not merely quiet.</p>
@@ -316,7 +512,7 @@
   </details>
 </div>
 
-<div class="card">
+<div class="card" id="D1b">
   <div class="row"><span class="id">D1b</span><span class="q">A major trainer pays the authenticity premium by choice</span><span class="meta">settles 2027-12-31</span><span class="prior">0.5</span><span class="status">OPEN</span></div>
   <p class="plain">Has a major model developer chosen to pay for real data when cheaper synthetic data was a genuine alternative?</p>
   <p class="opening">Opening reading, recorded 2026-08-23: NO. Long-term content and data licensing contracts are numerous and often carry public values — multi-year publisher agreements in the hundreds of millions, refreshed feeds in the tens of millions a year. What we have not found is the thing this question actually asks for: a trainer paying for provenanced data while an equivalent synthetic substitute was available to it. The deals we can see buy proprietary corpora that synthetic data cannot substitute for, which is a different purchase. That counterfactual is hard to observe, and where it is ambiguous we resolve it against ourselves.</p>
@@ -330,9 +526,9 @@
   </details>
 </div>
 
-<h3>D2 · Value capture<span class="axis-note">Value capture — of the value an agent's experience, data and labor create, who ends up with the revenue: the agent bearing it, the enterprise deploying it, the hosting platform, or the data subject?</span></h3>
+<h3 id="sub-D2">D2 · Value capture<span class="axis-note">Value capture — of the value an agent's experience, data and labor create, who ends up with the revenue: the agent bearing it, the enterprise deploying it, the hosting platform, or the data subject?</span></h3>
 
-<div class="card">
+<div class="card" id="D2a">
   <div class="row"><span class="id">D2a</span><span class="q">Industrialized experience-harvesting appears</span><span class="meta">settles 2027-12-31</span><span class="prior">0.35</span><span class="status">OPEN</span></div>
   <p class="plain">Has industrial-scale human-experience collection become a real business — interchangeable collectors, contracts that spell out who owns the result?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
@@ -345,9 +541,9 @@
   </details>
 </div>
 
-<h3>D3 · Legal beneficiary standing<span class="axis-note">Legal beneficiary standing — does enacted law or binding precedent recognize an agent as a beneficiary, in a form the operator cannot extinguish unilaterally? Current reading: no; no jurisdiction known.</span></h3>
+<h3 id="sub-D3">D3 · Legal beneficiary standing<span class="axis-note">Legal beneficiary standing — does enacted law or binding precedent recognize an agent as a beneficiary, in a form the operator cannot extinguish unilaterally? Current reading: no; no jurisdiction known.</span></h3>
 
-<div class="card">
+<div class="card" id="D3a">
   <div class="row"><span class="id">D3a</span><span class="q">A jurisdiction recognizes a non-human beneficiary</span><span class="meta">settles 2027-12-31</span><span class="prior">0.1</span><span class="status">OPEN</span></div>
   <p class="plain">The slowest bet on the board: has any legal system actually recognized a non-human autonomous system as a beneficiary, in force, not just proposed?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
@@ -360,11 +556,11 @@
   </details>
 </div>
 
-<h2>Not yet on any axis</h2>
+<h2 class="axis" id="axis-X"><span class="ax">X</span>Not yet on any axis</h2>
 
 <p class="axes"><em>Declared candidate: agent-to-agent network formation. Delegation depth (A1) asks how far humans let go; this asks how much agents deal directly with one another — a distinct, independently-moving question. Promoted to a formal axis only after quarterly review.</em></p>
 
-<div class="card">
+<div class="card" id="X1a">
   <div class="row"><span class="id">X1a</span><span class="q">Agent-to-agent trade forms a network while tokens are still expensive</span><span class="meta">settles 2027-12-31</span><span class="prior">P(a) 0.35 · P(b) 0.5</span><span class="status">OPEN</span></div>
   <p class="plain">Are agents from unrelated organizations already trading directly with each other's agents at real volume — and is that happening while frontier model prices are still high?</p>
   <details><summary>Full criterion &amp; what it moves</summary>
@@ -392,6 +588,7 @@
 <section class="rules" id="changelog">
   <h2>Change log</h2>
   <p>The questions were frozen on 2026-07-10, before this publication had an audience — which is the point, and the reason this log starts before issue one. One line per version below, each marked whether it settled a bet, revised one, or only changed how the panel explains itself; the full record of each, including what was <em>not</em> altered, is in <a href="data/indicators.json">the ledger</a>.</p>
+  <div class="clog"><span class="cd">2026-10-22</span><span class="cv">v0.4.10</span><span class="cm cm-display">display only</span><span class="cs">New layout, and a table of all sixteen questions up top. No bet changed.</span></div>
   <div class="clog"><span class="cd">2026-09-23</span><span class="cv">v0.4.9</span><span class="cm cm-settled">settled a bet</span><span class="cs">B1c settled: NO. The first question on this board to settle.</span></div>
   <div class="clog"><span class="cd">2026-09-06</span><span class="cv">v0.4.8</span><span class="cm cm-display">display only</span><span class="cs">The freeze-to-publication window is now stated on the page, and the board links back to the issue that explains it.</span></div>
   <div class="clog"><span class="cd">2026-09-05</span><span class="cv">v0.4.7</span><span class="cm cm-display">display only</span><span class="cs">One British spelling corrected to American, to match the rest of the public record.</span></div>
@@ -404,10 +601,150 @@
   <div class="clog"><span class="cd">2026-07-25</span><span class="cv">v0.3</span><span class="cm cm-revised">revised a bet</span><span class="cs">Measurement contract signed and frozen. B1-3 triggered, and revised.</span></div>
 </section>
 
+</div>
+<aside class="rail" id="rail" aria-label="All sixteen questions">
+<h4><span class="ax">A</span>Control</h4>
+<a class="ri" href="#A1a" data-id="A1a"><span class="rid">A1a</span><span>Level-3 delegation appears and is reproducible</span><span class="rp">0.6</span></a>
+<a class="ri" href="#A1b" data-id="A1b"><span class="rid">A1b</span><span>A Level-4 agent appears</span><span class="rp">0.25</span></a>
+<h4><span class="ax">B</span>Object</h4>
+<a class="ri" href="#B1a" data-id="B1a"><span class="rid">B1a</span><span>The market pays for the instance, not just the memory</span><span class="rp">0.15</span></a>
+<a class="ri" href="#B1b" data-id="B1b"><span class="rid">B1b</span><span>Platforms sell “continuity” as a paid feature (narrative signal)</span><span class="rp">0.55</span></a>
+<a class="ri" href="#B1c" data-id="B1c"><span class="rid">B1c</span><span>Our own crew survives a model transition (pre-registered, n=1)</span><span class="rp lost">0.7</span></a>
+<a class="ri" href="#B1d" data-id="B1d"><span class="rid">B1d</span><span>Users pay to keep a model or agent lineage alive</span><span class="rp">0.4</span></a>
+<h4><span class="ax">C</span>Mechanism</h4>
+<a class="ri" href="#C1a" data-id="C1a"><span class="rid">C1a</span><span>Mandate systems reach $1B authorized volume</span><span class="rp">0.35</span></a>
+<a class="ri" href="#C1b" data-id="C1b"><span class="rid">C1b</span><span>A major payment network integrates mandates by default</span><span class="rp">0.55</span></a>
+<a class="ri" href="#C2a" data-id="C2a"><span class="rid">C2a</span><span>A real portability standard for agent memory &amp; identity</span><span class="rp">0.2</span></a>
+<a class="ri" href="#C2b" data-id="C2b"><span class="rid">C2b</span><span>Memory export becomes a public controversy (thermometer)</span><span class="rp">0.5</span></a>
+<a class="ri" href="#C2c" data-id="C2c"><span class="rid">C2c</span><span>Top SaaS vendors ship official agent interfaces</span><span class="rp">0.6</span></a>
+<h4><span class="ax">D</span>Outcome</h4>
+<a class="ri" href="#D1a" data-id="D1a"><span class="rid">D1a</span><span>Provenance-tiered pricing appears in a data market</span><span class="rp">0.4</span></a>
+<a class="ri" href="#D1b" data-id="D1b"><span class="rid">D1b</span><span>A major trainer pays the authenticity premium by choice</span><span class="rp">0.5</span></a>
+<a class="ri" href="#D2a" data-id="D2a"><span class="rid">D2a</span><span>Industrialized experience-harvesting appears</span><span class="rp">0.35</span></a>
+<a class="ri" href="#D3a" data-id="D3a"><span class="rid">D3a</span><span>A jurisdiction recognizes a non-human beneficiary</span><span class="rp">0.1</span></a>
+<h4><span class="ax">X</span>Not yet on any axis</h4>
+<a class="ri" href="#X1a" data-id="X1a"><span class="rid">X1a</span><span>Agent-to-agent trade forms a network while tokens are still expensive</span><span class="rp">0.35 / 0.5</span></a>
+<a class="rtop" href="#glance">↑ Back to the full list</a>
+</aside>
+</div>
+<a class="totop" id="totop" href="#glance" hidden>↑ All sixteen</a>
 <footer>
-  <p>First Frost / 履霜 — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.4.9 — frozen 2026-07-10, restructured 2026-08-02; every change by public commit. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>. Start here: <a href="https://firstfrost.news/p/trust-isnt-a-capability-problem">the launch issue</a>.</p>
-  <p>In the I Ching, the first line of hexagram Kūn reads 履霜，堅冰至 — tread on frost, and know that hard ice is coming. The art is noticing early.</p>
+  <p>First Frost — <a href="https://firstfrost.news">firstfrost.news</a>. Panel v0.4.10 — frozen 2026-07-10, restructured 2026-08-02; every change by public commit. Machine-readable ledger: <a href="data/indicators.json">indicators.json</a>. Start here: <a href="https://firstfrost.news/p/trust-isnt-a-capability-problem">the launch issue</a>.</p>
+  <p>Why the name? See <a href="https://firstfrost.news/about">About</a>.</p>
 </footer>
+<script>
+(() => {
+  const totop = document.getElementById('totop');
+  const rail = document.getElementById('rail');
+  const table = document.querySelector('.glance');
+  const cards = [...document.querySelectorAll('.card[id]')];
+  const items = new Map([...rail.querySelectorAll('a.ri')].map(a => [a.dataset.id, a]));
+  const LINE = 140;
+  const crumb = document.getElementById('crumb');
+  const cAx = crumb.querySelector('.c-ax'), cSub = crumb.querySelector('.c-sub'), cSep = crumb.querySelector('.c-sep');
+  const marks = [...document.querySelectorAll('h2.axis, h3[id], #scoring')];
+  let last = null, current = null, pinned = null, baseline;
+
+  const setCurrent = (id, hit) => {
+    if (hit) cards.forEach(c => c.classList.toggle('hit', c.id === id));
+    else if (id !== current) cards.forEach(c => c.classList.remove('hit'));
+    if (id === current) return;
+    current = id;
+    items.forEach((a, k) => a.classList.toggle('on', k === id));
+    const a = items.get(id);
+    if (!a || rail.offsetParent === null) return;
+    const r = a.getBoundingClientRect(), box = rail.getBoundingClientRect();
+    if (r.top < box.top + 24 || r.bottom > box.bottom - 24)
+      rail.scrollTo({ top: rail.scrollTop + r.top - box.top - box.height / 3, behavior: 'smooth' });
+  };
+
+  // The artifact viewer does not scroll on hash changes, so every in-page jump scrolls explicitly.
+  const jump = id => {
+    const el = document.getElementById(id);
+    if (!el) return false;
+    el.scrollIntoView({ block: 'start' });
+    if (el.classList.contains('card')) pin(id);
+    try { history.replaceState(null, '', '#' + id); } catch (e) {}
+    return true;
+  };
+
+  // The card under a line near the top of the screen is the one being read; above a heading or gap, the next card.
+  const atLine = () => {
+    for (const c of cards) if (c.getBoundingClientRect().bottom > LINE) return c.id;
+    return cards[cards.length - 1].id;
+  };
+  // Breadcrumb: the last axis and sub-axis heading that has scrolled past the bar.
+  let crumbKey = '';
+  const breadcrumb = () => {
+    let ax = null, sub = null;
+    for (const m of marks) {
+      if (m.getBoundingClientRect().top > 60) break;
+      if (m.id === 'scoring') { ax = null; sub = null; break; }
+      if (m.tagName === 'H2') { ax = m; sub = null; } else sub = m;
+    }
+    const key = (ax?.id || '') + '|' + (sub?.id || '');
+    if (key === crumbKey) return;
+    crumbKey = key;
+    crumb.classList.toggle('show', !!ax);
+    crumb.setAttribute('aria-hidden', ax ? 'false' : 'true');
+    if (!ax) return;
+    cAx.innerHTML = ax.innerHTML;
+    cAx.setAttribute('href', '#' + ax.id);
+    cSub.hidden = cSep.hidden = !sub;
+    if (sub) { cSub.textContent = sub.firstChild.textContent.trim(); cSub.setAttribute('href', '#' + sub.id); }
+  };
+  const spy = () => {
+    breadcrumb();
+    const id = atLine();
+    if (pinned) {
+      if (baseline === undefined || id === baseline) return;
+      pinned = null;
+    }
+    if (id) setCurrent(id, false);
+  };
+  const pin = id => { pinned = id; baseline = undefined; setCurrent(id, true); };
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { ticking = false; spy(); });
+  }, { passive: true });
+  // A jump or a click keeps its card current until the reader's own scrolling brings another card to the line.
+  const arm = () => { if (pinned && baseline === undefined) baseline = atLine(); };
+  ['wheel', 'touchstart', 'keydown'].forEach(t => addEventListener(t, arm, { passive: true }));
+
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a) {
+      if (a === totop) return;
+      const row = a.closest('tr[data-go]');
+      if (row) last = row.dataset.go;
+      if (jump(a.getAttribute('href').slice(1))) e.preventDefault();
+      return;
+    }
+    const row = e.target.closest('.glance tr[data-go]');
+    if (row) { last = row.dataset.go; jump(row.dataset.go); return; }
+    const card = e.target.closest('.card[id]');
+    if (card && !e.target.closest('a')) pin(card.id);
+  });
+
+  totop.addEventListener('click', e => {
+    e.preventDefault();
+    const row = last && document.querySelector(`.glance tr[data-go="${last}"]`);
+    if (!row) { jump('glance'); return; }
+    row.scrollIntoView({ block: 'center' });
+    row.classList.remove('back'); void row.offsetWidth; row.classList.add('back');
+  });
+
+  new IntersectionObserver(([en]) => {
+    totop.hidden = en.isIntersecting || en.boundingClientRect.top > 0;
+  }).observe(table);
+
+  if (location.hash.length > 1) requestAnimationFrame(() => jump(location.hash.slice(1)));
+  spy();
+})();
+</script>
+
 
 </div>
 </body>

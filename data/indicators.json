@@ -1,5 +1,5 @@
 {
-  "panel_version": "0.4.9",
+  "panel_version": "0.4.10",
   "frozen_on": "2026-07-10",
   "priors_note": "Priors are July-2026 impressions with a stated uncertainty of ±0.15. We do not claim calibration until at least 10 indicators have settled.",
   "scoring": {
@@ -384,6 +384,13 @@
       "moved": "settled",
       "headline": "B1c settled: NO. The first question on this board to settle.",
       "summary": "B1c settled NO (NO-event), Brier 0.49: the first question on this board to settle. No criterion was changed, and the revision count stays at two. The card's one-line summary and its trigger and recovery summaries were rewritten in plain language; the records they summarize are unchanged. Cumulative Brier is now reported in its three columns, and the board points to About for how to send a dispute. (An earlier version of this settlement listed an email address directly; it was replaced same-day, before publication, once we found the address rendered differently on and off the live page.)"
+    },
+    {
+      "date": "2026-10-22",
+      "version": "0.4.10",
+      "moved": "display",
+      "headline": "New layout, and a table of all sixteen questions up top. No bet changed.",
+      "summary": "A table at the top lists all sixteen questions with our prior, settlement date and status, and links to each card. The four questions the board is organized around now head their groups in that table, wording unchanged. A short note on how to read a card replaces the old coverage paragraph; it gives the same count and names the same four cards still without an opening reading. Settled results are shown in color, red for a miss. The note on the name moved to About. No criterion, prior, settlement date or moves text was altered, and no question was added or removed."
     }
   ],
   "restructured_on": "2026-08-02",
