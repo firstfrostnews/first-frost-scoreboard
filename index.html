@@ -43,7 +43,8 @@
   html { scroll-behavior: smooth; }
   body { margin: 0; background: var(--page); color: var(--text); font: 16px/1.6 var(--display); }
   a { color: var(--link); }
-  .wrap { max-width: 1440px; margin: 0 auto; padding-block: 0 56px; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+  /* Same gutters as the agent map: 20px up to 1100px, opening to 72px by 1440px. */
+  .wrap { max-width: 1440px; margin: 0 auto; padding-block: 0 56px; padding-left: max(clamp(20px, calc(20px + (100vw - 1100px) * .153), 72px), env(safe-area-inset-left, 0px)); padding-right: max(clamp(20px, calc(20px + (100vw - 1100px) * .153), 72px), env(safe-area-inset-right, 0px)); }
   header.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 0 8px; }
   .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; font-size: 14px; }
   .brand img { width: 30px; height: 30px; border-radius: 8px; }
